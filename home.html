@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM Trend - Web3 Trend Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --primary-light: #60A5FA;
+            --primary-dark: #2563EB;
+            --bg-light: #F8F9FC;
+            --bg-dark: #0F172A;
+            --card-light: #FFFFFF;
+            --card-dark: #1E293B;
+            --text-light: #F9FAFB;
+            --text-dark: #111827;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .dark {
+            color-scheme: dark;
+        }
+        
+        .dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        
+        .trend-card {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            padding: 1.5rem;
+        }
+        
+        .dark .trend-card {
+            background-color: var(--card-dark);
+        }
+        
+        .trend-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .trend-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #3B82F6;
+            margin-bottom: 0;
+        }
+        
+        .trend-card .volume {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+        
+        .trend-card .growth {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #22C55E;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+        
+        .trend-card .label {
+            font-size: 0.875rem;
+            color: #6B7280;
+            font-weight: 500;
+        }
+        
+        .trend-chart {
+            height: 100px;
+            margin: 1.25rem 0;
+            position: relative;
+        }
+        
+        .exploding-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #F3F4F6;
+            color: #4B5563;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            letter-spacing: 0.025em;
+        }
+        
+        .regular-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #F3F4F6;
+            color: #4B5563;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            letter-spacing: 0.025em;
+        }
+        
+        .dark .exploding-badge,
+        .dark .regular-badge {
+            background-color: #374151;
+            color: #E5E7EB;
+        }
+        
+        .trend-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .trend-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .trend-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .chart-tooltip {
+            position: absolute;
+            background-color: #EFF6FF;
+            border: 1px solid #DBEAFE;
+            color: #1E40AF;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 10;
+            display: none;
+            pointer-events: none;
+        }
+        
+        .dark .chart-tooltip {
+            background-color: #1F2937;
+            border-color: #3B82F6;
+            color: white;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">GM TREND</h1>
+            <button id="themeToggle" class="p-2 rounded-lg bg-gray-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-2">Web3 Trend Intelligence</h2>
+            <p class="text-gray-600">Track the most popular Web3 keywords and their growth over time. Get insights into emerging trends before they take off.</p>
+        </div>
+
+        <div class="mb-8">
+            <div class="text-sm text-gray-600 mb-4">FILTER BY:</div>
+            <div class="flex flex-wrap gap-4">
+                <select class="px-4 py-2 bg-white border border-gray-200 rounded-lg">
+                    <option>Past 6 Months</option>
+                    <option>Past Year</option>
+                    <option>Past 2 Years</option>
+                </select>
+                <select class="px-4 py-2 bg-white border border-gray-200 rounded-lg">
+                    <option>All Categories</option>
+                    <option>DeFi</option>
+                    <option>NFT</option>
+                    <option>Gaming</option>
+                </select>
+                <div class="flex-grow"></div>
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-lg">PRO</button>
+            </div>
+        </div>
+
+        <div class="trend-grid mb-8">
+            <!-- MONAD -->
+            <div class="trend-card" onclick="showTrendDetail('monad')">
+                <div class="flex justify-between items-start">
+                    <h3>MONAD</h3>
+                    <div class="text-right">
+                        <div class="volume">74K</div>
+                        <div class="label">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="text-right mb-2">
+                    <div class="growth">+1760%</div>
+                    <div class="label">Growth</div>
+                </div>
+                
+                <div class="trend-chart">
+                    <canvas id="monadChart"></canvas>
+                    <div class="chart-tooltip" id="monadTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    A high-performance blockchain designed for building scalable decentralized applications with improved throughput.
+                </p>
+                
+                <div>
+                    <span class="exploding-badge">EXPLODING</span>
+                </div>
+            </div>
+            
+            <!-- PUMP -->
+            <div class="trend-card" onclick="showTrendDetail('pump')">
+                <div class="flex justify-between items-start">
+                    <h3>PUMP</h3>
+                    <div class="text-right">
+                        <div class="volume">40.5K</div>
+                        <div class="label">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="text-right mb-2">
+                    <div class="growth">+1700%</div>
+                    <div class="label">Growth</div>
+                </div>
+                
+                <div class="trend-chart">
+                    <canvas id="pumpChart"></canvas>
+                    <div class="chart-tooltip" id="pumpTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                    A decentralized market making protocol providing automated liquidity and optimized trading strategies.
+                </p>
+                
+                <div>
+                    <span class="exploding-badge">EXPLODING</span>
+                </div>
+            </div>
+            
+            <!-- OPENSEA -->
+            <div class="trend-card p-6" onclick="showTrendDetail('opensea')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">OPENSEA</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">246K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+5300%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="openseaChart"></canvas>
+                    <div class="chart-tooltip" id="openseaTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A leading NFT marketplace that facilitates the trading of digital collectibles, art, and other blockchain-based assets.
+                </p>
+                
+                <div>
+                    <span class="exploding-badge">EXPLODING</span>
+                </div>
+            </div>
+            
+            <!-- POLYMARKET -->
+            <div class="trend-card p-6" onclick="showTrendDetail('polymarket')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">POLYMARKET</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">186K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+1970%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="polymarketChart"></canvas>
+                    <div class="chart-tooltip" id="polymarketTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A decentralized prediction market platform where users can trade on the outcome of events and get rewarded for accurate forecasts.
+                </p>
+                
+                <div>
+                    <span class="exploding-badge">EXPLODING</span>
+                </div>
+            </div>
+            
+            <!-- MEGAETH -->
+            <div class="trend-card p-6" onclick="showTrendDetail('megaeth')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">MEGAETH</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">95K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+1420%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="megaethChart"></canvas>
+                    <div class="chart-tooltip" id="megaethTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A scaling solution designed to significantly increase Ethereum's transaction throughput while maintaining security.
+                </p>
+                
+                <div>
+                    <span class="regular-badge">REGULAR</span>
+                </div>
+            </div>
+            
+            <!-- SUCCINCT -->
+            <div class="trend-card p-6" onclick="showTrendDetail('succinct')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">SUCCINCT</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">78K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+1255%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="succinctChart"></canvas>
+                    <div class="chart-tooltip" id="succinctTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A zero-knowledge proof system for blockchain applications, enabling efficient verification of complex computations.
+                </p>
+                
+                <div>
+                    <span class="regular-badge">REGULAR</span>
+                </div>
+            </div>
+            
+            <!-- PRO MEMBERS ONLY - Blurred card design -->
+            <div class="trend-card p-6 relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-gray-100/90 to-white/90 dark:from-gray-900/90 dark:to-gray-800/90 backdrop-blur-sm"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/30 dark:to-blue-900/10"></div>
+                
+                <div class="relative z-10 flex flex-col items-center justify-center h-full">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-blue-500 text-white px-2 py-1 text-sm font-semibold rounded mr-2">PRO</span>
+                        <span class="text-lg font-semibold">Members Only</span>
+                    </div>
+                    
+                    <button onclick="showPricingPage()" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-md font-medium transition-colors w-full max-w-xs">
+                        Try Exploding Topics Pro
+                    </button>
+                </div>
+            </div>
+            
+            <!-- MET -->
+            <div class="trend-card p-6" onclick="showTrendDetail('met')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">MET</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">68K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+950%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="metChart"></canvas>
+                    <div class="chart-tooltip" id="metTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A governance token for a decentralized autonomous organization focused on metaverse infrastructure development.
+                </p>
+                
+                <div>
+                    <span class="regular-badge">REGULAR</span>
+                </div>
+            </div>
+            
+            <!-- MSU -->
+            <div class="trend-card p-6" onclick="showTrendDetail('msu')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">MSU</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">62K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+890%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="msuChart"></canvas>
+                    <div class="chart-tooltip" id="msuTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A cross-chain messaging protocol that enables secure communication between different blockchain networks.
+                </p>
+                
+                <div>
+                    <span class="exploding-badge">EXPLODING</span>
+                </div>
+            </div>
+            
+            <!-- FARCASTER -->
+            <div class="trend-card p-6" onclick="showTrendDetail('farcaster')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">FARCASTER</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">81K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+1150%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="farcasterChart"></canvas>
+                    <div class="chart-tooltip" id="farcasterTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A decentralized social media protocol built on Ethereum that allows users to own their social graph and content.
+                </p>
+                
+                <div>
+                    <span class="exploding-badge">EXPLODING</span>
+                </div>
+            </div>
+            
+            <!-- INITIA -->
+            <div class="trend-card p-6" onclick="showTrendDetail('initia')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">INITIA</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">71K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+980%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="initiaChart"></canvas>
+                    <div class="chart-tooltip" id="initiaTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    A Layer 1 blockchain designed for high throughput and low transaction costs, using a novel consensus mechanism.
+                </p>
+                
+                <div>
+                    <span class="regular-badge">REGULAR</span>
+                </div>
+            </div>
+            
+            <!-- LINEA -->
+            <div class="trend-card p-6" onclick="showTrendDetail('linea')">
+                <div class="flex justify-between items-start mb-1">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">LINEA</h3>
+                    <div class="text-right">
+                        <div class="text-3xl font-bold">125K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                </div>
+                
+                <div class="mb-1 text-right">
+                    <div class="text-3xl font-bold text-green-500">+2240%</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                </div>
+                
+                <div class="trend-chart mb-4 relative">
+                    <canvas id="lineaChart"></canvas>
+                    <div class="chart-tooltip" id="lineaTooltip"></div>
+                </div>
+                
+                <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                    An EVM-equivalent zkRollup by Consensys, designed to scale Ethereum while maintaining security and decentralization.
+                </p>
+                
+                <div>
+                    <span class="exploding-badge">EXPLODING</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const trendContainer = document.getElementById('trendContainer');
+
+        // Theme toggle
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const isDark = document.body.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            displayTrends(); // Redraw charts with new theme
+        });
+
+        // Load saved theme
+        if (localStorage.getItem('theme') === 'dark' || 
+            (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.classList.add('dark');
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num.toString();
+        }
+
+        function formatGrowth(growth) {
+            return (growth > 0 ? '+' : '') + growth.toFixed(1) + '%';
+        }
+
+        // Generate trend data (increasing with spike) - Monthly version
+        function generateTrendDataWithSpike(length) {
+            const data = [];
+            let value = 100;
+            
+            // For monthly data, we'll use 12 months
+            const totalMonths = 12;
+            
+            // Initial steady period (first 4 months)
+            for (let i = 0; i < 4; i++) {
+                value *= (1 + Math.random() * 0.02); // Very slow growth
+                data.push(Math.round(value));
+            }
+            
+            // Growth period (next 4 months)
+            for (let i = 0; i < 4; i++) {
+                value *= (1 + Math.random() * 0.15); // Moderate growth
+                data.push(Math.round(value));
+            }
+            
+            // Explosive growth (last 4 months)
+            for (let i = 0; i < 4; i++) {
+                value *= (1 + Math.random() * 0.25); // Rapid growth
+                data.push(Math.round(value));
+            }
+            
+            return data;
+        }
+
+        // Create trend charts with monthly data
+        function createTrendCharts() {
+            const trendIds = [
+                'monad', 'pump', 'opensea', 'polymarket', 'megaeth', 'succinct',
+                'met', 'msu', 'farcaster', 'initia', 'linea'
+            ];
+            
+            trendIds.forEach(id => {
+                const canvas = document.getElementById(`${id}Chart`);
+                const tooltip = document.getElementById(`${id}Tooltip`);
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                // Generate 12 months of data
+                const monthlyData = generateTrendDataWithSpike(12);
+                
+                // Generate month labels for last 12 months
+                const monthLabels = Array.from({length: 12}, (_, i) => {
+                    const date = new Date();
+                    date.setMonth(date.getMonth() - (11 - i));
+                    return date.toLocaleString('default', { month: 'short' });
+                });
+                
+                // Set up the hover effect manually
+                canvas.addEventListener('mousemove', function(event) {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+                    
+                    const tooltipIndex = Math.floor((x / rect.width) * monthlyData.length);
+                    if (tooltipIndex >= 0 && tooltipIndex < monthlyData.length) {
+                        tooltip.style.display = 'block';
+                        tooltip.style.left = `${x - 30}px`;
+                        tooltip.style.top = `${y - 60}px`;
+                        
+                        // Update tooltip content with month and value
+                        const month = monthLabels[tooltipIndex];
+                        tooltip.innerHTML = `<strong>${month}</strong><br>${monthlyData[tooltipIndex]}`;
+                    }
+                });
+                
+                canvas.addEventListener('mouseleave', function() {
+                    tooltip.style.display = 'none';
+                });
+                
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: monthLabels,
+                        datasets: [{
+                            data: monthlyData,
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.05)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0,
+                            borderWidth: 1.5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false,
+                                grid: {
+                                    display: false
+                                }
+                            },
+                            y: {
+                                display: false,
+                                beginAtZero: true,
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        },
+                        elements: {
+                            line: {
+                                tension: 0.4
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
+        function createTrendCard(trend) {
+            const cardId = 'trend-' + Math.random().toString(36).substr(2, 9);
+            const card = document.createElement('div');
+            card.className = 'trend-card';
+            
+            const growthColor = trend.growth >= 0 ? 'text-green-500' : 'text-red-500';
+            
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-6">
+                    <h3 class="text-xl font-semibold text-blue-500">${trend.keyword}</h3>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold text-gray-900">${formatNumber(trend.volume)}</div>
+                        <div class="text-sm text-gray-600">Volume</div>
+                    </div>
+                </div>
+                <div class="text-right mb-6">
+                    <div class="text-2xl font-bold ${growthColor}">${formatGrowth(trend.growth)}</div>
+                    <div class="text-sm text-gray-600">Growth</div>
+                </div>
+                <div class="trend-line">
+                    <canvas id="${cardId}"></canvas>
+                </div>
+                <p class="text-gray-600 text-sm mb-4">${trend.description}</p>
+                <div class="exploding">EXPLODING</div>
+            `;
+            
+            trendContainer.appendChild(card);
+            createTrendCharts();
+        }
+
+        // Mock data for trends
+        const mockTrendData = {
+            trends: [
+                {
+                    keyword: "MONAD",
+                    volume: 74000,
+                    growth: 1760,
+                    description: "A high-performance blockchain designed for building scalable decentralized applications with improved throughput.",
+                    chartData: {
+                        dates: Array.from({length: 30}, (_, i) => `Day ${i + 1}`),
+                        values: Array.from({length: 30}, (_, i) => 1000 + Math.floor(Math.random() * 73000))
+                    }
+                },
+                {
+                    keyword: "PUMP",
+                    volume: 40500,
+                    growth: 1700,
+                    description: "A decentralized market making protocol providing automated liquidity and optimized trading strategies.",
+                    chartData: {
+                        dates: Array.from({length: 30}, (_, i) => `Day ${i + 1}`),
+                        values: Array.from({length: 30}, (_, i) => 500 + Math.floor(Math.random() * 40000))
+                    }
+                },
+                {
+                    keyword: "OPENSEA",
+                    volume: 246000,
+                    growth: 5300,
+                    description: "A leading NFT marketplace that facilitates the trading of digital collectibles, art, and other blockchain-based assets.",
+                    chartData: {
+                        dates: Array.from({length: 30}, (_, i) => `Day ${i + 1}`),
+                        values: Array.from({length: 30}, (_, i) => 5000 + Math.floor(Math.random() * 241000))
+                    }
+                }
+            ]
+        };
+
+        async function displayTrends() {
+            try {
+                // Use mock data instead of API call
+                const data = mockTrendData;
+                trendContainer.innerHTML = '';
+                data.trends.forEach(trend => createTrendCard(trend));
+            } catch (error) {
+                console.error('Error displaying trends:', error);
+                trendContainer.innerHTML = '<p class="text-center text-red-600">Error loading trends</p>';
+            }
+        }
+
+        // Initial load
+        displayTrends();
+        createTrendCharts();
+    </script>
+</body>
+</html>
