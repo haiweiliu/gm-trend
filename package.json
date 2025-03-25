@@ -1,0 +1,10 @@
+{
+  "name": "gm-trend",
+  "version": "1.0.0",
+  "description": "GM Trend Exchange Pages",
+  "main": "update-pages.js",
+  "type": "commonjs",
+  "scripts": {
+    "update": "node update-pages.js"
+  }
+}
