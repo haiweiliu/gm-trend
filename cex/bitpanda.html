@@ -5,229 +5,247 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BITPANDA - Exchange Analysis | GM Trend®</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <style>
         :root {
+            --bg-primary: #F9FAFB;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --hover-bg: rgba(0, 0, 0, 0.02);
+            --button-bg: rgba(0, 0, 0, 0.03);
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --grid-color: rgba(0, 0, 0, 0.05);
+            --tooltip-bg: rgba(255, 255, 255, 0.95);
+            --tooltip-text: #111827;
+            --tooltip-border: rgba(59, 130, 246, 0.2);
             --primary-color: #3B82F6;
             --secondary-color: #60A5FA;
+            --trend-declining: #EF4444;
+            --trend-regular: #F59E0B;
+            --trend-peaked: #4F46E5;
+            --trend-exploding: #3B82F6;
         }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #F3F4F6;
-            color: #1F2937;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
         }
-        .header {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-            color: white;
-            padding: 2rem 0;
+        
+        .wallet-card {
+            background-color: var(--bg-card);
+            border-radius: 0.75rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
         }
-        .metric-card {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-        .metric-card:hover {
+        
+        .wallet-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             transform: translateY(-2px);
         }
-        .chart-container {
-            background: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 2rem;
+        
+        .trend-meter {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, var(--trend-declining), var(--trend-regular), var(--trend-peaked), var(--trend-exploding));
+            border-radius: 4px;
+            position: relative;
         }
-        .trend-indicator {
+        
+        .trend-pointer {
+            position: absolute;
+            top: -14px;
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+            background-color: var(--text-primary);
+            border: 2px solid var(--bg-card);
+            margin-left: -6px;
+            left: 70%;
+        }
+        
+        .trend-badge {
             display: inline-flex;
             align-items: center;
-            padding: 0.25rem 0.75rem;
             border-radius: 9999px;
-            font-weight: 500;
-            font-size: 0.875rem;
+            padding: 4px 10px;
+            font-weight: 600;
+            font-size: 0.75rem;
         }
-        .trend-up {
-            background-color: #DEF7EC;
-            color: #03543F;
-        }
-        .trend-stable {
-            background-color: #FEF3C7;
-            color: #92400E;
-        }
-        .trend-down {
-            background-color: #FEE2E2;
-            color: #991B1B;
+        
+        .trend-trend-peaked {
+            background-color: rgba(var(--trend-peaked-rgb), 0.1);
+            color: var(--trend-peaked);
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="container mx-auto px-4">
-            <div class="flex items-center space-x-4">
-                <img src="https://site-images.similarcdn.com/image?url=bitpanda.com&t=2&s=1&h=41fcb8993525f8bac46d1e072c54931cc73209bc9e88b63f883dbe0a48a40bd2" alt="BITPANDA logo" class="w-16 h-16 rounded-lg">
-                <div>
-                    <h1 class="text-3xl font-bold">BITPANDA</h1>
-                    <p class="text-lg opacity-90">Exchange Analysis</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="metric-card">
-                <h3 class="text-lg font-semibold text-gray-600">Monthly Visits</h3>
-                <p class="text-2xl font-bold mt-2">10.0M</p>
-            </div>
-            <div class="metric-card">
-                <h3 class="text-lg font-semibold text-gray-600">Search Volume</h3>
-                <p class="text-2xl font-bold mt-2">368.0K</p>
-            </div>
-            <div class="metric-card">
-                <h3 class="text-lg font-semibold text-gray-600">Global Rank</h3>
-                <p class="text-2xl font-bold mt-2">#5597</p>
-            </div>
-            <div class="metric-card">
-                <h3 class="text-lg font-semibold text-gray-600">Trend Status</h3>
-                <div class="trend-indicator trend-up mt-2">Growing</div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            <div class="metric-card">
-                <h3 class="text-lg font-semibold text-gray-600">Engagement Metrics</h3>
-                <div class="space-y-4 mt-4">
-                    <div>
-                        <p class="text-sm text-gray-500">Bounce Rate</p>
-                        <p class="text-lg font-semibold">68.4%</p>
+    <div class="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="wallet-card p-8 mb-8">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-6">
+                        <img src="https://site-images.similarcdn.com/image?url=bitpanda.com&t=2&s=1&h=41fcb8993525f8bac46d1e072c54931cc73209bc9e88b63f883dbe0a48a40bd2" alt="bitpanda logo" class="w-16 h-16 rounded-xl shadow-lg">
+                        <div>
+                            <h1 class="text-3xl font-bold text-gray-900">BITPANDA</h1>
+                            <p class="text-gray-500 mt-1">European digital investment platform for cryptocurrencies and other assets.</p>
+                        </div>
                     </div>
-                    <div>
-                        <p class="text-sm text-gray-500">Avg. Visit Duration</p>
-                        <p class="text-lg font-semibold">02:27</p>
-                    </div>
-                    <div>
-                        <p class="text-sm text-gray-500">Pages per Visit</p>
-                        <p class="text-lg font-semibold">3.78</p>
+                    <div class="flex items-center space-x-4">
+                        <span class="trend-badge trend-peaked">
+                            <i class="fas fa-arrow-up mr-1"></i>
+                            PEAKED
+                        </span>
                     </div>
                 </div>
-            </div>
-            <div class="metric-card">
-                <h3 class="text-lg font-semibold text-gray-600">Top Countries</h3>
-                <div class="space-y-4 mt-4">
-                    
-        <div class="flex justify-between items-center">
-            <span class="text-gray-600">DE</span>
-            <span class="font-semibold">35.6%</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span class="text-gray-600">IT</span>
-            <span class="font-semibold">18.1%</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span class="text-gray-600">CH</span>
-            <span class="font-semibold">15.6%</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span class="text-gray-600">AT</span>
-            <span class="font-semibold">13.3%</span>
-        </div>
-        <div class="flex justify-between items-center">
-            <span class="text-gray-600">FR</span>
-            <span class="font-semibold">11.6%</span>
-        </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                    <div class="wallet-card p-6">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Monthly Visits</h3>
+                        <p class="text-2xl font-bold">10.0M</p>
+                        <div class="mt-2">
+                            <span class="text-sm text-gray-500">Global Rank: #5597</span>
+                        </div>
+                    </div>
+                    <div class="wallet-card p-6">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Search Volume</h3>
+                        <p class="text-2xl font-bold">368.0K</p>
+                        <div class="mt-2">
+                            <span class="text-sm text-gray-500">CPC: $1.74</span>
+                        </div>
+                    </div>
+                    <div class="wallet-card p-6">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Engagement</h3>
+                        <p class="text-2xl font-bold">02:27</p>
+                        <div class="mt-2">
+                            <span class="text-sm text-gray-500">Avg. Visit Duration</span>
+                        </div>
+                    </div>
+                    <div class="wallet-card p-6">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-2">Bounce Rate</h3>
+                        <p class="text-2xl font-bold">68.4%</p>
+                        <div class="mt-2">
+                            <span class="text-sm text-gray-500">Pages/Visit: 3.78</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-            <div class="chart-container">
-                <h3 class="text-lg font-semibold text-gray-600 mb-4">Monthly Visits Trend</h3>
-                <canvas id="visitsChart"></canvas>
-            </div>
-            <div class="chart-container">
-                <h3 class="text-lg font-semibold text-gray-600 mb-4">Search Volume Trend</h3>
-                <canvas id="searchChart"></canvas>
-            </div>
-        </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="wallet-card p-6">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Top Countries</h3>
+                        <div class="space-y-4">
+                            
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium">DE</span>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-semibold">35.6%</span>
+                                        <span class="text-xs text-red-500">
+                                            -3.4%
+                                        </span>
+                                    </div>
+                                </div>
+                            
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium">IT</span>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-semibold">18.1%</span>
+                                        <span class="text-xs text-green-500">
+                                            30.9%
+                                        </span>
+                                    </div>
+                                </div>
+                            
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium">CH</span>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-semibold">15.6%</span>
+                                        <span class="text-xs text-green-500">
+                                            31.0%
+                                        </span>
+                                    </div>
+                                </div>
+                            
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium">AT</span>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-semibold">13.3%</span>
+                                        <span class="text-xs text-red-500">
+                                            -10.9%
+                                        </span>
+                                    </div>
+                                </div>
+                            
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm font-medium">FR</span>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-sm font-semibold">11.6%</span>
+                                        <span class="text-xs text-green-500">
+                                            28.4%
+                                        </span>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                    </div>
+                    <div class="wallet-card p-6">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Traffic Sources</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium">Direct</span>
+                                <span class="text-sm font-semibold">68.1%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium">Search</span>
+                                <span class="text-sm font-semibold">14.9%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium">Referral</span>
+                                <span class="text-sm font-semibold">12.9%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-medium">Social</span>
+                                <span class="text-sm font-semibold">0.3%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="metric-card mt-8">
-            <h3 class="text-lg font-semibold text-gray-600 mb-4">Features</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">Spot Trading</span>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">Futures Trading</span>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">Margin Trading</span>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">Staking</span>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">NFT Marketplace</span>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">Mobile App</span>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">API Access</span>
-        </div>
-        <div class="bg-gray-50 rounded-lg p-3 text-center">
-            <span class="text-sm font-medium">Fiat Gateway</span>
-        </div>
+                <div class="mt-8">
+                    <div class="wallet-card p-6">
+                        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Trend Analysis</h3>
+                        <div class="trend-meter mb-8">
+                            <div class="trend-pointer"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                                <span class="font-medium text-gray-500">Current Status:</span>
+                                <span class="ml-2 font-semibold">PEAKED</span>
+                            </div>
+                            <div>
+                                <span class="font-medium text-gray-500">Trend Change:</span>
+                                <span class="ml-2 font-semibold text-green-500">27%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Chart.js configuration for visits trend
-        const visitsCtx = document.getElementById('visitsChart').getContext('2d');
-        new Chart(visitsCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar'],
-                datasets: [{
-                    label: 'Monthly Visits',
-                    data: [9992096,8992886.4,10991305.600000001],
-                    borderColor: var(--primary-color),
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
-        });
-
-        // Chart.js configuration for search trend
-        const searchCtx = document.getElementById('searchChart').getContext('2d');
-        new Chart(searchCtx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar'],
-                datasets: [{
-                    label: 'Search Volume',
-                    data: [550000,673000,450000],
-                    borderColor: var(--secondary-color),
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
+        // Initialize tooltips
+        document.querySelectorAll('[data-tooltip]').forEach(element => {
+            tippy(element, {
+                content: element.getAttribute('data-tooltip'),
+                theme: 'custom'
+            });
         });
     </script>
 </body>
-</html> 
+</html>
