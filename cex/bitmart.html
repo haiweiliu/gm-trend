@@ -1,0 +1,3413 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bitmart Wallet | Trend Radar</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <style>
+        :root {
+            /* Theme Colors - Light theme with blue accent */
+            --bg-primary: #F9FAFB;
+            --bg-secondary: #FFFFFF;
+            --bg-card: #FFFFFF;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --hover-bg: rgba(0, 0, 0, 0.02);
+            --button-bg: rgba(0, 0, 0, 0.03);
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            --grid-color: rgba(0, 0, 0, 0.05);
+            --tooltip-bg: rgba(255, 255, 255, 0.95);
+            --tooltip-text: #111827;
+            --tooltip-border: rgba(59, 130, 246, 0.2);
+            
+            /* Brand Colors - Blue scheme */
+            --bitmart-primary: #3B82F6;
+            --bitmart-secondary: #60A5FA;
+            --bitmart-light: #93C5FD;
+            --bitmart-dark: #1D4ED8;
+            --bitmart-gradient: linear-gradient(90deg, #2563EB 0%, #60A5FA 100%);
+            
+            /* Trend colors - Now matches the reference image (DECLINING=red, EXPLODING=blue) */
+            --trend-declining: #EF4444;   /* Red */
+            --trend-regular: #F59E0B;     /* Orange */
+            --trend-peaked: #4F46E5;      /* Purple */  
+            --trend-exploding: #3B82F6;   /* Blue */
+            
+            /* Chart Colors */
+            --chart-volume-color: #3B82F6;
+            --chart-volume-bg: rgba(59, 130, 246, 0.1);
+            --chart-traffic-color: #60A5FA;
+            --chart-traffic-bg: rgba(96, 165, 250, 0.05);
+            
+            /* Grid and Line Colors */
+            --grid-line-color: rgba(0, 0, 0, 0.1);
+            --axis-label-color: rgba(0, 0, 0, 0.5);
+            
+            /* Competitor Card Colors */
+            --competitor-bg: #FFFFFF;
+            --competitor-border: #E5E7EB;
+            --competitor-text: #111827;
+            --competitor-secondary: #6B7280;
+        }
+        
+        /* Dark Theme Variables */
+        .theme-dark {
+            --bg-primary: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --hover-bg: rgba(255, 255, 255, 0.05);
+            --button-bg: rgba(255, 255, 255, 0.05);
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --grid-color: rgba(255, 255, 255, 0.05);
+            --tooltip-bg: rgba(30, 41, 59, 0.95);
+            --tooltip-text: #F8FAFC;
+            --tooltip-border: rgba(59, 130, 246, 0.3);
+            --grid-line-color: rgba(255, 255, 255, 0.1);
+            --axis-label-color: rgba(255, 255, 255, 0.5);
+            --competitor-bg: #131925;
+            --competitor-border: rgba(255, 255, 255, 0.1);
+            --competitor-text: #FFFFFF;
+            --competitor-secondary: #94A3B8;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        
+        .chart-container {
+            position: relative;
+            height: 240px;
+            width: 100%;
+        }
+        
+        .search-chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        
+        .wallet-button {
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            background-color: var(--button-bg);
+            color: var(--text-primary);
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+        
+        .wallet-button:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: var(--bitmart-primary);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+        }
+        
+        .wallet-button-active {
+            background: var(--bitmart-gradient);
+            color: white;
+            border: none;
+        }
+        
+        .wallet-card {
+            background-color: var(--bg-card);
+            border-radius: 0.75rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        
+        .wallet-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        .wallet-table th {
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-align: left;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.875rem;
+        }
+        
+        .wallet-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .wallet-table tr:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 0.35rem 0.75rem;
+            border-radius: 9999px;
+            background-color: var(--hover-bg);
+        }
+        
+        .wallet-logo {
+            position: relative;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            background: var(--bitmart-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .pill-selector {
+            background-color: var(--button-bg);
+            border-radius: 9999px;
+            padding: 0.25rem;
+            display: inline-flex;
+            border: 1px solid var(--border-color);
+        }
+        
+        .pill-option {
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+        
+        .pill-active {
+            background: var(--bitmart-gradient);
+            color: white;
+            font-weight: 500;
+        }
+        
+        .subtle-heading {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+        
+        /* Trend meter matching the reference image - red to blue */
+        .trend-meter {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #EF4444, #F59E0B, #4F46E5, #3B82F6);
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .trend-pointer {
+            position: absolute;
+            top: -14px;
+            width: 12px;
+            height: 12px;
+            transform: rotate(45deg);
+            background-color: var(--text-primary);
+            border: 2px solid var(--bg-card);
+            margin-left: -6px;
+        }
+        
+        .trend-badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            padding: 4px 10px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+        
+        .trend-exploding {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--trend-exploding);
+        }
+        
+        .trend-peaked {
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--trend-peaked);
+        }
+        
+        .trend-regular {
+            background-color: rgba(245, 158, 11, 0.1);
+            color: var(--trend-regular);
+        }
+        
+        .trend-declining {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--trend-declining);
+        }
+        
+        /* Metric badges */
+        .metric-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .metric-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--hover-bg);
+        }
+        
+        .metric-counter {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* Value graph */
+        .value-bar {
+            height: 6px;
+            background-color: var(--hover-bg);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .value-fill {
+            height: 100%;
+            background: var(--bitmart-gradient);
+        }
+        
+        /* Timeline css */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 40px;
+            width: 2px;
+            background-color: var(--border-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: -30px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bitmart-gradient);
+        }
+        
+        .timeline-date {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        
+        /* Theme toggle styles */
+        .theme-toggle {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            background-color: var(--button-bg);
+            transition: all 0.3s ease;
+        }
+        
+        .theme-toggle:hover {
+            background-color: var(--hover-bg);
+            transform: rotate(15deg);
+        }
+        
+        /* Competitors Card */
+        .competitor-card {
+            background-color: var(--competitor-bg);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            color: var(--competitor-text);
+            border-top: 2px solid;
+            border: 1px solid var(--competitor-border);
+        }
+        
+        .competitor-header {
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .competitor-logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .competitor-logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .competitor-name {
+            font-weight: 600;
+            font-size: 1.125rem;
+            margin-bottom: 0.125rem;
+        }
+        
+        .competitor-desc {
+            font-size: 0.75rem;
+            color: var(--competitor-secondary);
+        }
+        
+        .competitor-score {
+            font-weight: 700;
+            font-size: 1.125rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.375rem;
+        }
+        
+        .competitor-details {
+            padding: 1rem;
+            border-top: 1px solid var(--competitor-border);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        
+        .competitor-metric {
+            margin-bottom: 0.75rem;
+        }
+        
+        .competitor-metric-label {
+            font-size: 0.75rem;
+            color: var(--competitor-secondary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .competitor-metric-value {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .competitor-feature {
+            font-size: 0.875rem;
+        }
+        
+        .competitor-chains {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #10B981;
+        }
+        
+        /* Market Position Card */
+        .market-position-card {
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        
+        .market-metric {
+            margin-bottom: 1.5rem;
+        }
+        
+        .market-metric:last-child {
+            margin-bottom: 0;
+        }
+        
+        .market-metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .market-metric-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .market-metric-value {
+            font-weight: 600;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 0.5rem;
+            background-color: rgba(156, 163, 175, 0.2);
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+        }
+        
+        /* Volume Card */
+        .volume-card {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: white;
+            padding: 0;
+        }
+        
+        .trend-overview-card {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: white;
+            padding: 1.5rem;
+        }
+        
+        .trend-overview-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+        
+        .trend-overview-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a56db;
+        }
+        
+        .trend-overview-metrics {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        
+        .trend-volume {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+            text-align: right;
+            color: #111827;
+        }
+        
+        .trend-label {
+            font-size: 0.875rem;
+            color: #6B7280;
+            margin-top: 0.125rem;
+        }
+        
+        .trend-growth {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #10B981;
+            line-height: 1;
+            text-align: right;
+            margin-top: 0.5rem;
+        }
+        
+        .volume-chart-container {
+            margin-top: 1rem;
+            position: relative;
+        }
+        
+        .gm-watermark {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 0.75rem;
+            color: rgba(107, 114, 128, 0.3);
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            z-index: 10;
+        }
+        
+        .chart-annotation {
+            font-size: 0.75rem;
+            color: #6B7280;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        .forecast-toggle {
+            background-color: #EEF2FF;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #4F46E5;
+            cursor: pointer;
+        }
+        
+        .forecast-toggle i {
+            color: #4F46E5;
+        }
+        
+        .forecast-switch {
+            position: relative;
+            display: inline-block;
+            width: 36px;
+            height: 20px;
+        }
+        
+        .forecast-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .forecast-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #E5E7EB;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .forecast-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .forecast-slider {
+            background-color: #4F46E5;
+        }
+        
+        input:checked + .forecast-slider:before {
+            transform: translateX(16px);
+        }
+        
+        .volume-title {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+            color: #111827;
+        }
+        
+        .volume-label {
+            font-size: 0.875rem;
+            color: #6B7280;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .growth-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #10B981;
+            line-height: 1;
+        }
+        
+        .exploding-badge {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #3B82F6;
+            padding: 0.375rem 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .exploding-icon {
+            color: #3B82F6;
+        }
+        
+        .metric-card {
+            padding: 1rem;
+            background-color: #F9FAFB;
+            border-radius: 0.375rem;
+            text-align: center;
+        }
+        
+        .metric-card-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .metric-card-label {
+            font-size: 0.75rem;
+            color: #6B7280;
+            margin-bottom: 0.25rem;
+        }
+        
+        .metric-card-growth {
+            font-size: 0.75rem;
+            color: #10B981;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .footer-link {
+            color: var(--text-secondary);
+            transition: color 0.2s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--text-primary);
+        }
+        
+        /* Export & Track Buttons */
+        .header-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+        
+        .header-button-outline {
+            color: #3B82F6;
+            background-color: transparent;
+            border: 1px solid #3B82F6;
+        }
+        
+        .header-button-outline:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .header-button-filled {
+            color: white;
+            background-color: #3B82F6;
+            border: 1px solid #3B82F6;
+        }
+        
+        .header-button-filled:hover {
+            background-color: #2563EB;
+        }
+        
+        /* Info icon */
+        .info-icon {
+            color: #9CA3AF;
+            cursor: help;
+        }
+        
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            color: #F59E0B;
+        }
+        
+        /* Review Cards */
+        .review-card {
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .review-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .review-user {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(59, 130, 246, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3B82F6;
+        }
+        
+        .review-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .review-user-name {
+            font-weight: 600;
+        }
+        
+        .review-user-meta {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .review-date {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .review-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .review-content {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .read-more-btn {
+            color: #3B82F6;
+            font-weight: 500;
+            font-size: 0.875rem;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #3B82F6;
+            border-radius: 9999px;
+            display: inline-block;
+            transition: all 0.2s ease;
+        }
+        
+        .read-more-btn:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        /* Ecosystem Integration Card */
+        .ecosystem-card {
+            padding: 1.5rem;
+        }
+        
+        .ecosystem-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .ecosystem-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ecosystem-value {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        /* GitHub Stats */
+        .github-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .github-view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease;
+        }
+        
+        .github-view-btn:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        .github-stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .github-stat-card {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+        
+        .github-stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .github-stat-value {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .github-change {
+            font-size: 0.75rem;
+            margin-top: 0.25rem;
+        }
+        
+        .github-change-positive {
+            color: #10B981;
+        }
+        
+        .github-commits-container {
+            margin-top: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: #111827;
+            border: 1px solid rgba(31, 41, 55, 0.5);
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: #E5E7EB;
+        }
+        
+        .theme-dark .github-commits-container {
+            background-color: #0F172A;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .github-commit-header {
+            color: #9CA3AF;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .github-commit {
+            margin-bottom: 0.5rem;
+            display: flex;
+        }
+        
+        .commit-hash {
+            color: #9CA3AF;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        .commit-msg {
+            color: #D1D5DB;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .modal.open {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.open .modal-content {
+            transform: translateY(0);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.25rem;
+            color: #9CA3AF;
+            cursor: pointer;
+        }
+        
+        .modal-close:hover {
+            color: #111827;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-description {
+            color: #6B7280;
+            margin-bottom: 1.5rem;
+        }
+        
+        .pro-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pro-feature-icon {
+            color: #10B981;
+            font-size: 1.125rem;
+            margin-top: 0.125rem;
+        }
+        
+        .pro-feature-info h3 {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .pro-feature-info p {
+            font-size: 0.875rem;
+            color: #6B7280;
+        }
+        
+        .pro-upgrade-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background-color: #3B82F6;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 0.375rem;
+            margin-top: 1.5rem;
+            transition: background-color 0.2s ease;
+        }
+        
+        .pro-upgrade-btn:hover {
+            background-color: #2563EB;
+        }
+        
+        /* Geography Section */
+        .geo-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto;
+            gap: 1rem;
+        }
+        
+        .geo-map {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            height: 280px;
+            position: relative;
+        }
+        
+        .geo-countries {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+        }
+        
+        .geo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .geo-title {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .geo-date {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .geo-content {
+            padding: 1rem 1.5rem;
+        }
+        
+        .geo-country-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .geo-country-row:last-child {
+            border-bottom: none;
+        }
+        
+        .geo-country-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .geo-country-flag {
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+        }
+        
+        .geo-map-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background-color: #f0f8ff;
+        }
+        
+        .interactive-map {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background-color: #f0f8ff;
+        }
+        
+        .map-country {
+            fill: #e0e0e0;
+            stroke: #fff;
+            stroke-width: 0.5;
+            transition: fill 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .map-country:hover {
+            fill: #3B82F6;
+        }
+        
+        .map-country.active-country {
+            fill: #3B82F6;
+        }
+        
+        .map-tooltip {
+            position: absolute;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 8px 12px;
+            font-size: 12px;
+            z-index: 100;
+            pointer-events: none;
+            max-width: 200px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        
+        .map-tooltip.visible {
+            opacity: 1;
+        }
+        
+        .map-tooltip-country {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .map-tooltip-value {
+            color: #3B82F6;
+            font-weight: 700;
+        }
+        
+        /* Team section */
+        .team-card {
+            border-radius: 0.75rem;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+        }
+        
+        .team-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .team-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .team-badge {
+            background-color: #f0f9ff;
+            color: #0369a1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .team-count {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+        
+        .team-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        
+        .growth-metrics {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .growth-metric {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .growth-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #10B981;
+            margin-bottom: 0.25rem;
+        }
+        
+        .growth-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        
+        .team-chart-container {
+            margin-top: 1.5rem;
+            position: relative;
+            height: 200px;
+        }
+        
+        .team-distribution {
+            margin-top: 2rem;
+        }
+        
+        .distribution-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .distribution-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        
+        .distribution-header {
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+            font-size: 0.875rem;
+        }
+        
+        .department-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .department-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .department-color {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+        }
+        
+        .headcount-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+        }
+        
+        .headcount-cell {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .headcount-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .headcount-value {
+            font-weight: 600;
+            color: #10B981;
+        }
+        
+        /* Traffic Breakdown Styles */
+        .traffic-card {
+            padding: 1.5rem;
+        }
+        
+        .traffic-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .traffic-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .traffic-date {
+            padding: 0.25rem 0.75rem;
+            background-color: #F3F4F6;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .traffic-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .traffic-sources {
+            height: 300px;
+            position: relative;
+        }
+        
+        .traffic-source-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .traffic-source-row:last-child {
+            border-bottom: none;
+        }
+        
+        .traffic-source-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .traffic-source-icon {
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 0.375rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.875rem;
+        }
+        
+        .traffic-source-percent {
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+        
+        .traffic-overview {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .see-full-overview {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #3B82F6;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        
+        /* Channel card */
+        .channel-card {
+            padding: 1.5rem;
+        }
+        
+        .channel-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .channel-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .channel-chart-container {
+            height: 300px;
+            position: relative;
+        }
+        
+        /* Demographics styles */
+        .demographics-card {
+            padding: 1.5rem;
+        }
+        
+        .demographics-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .demographics-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .demographics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .demographics-chart-container {
+            position: relative;
+            height: 240px;
+        }
+        
+        .demographics-subtitle {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+        }
+        
+        .gender-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+        
+        .gender-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: white;
+        }
+        
+        .gender-info {
+            flex: 1;
+        }
+        
+        .gender-label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .gender-percent {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .age-bar {
+            height: 2rem;
+            background-color: #E5E7EB;
+            border-radius: 0.25rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .age-bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #3B82F6;
+        }
+        
+        .age-bar-label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            color: white;
+            font-weight: 500;
+            font-size: 0.875rem;
+            z-index: 1;
+        }
+        
+        .age-percent {
+            font-weight: 600;
+        }
+        
+        /* Tippy.js tooltip styling */
+        .tippy-box {
+            background-color: white;
+            color: #333;
+            border-radius: 5px;
+            font-size: 14px;
+            line-height: 1.4;
+            padding: 10px 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .tippy-arrow {
+            color: white;
+        }
+        
+        .tippy-content {
+            padding: 0;
+        }
+        
+        .country-tooltip {
+            font-weight: 400;
+        }
+        
+        .country-tooltip-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #111827;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 4px;
+        }
+        
+        .country-tooltip-value {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        
+        .country-tooltip-value-label {
+            color: #6B7280;
+        }
+        
+        .country-tooltip-value-number {
+            font-weight: 600;
+            color: #3B82F6;
+        }
+    </style>
+</head>
+<body class="theme-light">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header with Logo, Export, Track, and Theme Toggle -->
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center">
+                <div class="w-10 h-10 mr-4 rounded-lg bg-black flex items-center justify-center">
+                    <span class="text-xl font-bold text-white">O</span>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold mb-1">bitmart Wallet</h1>
+                    <p class="text-gray-500 text-sm tracking-wide">TREND RADAR</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#" class="header-button header-button-outline">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Use App</span>
+                </a>
+                <button id="trackButton" class="header-button header-button-filled">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Add to Watchlist</span>
+                </button>
+                <button id="themeToggle" class="theme-toggle ml-2" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main content: Wallet Info & Volume Trends -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <!-- bitmart Wallet Card - Left Column -->
+            <div class="md:col-span-1">
+                <div class="wallet-card p-6 mb-6">
+                    <div class="mb-4 flex justify-center">
+                        <div class="w-24 h-24 rounded-lg bg-black flex items-center justify-center">
+                            <span class="text-4xl font-bold text-white">O</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <p class="text-gray-600 text-sm mb-4">
+                            bitmart Wallet is a secure, decentralized digital wallet that allows users to store, manage, and trade cryptocurrencies across multiple blockchain networks. It features a non-custodial design giving users full control over their assets and private keys while supporting DeFi, NFTs, and dApp integrations.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="text-gray-500 text-xs">Founded Date</div>
+                                <div class="font-medium">March 2021</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 text-xs">Team Size</div>
+                                <div class="font-medium">5,962+</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 text-xs">Total Funding</div>
+                                <div class="font-medium">Private</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 text-xs">Latest Round</div>
+                                <div class="font-medium">N/A</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 text-xs">Location</div>
+                                <div class="font-medium">Global</div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 text-xs">Website</div>
+                                <div class="font-medium">
+                                    <a href="#" class="text-blue-500 hover:underline">www.bitmart.com</a>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="text-gray-500 text-xs">Estimated Revenue</div>
+                                <div class="font-medium">$95M (2024)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="text-sm text-gray-500 mb-1">Security Audits</div>
+                            <div class="flex gap-2">
+                                <span class="pill-badge text-green-600 bg-green-100">
+                                    <i class="fas fa-shield-alt mr-1"></i> CertiK
+                                </span>
+                                <span class="pill-badge text-green-600 bg-green-100">
+                                    <i class="fas fa-shield-alt mr-1"></i> SlowMist
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500 mb-1">Supported Platforms</div>
+                            <div class="flex gap-2 flex-wrap">
+                                <span class="pill-badge">Browser Extension</span>
+                                <span class="pill-badge">iOS</span>
+                                <span class="pill-badge">Android</span>
+                                <span class="pill-badge">Web</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-500 mb-1">Supported Chains</div>
+                            <div class="flex gap-2 flex-wrap">
+                                <span class="pill-badge">Ethereum</span>
+                                <span class="pill-badge">BNB Chain</span>
+                                <span class="pill-badge">bitmart Chain</span>
+                                <span class="pill-badge">+15 more</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Market Position Card -->
+                <div class="wallet-card p-6">
+                    <h3 class="text-lg font-bold mb-4">Market Position</h3>
+                    
+                    <div class="space-y-5">
+                        <div class="market-metric">
+                            <div class="market-metric-row">
+                                <div class="market-metric-label">DEX Market Share</div>
+                                <div class="market-metric-value">12.5%</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 42.5%; background: linear-gradient(90deg, #2563EB 0%, #60A5FA 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="market-metric">
+                            <div class="market-metric-row">
+                                <div class="market-metric-label">Protocol Dominance</div>
+                                <div class="market-metric-value">High</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 80%; background: linear-gradient(90deg, #2563EB 0%, #60A5FA 100%);"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="market-metric">
+                            <div class="market-metric-row">
+                                <div class="market-metric-label">Rank</div>
+                                <div class="market-metric-value">#3 Wallet by MAU</div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 85%; background: linear-gradient(90deg, #2563EB 0%, #60A5FA 100%);"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Volume Trend Card - Right Column -->
+            <div class="md:col-span-2">
+                <!-- Trend Overview Card -->
+                <div class="trend-overview-card mb-6">
+                    <div class="trend-overview-header">
+                        <div class="trend-overview-title">bitmart WALLET</div>
+                        <div class="trend-overview-metrics">
+                            <div class="trend-volume">74.0K</div>
+                            <div class="trend-label">Volume</div>
+                            <div class="trend-growth">+22.3%</div>
+                            <div class="trend-label">Growth</div>
+                        </div>
+                    </div>
+                    
+                    <div class="volume-chart-container">
+                        <canvas id="volumeTrendsChart"></canvas>
+                        <div class="gm-watermark">GM TREND</div>
+                    </div>
+                    
+                    <div class="chart-annotation mt-3">
+                        Trend analysis for bitmart wallet showing growth in search volume and user interest over the past year.
+                    </div>
+                </div>
+                
+                <!-- Wallet Adoption Trend Card -->
+                <div class="wallet-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h2 class="text-xl font-bold">Wallet Adoption Trend</h2>
+                        <div class="trend-badge trend-exploding">
+                            <i class="fas fa-rocket mr-1"></i> Exploding
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="text-4xl font-bold text-blue-600">89</div>
+                        <div class="text-sm text-gray-500">
+                            <div>out of 100</div>
+                            <div class="text-green-500 font-medium">↑ 12 points in 30 days</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <div class="flex justify-between text-xs text-gray-500 mb-1">
+                            <div>DECLINING</div>
+                            <div>REGULAR</div>
+                            <div>PEAKED</div>
+                            <div>EXPLODING</div>
+                        </div>
+                        <div class="trend-meter mb-1">
+                            <div class="trend-pointer" style="left: 89%;"></div>
+                        </div>
+                        <div class="text-xs text-right text-gray-500">Based on search volume, website visits, and user onboarding</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="text-xs text-gray-500 mb-1">SEARCH VOLUME</div>
+                            <div class="text-xl font-bold text-blue-600">1.8M</div>
+                            <div class="text-xs text-green-500">+24% vs last month</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xs text-gray-500 mb-1">WEBSITE VISITS</div>
+                            <div class="text-xl font-bold text-blue-600">3.7M</div>
+                            <div class="text-xs text-green-500">+18% vs last month</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xs text-gray-500 mb-1">NEW WALLETS</div>
+                            <div class="text-xl font-bold text-blue-600">825K</div>
+                            <div class="text-xs text-green-500">+32% vs last month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Monthly Volume Trends & Geography - Side by Side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Monthly Volume Trends (Half Width) -->
+            <div class="wallet-card p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <div class="text-gray-500 uppercase text-xs font-semibold tracking-wider">TRAFFIC ANALYSIS</div>
+                        <h2 class="text-xl font-bold">Monthly Volume Trends</h2>
+                    </div>
+                </div>
+                
+                <div class="search-chart-container mb-8">
+                    <canvas id="trafficTrendsChart"></canvas>
+                    <div class="gm-watermark">GM TREND</div>
+                </div>
+                
+                <!-- Web Metrics Grid -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="text-gray-500 text-xs mb-1">MONTHLY VISITS</div>
+                        <div class="text-xl font-bold text-gray-900">22.4M</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="text-gray-500 text-xs mb-1">AVG. VISIT DURATION</div>
+                        <div class="text-xl font-bold text-gray-900">00:05:34</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="text-gray-500 text-xs mb-1">PAGES PER VISIT</div>
+                        <div class="text-xl font-bold text-gray-900">4.1</div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="text-gray-500 text-xs mb-1">BOUNCE RATE</div>
+                        <div class="text-xl font-bold text-gray-900">32.36%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Geography (Half Width) with Map on top, countries on bottom -->
+            <div class="wallet-card p-0 overflow-hidden">
+                <div class="geo-header">
+                    <div class="geo-title">Geography</div>
+                    <div class="geo-date">
+                        <i class="far fa-desktop mr-2"></i>
+                        Desktop Only
+                        <i class="far fa-calendar mx-2"></i>
+                        Feb 2025
+                        <i class="fas fa-chevron-down text-xs ml-1"></i>
+                    </div>
+                </div>
+                
+                <!-- Map on top -->
+                <div class="geo-map-container" style="height: 250px; background-color: #f0f8ff;">
+                    <svg id="interactiveMap" class="interactive-map" viewBox="0 0 1000 500" width="100%" height="100%">
+                        <!-- World map paths will be added via JavaScript -->
+                    </svg>
+                    <div id="mapTooltip" class="map-tooltip"></div>
+                </div>
+                
+                <!-- Countries on bottom -->
+                <div class="geo-content border-t border-gray-200">
+                    <h3 class="font-semibold mb-3">Top 5 Countries</h3>
+                    
+                    <div class="geo-country-row">
+                        <div class="geo-country-name">
+                            <div class="geo-country-flag bg-red-500 text-white font-bold">
+                                HK
+                            </div>
+                            <span>Hong Kong</span>
+                        </div>
+                        <div class="font-semibold">33.57%</div>
+                    </div>
+                    
+                    <div class="geo-country-row">
+                        <div class="geo-country-name">
+                            <div class="geo-country-flag bg-blue-500 text-white font-bold">
+                                US
+                            </div>
+                            <span>United States</span>
+                        </div>
+                        <div class="font-semibold">13.46%</div>
+                    </div>
+                    
+                    <div class="geo-country-row">
+                        <div class="geo-country-name">
+                            <div class="geo-country-flag bg-red-500 text-white font-bold">
+                                CN
+                            </div>
+                            <span>China</span>
+                        </div>
+                        <div class="font-semibold">8.77%</div>
+                    </div>
+                    
+                    <div class="geo-country-row">
+                        <div class="geo-country-name">
+                            <div class="geo-country-flag bg-red-500 text-white font-bold">
+                                VN
+                            </div>
+                            <span>Vietnam</span>
+                        </div>
+                        <div class="font-semibold">5.24%</div>
+                    </div>
+                    
+                    <div class="geo-country-row">
+                        <div class="geo-country-name">
+                            <div class="geo-country-flag bg-green-500 text-white font-bold">
+                                SA
+                            </div>
+                            <span>Saudi Arabia</span>
+                        </div>
+                        <div class="font-semibold">2.77%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Marketing Channels and Social - Side by Side -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Marketing Channels (Half Width) -->
+            <div class="wallet-card traffic-card">
+                <div class="traffic-header">
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">Marketing Channels</h3>
+                        <div class="traffic-subtitle">Channels overview</div>
+                    </div>
+                    <div class="traffic-info">
+                        <div class="traffic-date">
+                            <i class="far fa-calendar"></i>
+                            <span>Dec 2024 - Feb 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="traffic-sources">
+                    <canvas id="channelsChart"></canvas>
+                    <div class="gm-watermark">GM TREND</div>
+                </div>
+                
+                <div class="mt-6 space-y-3">
+                    <div class="traffic-source-row">
+                        <div class="traffic-source-name">
+                            <div class="traffic-source-icon" style="background-color: #4F46E5;">
+                                <i class="fas fa-link"></i>
+                            </div>
+                            <span class="font-medium">Direct</span>
+                        </div>
+                        <div class="traffic-source-percent">77.64%</div>
+                    </div>
+                    
+                    <div class="traffic-source-row">
+                        <div class="traffic-source-name">
+                            <div class="traffic-source-icon" style="background-color: #10B981;">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <span class="font-medium">Organic</span>
+                        </div>
+                        <div class="traffic-source-percent">12.90%</div>
+                    </div>
+                    
+                    <div class="traffic-source-row">
+                        <div class="traffic-source-name">
+                            <div class="traffic-source-icon" style="background-color: #F59E0B;">
+                                <i class="fas fa-share-alt"></i>
+                            </div>
+                            <span class="font-medium">Referrals</span>
+                        </div>
+                        <div class="traffic-source-percent">5.53%</div>
+                    </div>
+                </div>
+                
+                <div class="traffic-overview">
+                    <a href="#" class="see-full-overview">
+                        <i class="fas fa-lock"></i>
+                        <span>See full overview</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Social (Half Width) -->
+            <div class="wallet-card traffic-card">
+                <div class="traffic-header">
+                    <div>
+                        <h3 class="text-lg font-bold mb-1">Social</h3>
+                        <div class="traffic-subtitle">Social makes up &lt;1% of website traffic</div>
+                    </div>
+                    <div class="traffic-info">
+                        <div class="traffic-date">
+                            <i class="far fa-calendar"></i>
+                            <span>Dec 2024 - Feb 2025</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="traffic-sources">
+                    <canvas id="socialTrafficChart"></canvas>
+                    <div class="gm-watermark">GM TREND</div>
+                </div>
+                
+                <div class="mt-6 space-y-3">
+                    <div class="traffic-source-row">
+                        <div class="traffic-source-name">
+                            <div class="traffic-source-icon" style="background-color: #FF0000;">
+                                <i class="fab fa-youtube"></i>
+                            </div>
+                            <span class="font-medium">Youtube</span>
+                        </div>
+                        <div class="traffic-source-percent">49.25%</div>
+                    </div>
+                    
+                    <div class="traffic-source-row">
+                        <div class="traffic-source-name">
+                            <div class="traffic-source-icon" style="background-color: #000000;">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <span class="font-medium">X-twitter</span>
+                        </div>
+                        <div class="traffic-source-percent">20.17%</div>
+                    </div>
+                    
+                    <div class="traffic-source-row">
+                        <div class="traffic-source-name">
+                            <div class="traffic-source-icon" style="background-color: #1877F2;">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                            <span class="font-medium">Facebook</span>
+                        </div>
+                        <div class="traffic-source-percent">10.08%</div>
+                    </div>
+                </div>
+                
+                <div class="traffic-overview">
+                    <a href="#" class="see-full-overview">
+                        <i class="fas fa-lock"></i>
+                        <span>See full overview</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Audience Demographics -->
+        <div class="wallet-card demographics-card mb-8">
+            <div class="demographics-header">
+                <h3 class="text-lg font-bold">Audience Demographics</h3>
+            </div>
+            
+            <div class="demographics-grid">
+                <!-- Gender Distribution -->
+                <div>
+                    <div class="demographics-subtitle">Gender Distribution</div>
+                    <div class="demographics-chart-container mb-5">
+                        <canvas id="genderChart"></canvas>
+                        <div class="gm-watermark">GM TREND</div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <div class="gender-item">
+                            <div class="gender-icon" style="background-color: #3B82F6;">
+                                <i class="fas fa-mars"></i>
+                            </div>
+                            <div class="gender-info">
+                                <div class="gender-label">Male</div>
+                                <div class="gender-percent">71.45%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="gender-item">
+                            <div class="gender-icon" style="background-color: #60A5FA;">
+                                <i class="fas fa-venus"></i>
+                            </div>
+                            <div class="gender-info">
+                                <div class="gender-label">Female</div>
+                                <div class="gender-percent">28.55%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Age Distribution -->
+                <div>
+                    <div class="demographics-subtitle">Age Distribution</div>
+                    <div class="demographics-chart-container mb-5">
+                        <canvas id="ageChart"></canvas>
+                        <div class="gm-watermark">GM TREND</div>
+                    </div>
+                    
+                    <div class="mt-6 space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">18-24</span>
+                                <span class="text-sm font-medium">20.14%</span>
+                            </div>
+                            <div class="age-bar">
+                                <div class="age-bar-fill" style="width: 20.14%; background-color: #3B82F6;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">25-34</span>
+                                <span class="text-sm font-medium">35.24%</span>
+                            </div>
+                            <div class="age-bar">
+                                <div class="age-bar-fill" style="width: 35.24%; background-color: #3B82F6;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">35-44</span>
+                                <span class="text-sm font-medium">18.45%</span>
+                            </div>
+                            <div class="age-bar">
+                                <div class="age-bar-fill" style="width: 18.45%; background-color: #3B82F6;"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm font-medium">45-54</span>
+                                <span class="text-sm font-medium">12.63%</span>
+                            </div>
+                            <div class="age-bar">
+                                <div class="age-bar-fill" style="width: 12.63%; background-color: #3B82F6;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Information Section -->
+        <div class="wallet-card team-card mb-8">
+            <div class="team-header">
+                <h3 class="team-title">Team</h3>
+                <div class="team-badge">Based on LinkedIn data</div>
+            </div>
+            
+            <div class="flex items-center">
+                <div>
+                    <div class="team-count">5,962</div>
+                    <div class="team-label">total employees</div>
+                    
+                    <div class="growth-metrics">
+                        <div class="growth-metric">
+                            <div class="growth-value">14%</div>
+                            <div class="growth-label">6m growth</div>
+                        </div>
+                        <div class="growth-metric">
+                            <div class="growth-value">47%</div>
+                            <div class="growth-label">1y growth</div>
+                        </div>
+                        <div class="growth-metric">
+                            <div class="growth-value">172%</div>
+                            <div class="growth-label">2y growth</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ml-auto pl-8 border-l border-gray-200">
+                    <div class="text-sm text-gray-500 mb-1">Median employee tenure</div>
+                    <div class="font-bold text-xl">1.3 years</div>
+                </div>
+            </div>
+            
+            <div class="team-chart-container">
+                <canvas id="teamGrowthChart"></canvas>
+                <div class="gm-watermark">GM TREND</div>
+            </div>
+            
+            <div class="team-distribution">
+                <div class="distribution-grid">
+                    <div>
+                        <div class="distribution-header">Functional distribution</div>
+                        <div class="department-row">
+                            <div class="department-name">
+                                <div class="department-color" style="background-color: #3B82F6;"></div>
+                                <span>Engineering</span>
+                            </div>
+                            <div>22%</div>
+                        </div>
+                        <div class="department-row">
+                            <div class="department-name">
+                                <div class="department-color" style="background-color: #10B981;"></div>
+                                <span>Finance</span>
+                            </div>
+                            <div>18%</div>
+                        </div>
+                        <div class="department-row">
+                            <div class="department-name">
+                                <div class="department-color" style="background-color: #F59E0B;"></div>
+                                <span>Business Development</span>
+                            </div>
+                            <div>15%</div>
+                        </div>
+                        <div class="department-row">
+                            <div class="department-name">
+                                <div class="department-color" style="background-color: #6B7280;"></div>
+                                <span>Operations</span>
+                            </div>
+                            <div>45%</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="distribution-header">Headcount growth</div>
+                        <div class="headcount-grid">
+                            <div class="headcount-cell"></div>
+                            <div class="headcount-cell">
+                                <div class="text-sm text-center text-gray-500 mb-1">6m</div>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="text-sm text-center text-gray-500 mb-1">1y</div>
+                            </div>
+                        </div>
+                        
+                        <div class="headcount-grid">
+                            <div class="headcount-cell">
+                                <span>Engineering</span>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">12%</div>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">44%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="headcount-grid">
+                            <div class="headcount-cell">
+                                <span>Finance</span>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">11%</div>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">52%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="headcount-grid">
+                            <div class="headcount-cell">
+                                <span>Business Development</span>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">11%</div>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">52%</div>
+                            </div>
+                        </div>
+                        
+                        <div class="headcount-grid">
+                            <div class="headcount-cell">
+                                <span>Operations</span>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">24%</div>
+                            </div>
+                            <div class="headcount-cell">
+                                <div class="headcount-value text-center">95%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Second Row: Development & Ecosystem Integration -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Latest Features & Updates -->
+            <div class="wallet-card p-6">
+                <h3 class="text-lg font-bold mb-4">Latest Features &amp; Updates</h3>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">March 22, 2025</div>
+                        <div class="font-medium">Smart Account 2.0 Integration</div>
+                        <div class="text-sm text-gray-500">Account abstraction and gasless transactions</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">March 8, 2025</div>
+                        <div class="font-medium">Layer 2 Expansion</div>
+                        <div class="text-sm text-gray-500">Added support for zkSync and StarkNet</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">February 15, 2025</div>
+                        <div class="font-medium">DeFi Dashboard Improvements</div>
+                        <div class="text-sm text-gray-500">Enhanced portfolio tracking and yield opportunities</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">January 28, 2025</div>
+                        <div class="font-medium">NFT Marketplace Integration</div>
+                        <div class="text-sm text-gray-500">One-click trading across major NFT marketplaces</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ecosystem Integration -->
+            <div class="wallet-card p-6 ecosystem-card">
+                <h3 class="text-lg font-bold mb-4">Ecosystem Integration</h3>
+                
+                <div class="ecosystem-item">
+                    <div class="text-gray-500">Integrating Protocols</div>
+                    <div class="ecosystem-value">173</div>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <div class="text-gray-500">Governance Proposals</div>
+                    <div class="ecosystem-value">52</div>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <div class="text-gray-500">Listed Token Pairs</div>
+                    <div class="ecosystem-value">6,420+</div>
+                </div>
+                
+                <div class="ecosystem-item">
+                    <div class="text-gray-500">Average Integration Time</div>
+                    <div class="ecosystem-value">2.1 days</div>
+                </div>
+                
+                <div class="mt-6">
+                    <h4 class="text-md font-medium mb-2">Recent Integrations</h4>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div>
+                            <div class="text-sm">Aave V3</div>
+                            <div class="text-xs text-gray-400">3 days ago</div>
+                        </div>
+                        <div>
+                            <div class="text-sm">MakerDAO</div>
+                            <div class="text-xs text-gray-400">5 days ago</div>
+                        </div>
+                        <div>
+                            <div class="text-sm">Lido Finance</div>
+                            <div class="text-xs text-gray-400">1 week ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- GitHub Stats & Activity -->
+        <div class="wallet-card p-6 mb-8">
+            <div class="github-header">
+                <h3 class="text-lg font-bold">GitHub Stats &amp; Activity</h3>
+                <a href="#" class="github-view-btn">
+                    <i class="fab fa-github"></i>
+                    <span>View GitHub</span>
+                </a>
+            </div>
+            
+            <div class="github-stats-container">
+                <div class="github-stat-card">
+                    <div class="github-stat-label">Stars</div>
+                    <div class="github-stat-value">14.2K</div>
+                    <div class="github-change github-change-positive">+432 last month</div>
+                </div>
+                
+                <div class="github-stat-card">
+                    <div class="github-stat-label">Forks</div>
+                    <div class="github-stat-value">4.8K</div>
+                    <div class="github-change github-change-positive">+86 last month</div>
+                </div>
+                
+                <div class="github-stat-card">
+                    <div class="github-stat-label">Issues</div>
+                    <div class="github-stat-value">183</div>
+                    <div class="github-change github-change-positive">+23 last month</div>
+                </div>
+                
+                <div class="github-stat-card">
+                    <div class="github-stat-label">Commits</div>
+                    <div class="github-stat-value">8.4K</div>
+                    <div class="github-change github-change-positive">+354 last month</div>
+                </div>
+            </div>
+            
+            <div class="github-commits-container">
+                <div class="github-commit-header">
+                    <span>Recent Commits</span>
+                    <span>uniswap/v3-core</span>
+                </div>
+                <div class="github-commit">
+                    <span class="commit-hash">[3d2f2c]</span>
+                    <span class="commit-msg">fix: resolve edge case in concentrated liquidity calculation</span>
+                </div>
+                <div class="github-commit">
+                    <span class="commit-hash">[a7e32b]</span>
+                    <span class="commit-msg">feat: improve gas optimization for multi-hop swaps</span>
+                </div>
+                <div class="github-commit">
+                    <span class="commit-hash">[9c1f0a]</span>
+                    <span class="commit-msg">docs: update technical documentation for new fee tiers</span>
+                </div>
+                <div class="github-commit">
+                    <span class="commit-hash">[b5e23d]</span>
+                    <span class="commit-msg">test: add comprehensive test suite for flashswap functionality</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Market Competitors - Wallet Comparison -->
+        <div class="mb-8">
+            <div class="mb-4">
+                <div class="text-gray-500 uppercase text-xs font-semibold tracking-wider mb-1">MARKET COMPETITORS</div>
+                <h3 class="text-2xl font-bold">Wallet Comparison</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- MetaMask -->
+                <div class="competitor-card" style="border-top-color: #F6851B;">
+                    <div class="competitor-header">
+                        <div class="competitor-logo-container">
+                            <div class="competitor-logo" style="background-color: #F6851B;">
+                                U
+                            </div>
+                            <div>
+                                <div class="competitor-name">MetaMask</div>
+                                <div class="competitor-desc">Dominant AMM with Concentrated Liquidity</div>
+                            </div>
+                        </div>
+                        <div class="competitor-score" style="background-color: rgba(246, 133, 27, 0.2); color: #F6851B;">
+                            92
+                        </div>
+                    </div>
+                    
+                    <div class="competitor-details">
+                        <div>
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">TVL</div>
+                                <div class="competitor-metric-value">$3.8B</div>
+                            </div>
+                            
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">Volume (24h)</div>
+                                <div class="competitor-metric-value">$1.2B</div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">Key Feature</div>
+                                <div class="competitor-feature">Concentrated Liquidity</div>
+                            </div>
+                            
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">L2 Support</div>
+                                <div class="competitor-chains">4 chains</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bitget Wallet -->
+                <div class="competitor-card" style="border-top-color: #3B82F6;">
+                    <div class="competitor-header">
+                        <div class="competitor-logo-container">
+                            <div class="competitor-logo" style="background-color: #3B82F6;">
+                                S
+                            </div>
+                            <div>
+                                <div class="competitor-name">Bitget Wallet</div>
+                                <div class="competitor-desc">Multi-Chain AMM &amp; DeFi Ecosystem</div>
+                            </div>
+                        </div>
+                        <div class="competitor-score" style="background-color: rgba(59, 130, 246, 0.2); color: #3B82F6;">
+                            78
+                        </div>
+                    </div>
+                    
+                    <div class="competitor-details">
+                        <div>
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">TVL</div>
+                                <div class="competitor-metric-value">$1.5B</div>
+                            </div>
+                            
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">Volume (24h)</div>
+                                <div class="competitor-metric-value">$420M</div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">Key Feature</div>
+                                <div class="competitor-feature">Yield Farming &amp; Staking</div>
+                            </div>
+                            
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">L2 Support</div>
+                                <div class="competitor-chains">7 chains</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Binance Wallet -->
+                <div class="competitor-card" style="border-top-color: #F59E0B;">
+                    <div class="competitor-header">
+                        <div class="competitor-logo-container">
+                            <div class="competitor-logo" style="background-color: #F59E0B;">
+                                C
+                            </div>
+                            <div>
+                                <div class="competitor-name">Binance Wallet</div>
+                                <div class="competitor-desc">Stablecoin &amp; Low-Slippage Swaps</div>
+                            </div>
+                        </div>
+                        <div class="competitor-score" style="background-color: rgba(245, 158, 11, 0.2); color: #F59E0B;">
+                            81
+                        </div>
+                    </div>
+                    
+                    <div class="competitor-details">
+                        <div>
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">TVL</div>
+                                <div class="competitor-metric-value">$5.2B</div>
+                            </div>
+                            
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">Volume (24h)</div>
+                                <div class="competitor-metric-value">$325M</div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">Key Feature</div>
+                                <div class="competitor-feature">Low-Slippage Stablecoin Swaps</div>
+                            </div>
+                            
+                            <div class="competitor-metric">
+                                <div class="competitor-metric-label">L2 Support</div>
+                                <div class="competitor-chains">5 chains</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Recent Reviews -->
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <div class="text-gray-500 uppercase text-xs font-semibold tracking-wider mb-1">USER FEEDBACK</div>
+                    <h2 class="text-xl font-bold">Recent bitmart Wallet Reviews</h2>
+                </div>
+                <div class="flex items-center">
+                    <div class="flex items-center mr-4">
+                        <div class="star-rating mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="font-semibold">4.6 out of 5</span>
+                    </div>
+                    <span class="text-gray-500 text-sm">Based on 2,147 reviews</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-user">
+                            <div class="review-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="review-user-info">
+                                <div class="review-user-name">Verified User</div>
+                                <div class="review-user-meta">Mid-Market (51-1000 emp.)</div>
+                            </div>
+                        </div>
+                        <div class="review-date">3/24/2025</div>
+                    </div>
+                    
+                    <div class="star-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    
+                    <div class="review-title">"Great multi-chain support with intuitive interface"</div>
+                    <div class="review-content">
+                        I've been using bitmart Wallet for 6 months and love how easy it is to switch between chains. The DeFi integrations are seamless, and the security features give me peace of mind...
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="read-more-btn">Read more</button>
+                    </div>
+                </div>
+                
+                <!-- Review 2 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-user">
+                            <div class="review-avatar" style="background-color: rgba(59, 130, 246, 0.1); color: #3B82F6;">
+                                <span class="font-bold">LK</span>
+                            </div>
+                            <div class="review-user-info">
+                                <div class="review-user-name">Leo K.</div>
+                                <div class="review-user-meta">Small Business (&lt; 50 emp.)</div>
+                            </div>
+                        </div>
+                        <div class="review-date">3/21/2025</div>
+                    </div>
+                    
+                    <div class="star-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    
+                    <div class="review-title">"Fast transactions, excellent mobile experience"</div>
+                    <div class="review-content">
+                        bitmart Wallet has the best mobile experience I've found in the crypto space. Transactions are lightning fast, and the ability to stake assets directly in the wallet saves me time...
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="read-more-btn">Read more</button>
+                    </div>
+                </div>
+                
+                <!-- Review 3 -->
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="review-user">
+                            <div class="review-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="review-user-info">
+                                <div class="review-user-name">Verified User</div>
+                                <div class="review-user-meta">Enterprise (&gt;1000 emp.)</div>
+                            </div>
+                        </div>
+                        <div class="review-date">3/18/2025</div>
+                    </div>
+                    
+                    <div class="star-rating mb-2">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    
+                    <div class="review-title">"Security and integrations make this a top wallet"</div>
+                    <div class="review-content">
+                        As a long-time crypto user, I've tried most major wallets, and bitmart stands out for security. The MPC technology and biometric features give enterprise-level protection...
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="read-more-btn">Read more</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">
+                <div class="text-xl font-bold text-blue-600 tracking-wide mx-auto">WALLET TREND RADAR</div>
+            </div>
+            <p class="footer-text">Data sourced from market research, user metrics, and on-chain analytics</p>
+            <p class="footer-text">Last updated: March 23, 2025</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer-link"><i class="fab fa-discord"></i></a>
+                <a href="#" class="footer-link"><i class="fab fa-github"></i></a>
+                <a href="#" class="footer-link"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="text-xs text-gray-500 mt-6">© 2025 Wallet Trend Radar • Not affiliated with bitmart</p>
+        </footer>
+    </div>
+    
+    <!-- Pro Subscription Modal -->
+    <div id="proModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-close" id="closeModal">×</div>
+            <h2 class="modal-title">Unlock Advanced Features</h2>
+            <p class="modal-description">Get access to premium features including forecast predictions and advanced analytics with a PRO subscription.</p>
+            
+            <div class="pro-feature">
+                <div class="pro-feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="pro-feature-info">
+                    <h3>AI-Powered Forecasting</h3>
+                    <p>Get access to predictive analytics for market trends and token performance</p>
+                </div>
+            </div>
+            
+            <div class="pro-feature">
+                <div class="pro-feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="pro-feature-info">
+                    <h3>On-Chain Security Scoring</h3>
+                    <p>Advanced security metrics and vulnerability assessments for wallets</p>
+                </div>
+            </div>
+            
+            <div class="pro-feature">
+                <div class="pro-feature-icon">
+                    <i class="fas fa-file-export"></i>
+                </div>
+                <div class="pro-feature-info">
+                    <h3>Advanced Data Export</h3>
+                    <p>Export any data in CSV, PDF, or API format for your own analysis</p>
+                </div>
+            </div>
+            
+            <a href="#" class="pro-upgrade-btn">Upgrade to PRO</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle Functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const icon = themeToggle.querySelector('i');
+            
+            // Function to update toggle icon based on theme
+            function updateToggleIcon(isDark) {
+                if (isDark) {
+                    icon.className = 'fas fa-sun';
+                } else {
+                    icon.className = 'fas fa-moon';
+                }
+            }
+            
+            // Handle toggle click
+            themeToggle.addEventListener('click', function() {
+                if (body.classList.contains('theme-dark')) {
+                    body.className = 'theme-light';
+                    localStorage.setItem('theme', 'theme-light');
+                    updateToggleIcon(false);
+                } else {
+                    body.className = 'theme-dark';
+                    localStorage.setItem('theme', 'theme-dark');
+                    updateToggleIcon(true);
+                }
+            });
+            
+            // Initialize Volume Trends Chart
+            const volumeCtx = document.getElementById('volumeTrendsChart').getContext('2d');
+            
+            // Sample data for volume trends - using data points similar to reference image
+            const months = ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'];
+            const volumeData = [65, 58, 52, 65, 55, 50, 57, 68, 110, 75, 92, 74];
+            
+            // Create volume gradient
+            const volumeGradient = volumeCtx.createLinearGradient(0, 0, 0, 400);
+            volumeGradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+            volumeGradient.addColorStop(1, 'rgba(59, 130, 246, 0.05)');
+            
+            // Line chart configuration
+            const volumeTrendsChart = new Chart(volumeCtx, {
+                type: 'line',
+                data: {
+                    labels: months,
+                    datasets: [
+                        {
+                            label: 'Volume (K)',
+                            data: volumeData,
+                            borderColor: '#3B82F6',
+                            borderWidth: 2,
+                            backgroundColor: volumeGradient,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 3,
+                            pointBackgroundColor: '#FFFFFF',
+                            pointBorderColor: '#3B82F6',
+                            pointBorderWidth: 1.5
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#111827',
+                            bodyColor: '#4B5563',
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + 'K';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#9CA3AF',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        y: {
+                            position: 'right',
+                            grid: {
+                                color: 'rgba(203, 213, 225, 0.3)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#9CA3AF',
+                                font: {
+                                    size: 11
+                                },
+                                padding: 10,
+                                callback: function(value) {
+                                    return value + 'K';
+                                }
+                            },
+                            min: 0,
+                            max: 110,
+                            stepSize: 20
+                        }
+                    }
+                }
+            });
+            
+            // Traffic Trends Chart
+            const trafficCtx = document.getElementById('trafficTrendsChart').getContext('2d');
+            
+            // Sample data for website traffic
+            const trafficLabels = ['Oct 2024', 'Nov 2024', 'Dec 2024', 'Jan 2025', 'Feb 2025', 'Mar 2025'];
+            const trafficData = [18.5, 19.6, 20.8, 21.3, 21.9, 22.4];
+            
+            // Create traffic gradient
+            const trafficGradient = trafficCtx.createLinearGradient(0, 0, 0, 400);
+            trafficGradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+            trafficGradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+            
+            // Traffic Chart Configuration
+            const trafficTrendsChart = new Chart(trafficCtx, {
+                type: 'line',
+                data: {
+                    labels: trafficLabels,
+                    datasets: [
+                        {
+                            label: 'Website Traffic',
+                            data: trafficData,
+                            borderColor: '#3B82F6',
+                            backgroundColor: trafficGradient,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            pointBackgroundColor: '#FFFFFF',
+                            pointBorderColor: '#3B82F6',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 18,
+                            max: 23,
+                            ticks: {
+                                stepSize: 1,
+                                color: '#6B7280',
+                                callback: function(value) {
+                                    return value + 'M';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6B7280'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#111827',
+                            bodyColor: '#4B5563',
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    let value = context.raw;
+                                    return `Website Traffic: ${value}M`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Team Growth Chart
+            const teamCtx = document.getElementById('teamGrowthChart').getContext('2d');
+            
+            // Sample data for team growth
+            const teamLabels = ['Mar 2023', 'Sep 2023', 'Mar 2024', 'Sep 2024', 'Mar 2025'];
+            const teamData = [3000, 3500, 4200, 5500, 5962];
+            
+            // Create team growth gradient
+            const teamGradient = teamCtx.createLinearGradient(0, 0, 0, 200);
+            teamGradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+            teamGradient.addColorStop(1, 'rgba(59, 130, 246, 0)');
+            
+            // Team Growth Chart Configuration
+            const teamGrowthChart = new Chart(teamCtx, {
+                type: 'line',
+                data: {
+                    labels: teamLabels,
+                    datasets: [
+                        {
+                            label: 'Team Size',
+                            data: teamData,
+                            borderColor: '#3B82F6',
+                            backgroundColor: teamGradient,
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 6,
+                            pointHoverRadius: 8,
+                            pointBackgroundColor: '#FFFFFF',
+                            pointBorderColor: '#3B82F6',
+                            pointBorderWidth: 2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 0,
+                            max: 6000,
+                            ticks: {
+                                stepSize: 3000,
+                                color: '#6B7280'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6B7280'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#111827',
+                            bodyColor: '#4B5563',
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Team Size: ${context.raw}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Marketing Channels Chart
+            const channelsCtx = document.getElementById('channelsChart').getContext('2d');
+            
+            // Sample data for marketing channels
+            const channelsLabels = ['Direct', 'Organic', 'Paid', 'Referrals', 'Display ads', 'Social', 'Email'];
+            const channelsData = [77.64, 12.90, 1.59, 5.53, 0.29, 2.04, 0.02];
+            const channelsColors = ['#4F46E5', '#10B981', '#EF4444', '#F59E0B', '#A855F7', '#6366F1', '#3B82F6'];
+            
+            // Marketing Channels Chart Configuration
+            const channelsChart = new Chart(channelsCtx, {
+                type: 'bar',
+                data: {
+                    labels: channelsLabels,
+                    datasets: [
+                        {
+                            label: 'Traffic %',
+                            data: channelsData,
+                            backgroundColor: channelsColors,
+                            borderWidth: 0,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                },
+                                color: '#6B7280'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6B7280',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#111827',
+                            bodyColor: '#4B5563',
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Social Traffic Chart
+            const socialCtx = document.getElementById('socialTrafficChart').getContext('2d');
+            
+            // Sample data for social traffic
+            const socialLabels = ['Youtube', 'X-twitter', 'Facebook', 'Twitter', 'Telegram Webapp', 'Other'];
+            const socialData = [49.25, 20.17, 10.08, 6.32, 5.49, 8.69];
+            const socialColors = ['#FF0000', '#000000', '#1877F2', '#1DA1F2', '#0088CC', '#6B7280'];
+            
+            // Social Traffic Chart Configuration
+            const socialTrafficChart = new Chart(socialCtx, {
+                type: 'bar',
+                data: {
+                    labels: socialLabels,
+                    datasets: [
+                        {
+                            label: 'Social Traffic %',
+                            data: socialData,
+                            backgroundColor: socialColors,
+                            borderWidth: 0,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                },
+                                color: '#6B7280'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6B7280',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#111827',
+                            bodyColor: '#4B5563',
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Gender Chart
+            const genderCtx = document.getElementById('genderChart').getContext('2d');
+            
+            // Gender data
+            const genderData = [71.45, 28.55];
+            const genderLabels = ['Male', 'Female'];
+            const genderColors = ['#3B82F6', '#60A5FA'];
+            
+            // Gender Chart Configuration
+            const genderChart = new Chart(genderCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: genderLabels,
+                    datasets: [
+                        {
+                            data: genderData,
+                            backgroundColor: genderColors,
+                            borderWidth: 0,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#111827',
+                            bodyColor: '#4B5563',
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.parsed}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Age Chart
+            const ageCtx = document.getElementById('ageChart').getContext('2d');
+            
+            // Age data
+            const ageLabels = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
+            const ageData = [20.14, 35.24, 18.45, 12.63, 8.14, 5.41];
+            
+            // Age Chart Configuration
+            const ageChart = new Chart(ageCtx, {
+                type: 'bar',
+                data: {
+                    labels: ageLabels,
+                    datasets: [
+                        {
+                            label: 'Age Distribution',
+                            data: ageData,
+                            backgroundColor: '#3B82F6',
+                            borderWidth: 0,
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 40,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                },
+                                color: '#6B7280'
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#6B7280',
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            backgroundColor: '#FFFFFF',
+                            titleColor: '#111827',
+                            bodyColor: '#4B5563',
+                            borderColor: 'rgba(0, 0, 0, 0.1)',
+                            borderWidth: 1,
+                            padding: 10,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Interactive Map
+            const interactiveMap = document.getElementById('interactiveMap');
+            const mapTooltip = document.getElementById('mapTooltip');
+            
+            // Simplified world map data (major countries)
+            const worldMapData = [
+                { country: 'United States', code: 'US', path: 'M169,164 L269,164 L269,204 L169,204 Z', value: '$1.2M' },
+                { country: 'China', code: 'CN', path: 'M600,170 L670,170 L670,230 L600,230 Z', value: '$850K' },
+                { country: 'Hong Kong', code: 'HK', path: 'M657,195 L662,195 L662,200 L657,200 Z', value: '$3.1M' },
+                { country: 'Vietnam', code: 'VN', path: 'M635,210 L645,210 L645,220 L635,220 Z', value: '$475K' },
+                { country: 'Saudi Arabia', code: 'SA', path: 'M530,195 L550,195 L550,215 L530,215 Z', value: '$250K' },
+                { country: 'UK', code: 'UK', path: 'M450,150 L470,150 L470,170 L450,170 Z', value: '$210K' },
+                { country: 'Canada', code: 'CA', path: 'M170,120 L220,120 L220,160 L170,160 Z', value: '$180K' },
+                { country: 'Japan', code: 'JP', path: 'M690,170 L710,170 L710,190 L690,190 Z', value: '$160K' },
+                { country: 'Australia', code: 'AU', path: 'M690,260 L720,260 L720,290 L690,290 Z', value: '$120K' },
+                { country: 'Brazil', code: 'BR', path: 'M300,240 L330,240 L330,270 L300,270 Z', value: '$95K' },
+                { country: 'India', code: 'IN', path: 'M580,200 L610,200 L610,230 L580,230 Z', value: '$85K' },
+                { country: 'Russia', code: 'RU', path: 'M480,120 L580,120 L580,160 L480,160 Z', value: '$70K' }
+            ];
+            
+            // Create a simplified world map
+            worldMapData.forEach(country => {
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                path.setAttribute('d', country.path);
+                path.setAttribute('class', 'map-country');
+                path.setAttribute('data-country', country.country);
+                path.setAttribute('data-value', country.value);
+                path.setAttribute('data-code', country.code);
+                
+                // Highlight top 5 countries
+                if (['HK', 'US', 'CN', 'VN', 'SA'].includes(country.code)) {
+                    path.classList.add('active-country');
+                }
+                
+                interactiveMap.appendChild(path);
+            });
+            
+            // Hover functionality for map countries
+            document.querySelectorAll('.map-country').forEach(country => {
+                country.addEventListener('mouseenter', function(e) {
+                    const countryName = this.getAttribute('data-country');
+                    const countryValue = this.getAttribute('data-value');
+                    const countryCode = this.getAttribute('data-code');
+                    
+                    // Display tooltip
+                    mapTooltip.innerHTML = `
+                        <div class="country-tooltip">
+                            <div class="country-tooltip-title">${countryName}</div>
+                            <div class="country-tooltip-value">
+                                <span class="country-tooltip-value-label">Market Value:</span>
+                                <span class="country-tooltip-value-number">${countryValue}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    mapTooltip.style.left = `${e.pageX - interactiveMap.getBoundingClientRect().left}px`;
+                    mapTooltip.style.top = `${e.pageY - interactiveMap.getBoundingClientRect().top}px`;
+                    mapTooltip.classList.add('visible');
+                    
+                    // Highlight the country
+                    this.style.fill = '#3B82F6';
+                });
+                
+                country.addEventListener('mousemove', function(e) {
+                    mapTooltip.style.left = `${e.pageX - interactiveMap.getBoundingClientRect().left + 15}px`;
+                    mapTooltip.style.top = `${e.pageY - interactiveMap.getBoundingClientRect().top + 15}px`;
+                });
+                
+                country.addEventListener('mouseleave', function() {
+                    mapTooltip.classList.remove('visible');
+                    
+                    // Reset fill unless it's a top country
+                    if (!this.classList.contains('active-country')) {
+                        this.style.fill = '';
+                    }
+                });
+            });
+            
+            // Add to Watchlist button functionality
+            document.getElementById('trackButton').addEventListener('click', function() {
+                if (this.classList.contains('header-button-filled')) {
+                    this.classList.remove('header-button-filled');
+                    this.classList.add('header-button-outline');
+                    this.innerHTML = '<i class="fas fa-bookmark"></i><span>Add to Watchlist</span>';
+                } else {
+                    this.classList.add('header-button-filled');
+                    this.classList.remove('header-button-outline');
+                    this.innerHTML = '<i class="fas fa-bookmark"></i><span>Added to Watchlist</span>';
+                    
+                    // Show notification
+                    alert('bitmart Wallet has been added to your watchlist!');
+                }
+            });
+            
+            // Read more button functionality
+            document.querySelectorAll('.read-more-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    alert('Full review would open in a modal or new page.');
+                });
+            });
+        });
+    </script>
+
+
+</body></html>

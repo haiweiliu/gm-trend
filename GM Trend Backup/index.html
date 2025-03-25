@@ -1,0 +1,2221 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GM Trend - Web3 Trend Intelligence</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3B82F6;
+            --primary-light: #60A5FA;
+            --primary-dark: #2563EB;
+            --bg-light: #F8F9FC;
+            --bg-dark: #0F172A;
+            --card-light: #FFFFFF;
+            --card-dark: #1E293B;
+            --text-light: #F9FAFB;
+            --text-dark: #111827;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .dark {
+            color-scheme: dark;
+        }
+        
+        .dark body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark .card {
+            background-color: var(--card-dark);
+        }
+        
+        .dark nav, .dark .footer {
+            background-color: #111827 !important;
+            border-color: #1F2937 !important;
+        }
+        
+        .trend-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .dark .trend-card {
+            background-color: var(--card-dark);
+        }
+        
+        .trend-chart {
+            height: 120px;
+        }
+        
+        .btn-pro {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 6px;
+        }
+        
+        .exploding-badge {
+            background-color: #F3F4F6;
+            color: #4B5563;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .regular-badge {
+            background-color: #F3F4F6;
+            color: #4B5563;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .dark .exploding-badge, .dark .regular-badge {
+            background-color: #374151;
+            color: #E5E7EB;
+        }
+        
+        .trend-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .trend-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .trend-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .detailed-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .filter-dropdown {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            min-width: 160px;
+            font-size: 0.875rem;
+            color: #4B5563;
+            margin-right: 0.5rem;
+        }
+        
+        .dark .filter-dropdown {
+            background-color: #1F2937;
+            border-color: #374151;
+            color: #E5E7EB;
+        }
+        
+        .search-input {
+            background-color: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 0.25rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            color: #4B5563;
+            width: 220px;
+        }
+        
+        .dark .search-input {
+            background-color: #1F2937;
+            border-color: #374151;
+            color: #E5E7EB;
+        }
+        
+        .forecast-toggle {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            background-color: #EFF6FF;
+            border: 1px solid #DBEAFE;
+            font-weight: 500;
+            color: #3B82F6;
+        }
+        
+        .forecast-toggle.disabled {
+            opacity: 0.6;
+            cursor: pointer;
+        }
+        
+        .dark .forecast-toggle {
+            background-color: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 36px;
+            height: 20px;
+            margin-left: 8px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #D1D5DB;
+            transition: .4s;
+            border-radius: 20px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #3B82F6;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(16px);
+        }
+        
+        .tooltip {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .chart-point:hover + .tooltip {
+            display: block;
+        }
+        
+        .pricing-tier {
+            border: 1px solid #E5E7EB;
+            border-radius: 0.5rem;
+            background-color: white;
+            overflow: hidden;
+        }
+        
+        .dark .pricing-tier {
+            background-color: #1E293B;
+            border-color: #374151;
+        }
+        
+        .pricing-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        
+        .dark .pricing-header {
+            border-color: #374151;
+        }
+        
+        .pricing-features {
+            padding: 1.5rem;
+        }
+        
+        .pricing-feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .pricing-price {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #4F46E5;
+        }
+        
+        .dark .pricing-price {
+            color: #818CF8;
+        }
+        
+        .dark .pricing-feature span {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .dark .text-gray-700 {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .dark .text-gray-800 {
+            color: white;
+        }
+        
+        .dark .font-medium {
+            color: white;
+        }
+        
+        .feature-check {
+            color: #10B981;
+            margin-right: 0.5rem;
+        }
+        
+        .pricing-cta {
+            padding: 1.5rem;
+            background-color: #F9FAFB;
+            border-top: 1px solid #E5E7EB;
+        }
+        
+        .dark .pricing-cta {
+            background-color: #111827;
+            border-color: #374151;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .pagination-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            margin: 0 0.25rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .pagination-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .pagination-item:not(.active):hover {
+            background-color: #F3F4F6;
+        }
+        
+        .dark .pagination-item:not(.active):hover {
+            background-color: #374151;
+        }
+        
+        .footer {
+            border-top: 1px solid #E5E7EB;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        
+        .dark .footer {
+            border-color: #374151;
+        }
+        
+        .footer-column h3 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-link {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: #6B7280;
+        }
+        
+        .dark .footer-link {
+            color: #9CA3AF;
+        }
+        
+        .footer-link:hover {
+            color: var(--primary);
+        }
+        
+        /* Members Only Modal */
+        .members-only {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .dark .members-only {
+            background-color: #1E293B;
+        }
+        
+        .blurred-item {
+            filter: blur(3px);
+            pointer-events: none;
+        }
+        
+        /* Members Only Card */
+        .pro-card {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .dark .pro-card {
+            background-color: rgba(30, 41, 59, 0.9);
+        }
+        
+        .pro-try-button {
+            background-color: #3B82F6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .pro-try-button:hover {
+            background-color: #2563EB;
+        }
+        
+        .pro-badge {
+            background-color: #3B82F6;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+        }
+        
+        .chart-tooltip {
+            position: absolute;
+            background-color: #EFF6FF;
+            border: 1px solid #DBEAFE;
+            color: #1E40AF;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            z-index: 10;
+            display: none;
+            pointer-events: none; /* Ensures we can hover through the tooltip */
+        }
+        
+        .dark .chart-tooltip {
+            background-color: #1F2937;
+            border-color: #3B82F6;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Detail page back button - enhanced contrast for dark mode */
+        .dark .mb-6.flex.items-center.text-blue-500 {
+            color: white;
+            background-color: rgba(59, 130, 246, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .dark .mb-6.flex.items-center.text-blue-500:hover {
+            background-color: rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Members Only Modal */
+        .members-only-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 0.75rem;
+            max-width: 450px;
+            width: 90%;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .dark .modal-content {
+            background-color: #1E293B;
+            color: white;
+        }
+        
+        .pro-badge-modal {
+            display: inline-flex;
+            background-color: #3B82F6;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<!-- Members Only Modal -->
+<body><div class="members-only-modal" id="members-only-modal" style="display: none;">
+    <div class="modal-content">
+        <div class="flex justify-between items-center mb-4">
+            <div class="flex items-center">
+                <span class="pro-badge-modal">PRO</span>
+                <span class="text-lg font-bold">Members Only</span>
+            </div>
+            <button class="text-gray-400 hover:text-gray-500" onclick="closeProModal()">
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <h2 class="text-2xl font-bold mb-4">This Feature Requires A Pro Subscription</h2>
+        
+        <p class="text-gray-600 dark:text-gray-300 mb-6">Get access to these additional features when you become a member.</p>
+        
+        <div class="border-t border-b border-gray-200 dark:border-gray-700 py-4 mb-6">
+            <div class="flex items-start mb-3">
+                <svg class="w-5 h-5 text-teal-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300">Full Trends Database</span>
+            </div>
+            
+            <div class="flex items-start mb-3">
+                <svg class="w-5 h-5 text-teal-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300">Trending Products</span>
+            </div>
+            
+            <div class="flex items-start mb-3">
+                <svg class="w-5 h-5 text-teal-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300">Trend Forecasting</span>
+            </div>
+            
+            <div class="flex items-start mb-3">
+                <svg class="w-5 h-5 text-teal-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span class="text-gray-700 dark:text-gray-300">Meta Trends</span>
+            </div>
+        </div>
+        
+        <div class="flex justify-between gap-4">
+            <button onclick="closeProModal()" class="flex-1 py-3 px-4 border border-gray-300 dark:border-gray-600 rounded-lg font-medium text-gray-700 dark:text-gray-300">
+                No Thanks
+            </button>
+            <button onclick="showPricingPage()" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-3 px-4 rounded-lg font-medium">
+                Learn More
+            </button>
+        </div>
+    </div>
+</div>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <svg class="w-6 h-6 text-blue-500 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 12L7 3L13 9L22 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M2 12L7 21L13 14L22 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <span class="text-xl font-bold">GM TREND</span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="https://t.me/gmtrend" target="_blank" class="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">Newsletter</a>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                        <svg id="dark-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                        <svg id="light-icon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                    </button>
+                    <button id="pro-btn" class="btn-pro" onclick="showPricingPage()">PRO</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <!-- Home Page (Trend Grid) -->
+        <div id="home-page">
+            <!-- Hero Section -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4">Discover Web3 Trends</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    We surface rapidly growing Web3 topics and Pre-TGE projects before they take off.
+                </p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="mb-8">
+                <div class="text-sm text-gray-500 dark:text-gray-400 mb-2 text-center">FILTER BY:</div>
+                <div class="flex flex-wrap justify-center items-center gap-2">
+                    <select class="filter-dropdown appearance-none">
+                        <option>Past 6 Months</option>
+                        <option>Past Year</option>
+                        <option>Past 2 Years</option>
+                        <option>Past 5 Years</option>
+                    </select>
+                    
+                    <select class="filter-dropdown appearance-none">
+                        <option>All Categories</option>
+                        <option>Pre-TGE Projects</option>
+                        <option>DeFi</option>
+                        <option>NFTs</option>
+                        <option>Layer 2</option>
+                    </select>
+                    
+                    <div class="relative">
+                        <input type="text" placeholder="Search Trends" class="search-input pl-10">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <span class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                            <span class="btn-pro text-xs">PRO</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trend Cards -->
+            <div class="trend-grid mb-8">
+                <!-- MONAD -->
+                <div class="trend-card p-6" onclick="showTrendDetail('monad')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">MONAD</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">74K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+1760%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="monadChart"></canvas>
+                        <div class="chart-tooltip" id="monadTooltip">
+                            <strong>FEB</strong><br>
+                            8K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A high-performance blockchain designed for building scalable decentralized applications with improved throughput.
+                    </p>
+                    
+                    <div>
+                        <span class="exploding-badge">EXPLODING</span>
+                    </div>
+                </div>
+                
+                <!-- PUMP -->
+                <div class="trend-card p-6" onclick="showTrendDetail('pump')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">PUMP</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">40.5K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+1700%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="pumpChart"></canvas>
+                        <div class="chart-tooltip" id="pumpTooltip">
+                            <strong>JAN</strong><br>
+                            7.2K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        The community-driven pump fun token designed to reward holders and create excitement in trading.
+                    </p>
+                    
+                    <div>
+                        <span class="exploding-badge">EXPLODING</span>
+                    </div>
+                </div>
+                
+                <!-- OPENSEA -->
+                <div class="trend-card p-6" onclick="showTrendDetail('opensea')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">OPENSEA</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">246K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+5300%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="openseaChart"></canvas>
+                        <div class="chart-tooltip" id="openseaTooltip">
+                            <strong>MAR</strong><br>
+                            9.4K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A leading NFT marketplace that facilitates the trading of digital collectibles, art, and other blockchain-based assets.
+                    </p>
+                    
+                    <div>
+                        <span class="exploding-badge">EXPLODING</span>
+                    </div>
+                </div>
+                
+                <!-- POLYMARKET -->
+                <div class="trend-card p-6" onclick="showTrendDetail('polymarket')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">POLYMARKET</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">186K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+1970%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="polymarketChart"></canvas>
+                        <div class="chart-tooltip" id="polymarketTooltip">
+                            <strong>APR</strong><br>
+                            6.7K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A decentralized prediction market platform where users can trade on the outcome of events and get rewarded for accurate forecasts.
+                    </p>
+                    
+                    <div>
+                        <span class="exploding-badge">EXPLODING</span>
+                    </div>
+                </div>
+                
+                <!-- MEGAETH -->
+                <div class="trend-card p-6" onclick="showTrendDetail('megaeth')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">MEGAETH</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">95K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+1420%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="megaethChart"></canvas>
+                        <div class="chart-tooltip" id="megaethTooltip">
+                            <strong>JAN</strong><br>
+                            5.3K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A scaling solution designed to significantly increase Ethereum's transaction throughput while maintaining security.
+                    </p>
+                    
+                    <div>
+                        <span class="regular-badge">REGULAR</span>
+                    </div>
+                </div>
+                
+                <!-- SUCCINCT -->
+                <div class="trend-card p-6" onclick="showTrendDetail('succinct')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">SUCCINCT</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">78K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+1255%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="succinctChart"></canvas>
+                        <div class="chart-tooltip" id="succinctTooltip">
+                            <strong>FEB</strong><br>
+                            4.8K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A zero-knowledge proof system for blockchain applications, enabling efficient verification of complex computations.
+                    </p>
+                    
+                    <div>
+                        <span class="regular-badge">REGULAR</span>
+                    </div>
+                </div>
+                
+                <!-- PRO MEMBERS ONLY - Blurred card design -->
+                <div class="trend-card p-6 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-100/90 to-white/90 dark:from-gray-900/90 dark:to-gray-800/90 backdrop-blur-sm"></div>
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-white/30 dark:to-blue-900/10"></div>
+                    
+                    <div class="relative z-10 flex flex-col items-center justify-center h-full">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-blue-500 text-white px-2 py-1 text-sm font-semibold rounded mr-2">PRO</span>
+                            <span class="text-lg font-semibold">Members Only</span>
+                        </div>
+                        
+                        <button onclick="showPricingPage()" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-md font-medium transition-colors w-full max-w-xs">
+                            Try Exploding Topics Pro
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- MET -->
+                <div class="trend-card p-6" onclick="showTrendDetail('met')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">MET</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">68K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+950%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="metChart"></canvas>
+                        <div class="chart-tooltip" id="metTooltip">
+                            <strong>MAR</strong><br>
+                            3.9K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A governance token for a decentralized autonomous organization focused on metaverse infrastructure development.
+                    </p>
+                    
+                    <div>
+                        <span class="regular-badge">REGULAR</span>
+                    </div>
+                </div>
+                
+                <!-- MSU -->
+                <div class="trend-card p-6" onclick="showTrendDetail('msu')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">MSU</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">62K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+890%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="msuChart"></canvas>
+                        <div class="chart-tooltip" id="msuTooltip">
+                            <strong>APR</strong><br>
+                            4.2K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A cross-chain messaging protocol that enables secure communication between different blockchain networks.
+                    </p>
+                    
+                    <div>
+                        <span class="exploding-badge">EXPLODING</span>
+                    </div>
+                </div>
+                
+                <!-- FARCASTER -->
+                <div class="trend-card p-6" onclick="showTrendDetail('farcaster')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">FARCASTER</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">81K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+1150%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="farcasterChart"></canvas>
+                        <div class="chart-tooltip" id="farcasterTooltip">
+                            <strong>MAY</strong><br>
+                            7.1K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A decentralized social media protocol built on Ethereum that allows users to own their social graph and content.
+                    </p>
+                    
+                    <div>
+                        <span class="exploding-badge">EXPLODING</span>
+                    </div>
+                </div>
+                
+                <!-- INITIA -->
+                <div class="trend-card p-6" onclick="showTrendDetail('initia')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">INITIA</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">71K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+980%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="initiaChart"></canvas>
+                        <div class="chart-tooltip" id="initiaTooltip">
+                            <strong>FEB</strong><br>
+                            5.5K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        A Layer 1 blockchain designed for high throughput and low transaction costs, using a novel consensus mechanism.
+                    </p>
+                    
+                    <div>
+                        <span class="regular-badge">REGULAR</span>
+                    </div>
+                </div>
+                
+                <!-- LINEA -->
+                <div class="trend-card p-6" onclick="showTrendDetail('linea')">
+                    <div class="flex justify-between items-start mb-1">
+                        <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">LINEA</h3>
+                        <div class="text-right">
+                            <div class="text-3xl font-bold">125K</div>
+                            <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-1 text-right">
+                        <div class="text-3xl font-bold text-green-500">+2240%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                    
+                    <div class="trend-chart mb-4 relative">
+                        <canvas id="lineaChart"></canvas>
+                        <div class="chart-tooltip" id="lineaTooltip">
+                            <strong>APR</strong><br>
+                            8.7K/mo
+                        </div>
+                    </div>
+                    
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        An EVM-equivalent zkRollup by Consensys, designed to scale Ethereum while maintaining security and decentralization.
+                    </p>
+                    
+                    <div>
+                        <span class="exploding-badge">EXPLODING</span>
+                    </div>
+                </div>
+            </div>
+            
+
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="pagination-item active">1</div>
+                <div class="pagination-item">2</div>
+                <div class="pagination-item">3</div>
+                <div class="pagination-item">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Detailed Trend Page -->
+        <div id="trend-detail" class="detailed-content hidden">
+            <!-- Back Button -->
+            <button onclick="backToHome()" class="mb-6 flex items-center text-blue-500 hover:text-blue-700">
+                <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Trends
+            </button>
+            
+            <!-- Trend Title and Description -->
+            <h1 id="detail-title" class="text-3xl font-bold mb-4">MONAD</h1>
+            <p id="detail-description" class="text-gray-600 dark:text-gray-400 mb-8">
+                A high-performance blockchain designed for building scalable decentralized applications with improved throughput and lower fees. MONAD differentiates itself by offering an AI-driven approach that simplifies the development process, making it accessible to users without technical expertise. This service is particularly beneficial for Web3 developers, entrepreneurs, and individuals looking to establish decentralized applications efficiently and cost-effectively.
+            </p>
+            
+            <!-- Chart Section -->
+            <div class="card p-8 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                    <div class="mb-4 md:mb-0">
+                        <select class="filter-dropdown appearance-none">
+                            <option>Past 6 Months</option>
+                            <option>Past Year</option>
+                            <option>Past 2 Years</option>
+                            <option>5 Years</option>
+                        </select>
+                    </div>
+                    
+                    <div class="forecast-toggle disabled" onclick="showPricingPage()">
+                        <span>Forecast</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <svg class="w-5 h-5 ml-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <div id="detail-volume" class="text-4xl font-bold text-blue-600">8.1K</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Volume</div>
+                    </div>
+                    
+                    <div>
+                        <div id="detail-growth" class="text-4xl font-bold text-green-500">+8200%</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Growth</div>
+                    </div>
+                </div>
+                
+                <div class="h-80 mb-4 relative">
+                    <canvas id="detailChart"></canvas>
+                    
+                    <!-- Hover-only tooltip for month data -->
+                    <div id="chart-tooltip" class="absolute bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-md text-xs font-medium z-10" style="display: none;">
+                        <div id="tooltip-month">JUN</div>
+                        <div id="tooltip-value">351K/mo</div>
+                    </div>
+                    
+                    <!-- Volume guide lines -->
+                    <div class="absolute left-0 w-full" style="top: 20%; border-top: 1px dashed rgba(156, 163, 175, 0.2);"></div>
+                    <div class="absolute left-0 w-full" style="top: 40%; border-top: 1px dashed rgba(156, 163, 175, 0.2);"></div>
+                    <div class="absolute left-0 w-full" style="top: 60%; border-top: 1px dashed rgba(156, 163, 175, 0.2);"></div>
+                    <div class="absolute left-0 w-full" style="top: 80%; border-top: 1px dashed rgba(156, 163, 175, 0.2);"></div>
+                </div>
+                
+                <div class="flex justify-between text-sm text-gray-500 dark:text-gray-400">
+                    <span>2021</span>
+                    <span>2022</span>
+                    <span>2023</span>
+                    <span>2024</span>
+                    <span>2025</span>
+                </div>
+            </div>
+            
+            <div class="mb-8">
+                <span id="detail-badge" class="regular-badge">REGULAR</span>
+            </div>
+            
+            <!-- Categories -->
+            <div class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Categories</h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm">Technology</span>
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm">Artificial Intelligence</span>
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm">Blockchain</span>
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 px-3 py-1 rounded-full text-sm">Web3</span>
+                </div>
+            </div>
+            
+            <!-- Related Topics -->
+            <div class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Related Topics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div class="card p-4 flex items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-blue-600 dark:text-blue-400">Artificial Intelligence</h3>
+                        </div>
+                        <div class="ml-4">
+                            <div class="text-right">
+                                <div class="font-bold">1.5M</div>
+                                <div class="text-green-500 font-medium">+83%</div>
+                            </div>
+                        </div>
+                        <div class="w-24 h-12 ml-4">
+                            <canvas id="relatedChart1"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-4 flex items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-blue-600 dark:text-blue-400">Layer 2 Solutions</h3>
+                        </div>
+                        <div class="ml-4">
+                            <div class="text-right">
+                                <div class="font-bold">780K</div>
+                                <div class="text-green-500 font-medium">+65%</div>
+                            </div>
+                        </div>
+                        <div class="w-24 h-12 ml-4">
+                            <canvas id="relatedChart2"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-4 flex items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-blue-600 dark:text-blue-400">DeFi Platforms</h3>
+                        </div>
+                        <div class="ml-4">
+                            <div class="text-right">
+                                <div class="font-bold">950K</div>
+                                <div class="text-green-500 font-medium">+72%</div>
+                            </div>
+                        </div>
+                        <div class="w-24 h-12 ml-4">
+                            <canvas id="relatedChart3"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-4 flex items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-blue-600 dark:text-blue-400">Smart Contract Security</h3>
+                        </div>
+                        <div class="ml-4">
+                            <div class="text-right">
+                                <div class="font-bold">420K</div>
+                                <div class="text-green-500 font-medium">+54%</div>
+                            </div>
+                        </div>
+                        <div class="w-24 h-12 ml-4">
+                            <canvas id="relatedChart4"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-4 flex items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-blue-600 dark:text-blue-400">Zero-Knowledge Proofs</h3>
+                        </div>
+                        <div class="ml-4">
+                            <div class="text-right">
+                                <div class="font-bold">350K</div>
+                                <div class="text-green-500 font-medium">+91%</div>
+                            </div>
+                        </div>
+                        <div class="w-24 h-12 ml-4">
+                            <canvas id="relatedChart5"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="card p-4 flex items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-blue-600 dark:text-blue-400">Decentralized Identity</h3>
+                        </div>
+                        <div class="ml-4">
+                            <div class="text-right">
+                                <div class="font-bold">290K</div>
+                                <div class="text-green-500 font-medium">+48%</div>
+                            </div>
+                        </div>
+                        <div class="w-24 h-12 ml-4">
+                            <canvas id="relatedChart6"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Pricing Page -->
+        <div id="pricing-page" class="hidden">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4">GM Trend Pro</h1>
+                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                    Discover Web3 trends 12+ months before they take off
+                </p>
+            </div>
+            
+            <div class="mb-16">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-8 text-blue-600 dark:text-blue-400">
+                        Leading Companies Use GM Trend Pro To See Trends Before They Happen
+                    </h2>
+                    
+                    <div class="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto mb-16">
+                        <div class="flex flex-col items-center">
+                            <div class="text-4xl text-blue-500 mb-4">🔍</div>
+                            <h3 class="text-xl font-bold mb-4">See Trends Before Anyone Else</h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                We track every crypto project to identify under-the-radar trends months before they go mainstream.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="text-4xl text-blue-500 mb-4">🚀</div>
+                            <h3 class="text-xl font-bold mb-4">Discover Promising Projects</h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                Find emerging Pre-TGE projects with early, exponential growth signals.
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col items-center">
+                            <div class="text-4xl text-blue-500 mb-4">💰</div>
+                            <h3 class="text-xl font-bold mb-4">Find Under-The-Radar Markets</h3>
+                            <p class="text-gray-600 dark:text-gray-400">
+                                From DeFi to NFTs, discover underground Web3 markets set to take off.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <!-- Degen Tier -->
+                        <div class="pricing-tier bg-white dark:bg-gray-800 border-0 shadow-lg rounded-lg overflow-hidden">
+                            <div class="pricing-header p-6 text-center">
+                                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Degen</h3>
+                                <div class="mb-2">
+                                    <span class="text-4xl font-bold text-blue-500">$39</span>
+                                    <span class="text-gray-600 dark:text-gray-300">/month</span>
+                                </div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Billed Annually</p>
+                            </div>
+                            
+                            <div class="pricing-features p-6 border-t border-gray-100 dark:border-gray-700">
+                                <div class="text-sm font-medium text-gray-800 dark:text-white mb-4">Includes:</div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">100 Tracked Trends</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">10 Trend Analyses</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trends Database</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trending Products</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Meta Trends</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Channel Breakdown</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pricing-cta p-6">
+                                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition duration-200">
+                                    Start 7-day free trial
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Whale Tier -->
+                        <div class="pricing-tier bg-white dark:bg-gray-800 border-0 shadow-lg rounded-lg overflow-hidden">
+                            <div class="pricing-header p-6 text-center">
+                                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Whale</h3>
+                                <div class="mb-2">
+                                    <span class="text-4xl font-bold text-blue-500">$99</span>
+                                    <span class="text-gray-600 dark:text-gray-300">/month</span>
+                                </div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Billed Annually</p>
+                            </div>
+                            
+                            <div class="pricing-features p-6 border-t border-gray-100 dark:border-gray-700">
+                                <div class="text-sm font-medium text-gray-800 dark:text-white mb-4">Includes:</div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">500 Tracked Trends</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">100 Trend Analyses</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trends Database</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trending Products</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Meta Trends</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Channel Breakdown</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trending Startups</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trend Forecasting</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">CSV Export</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pricing-cta p-6">
+                                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition duration-200">
+                                    Start 7-day free trial
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Tier -->
+                        <div class="pricing-tier bg-white dark:bg-gray-800 border-0 shadow-lg rounded-lg overflow-hidden">
+                            <div class="pricing-header p-6 text-center">
+                                <h3 class="text-xl font-bold mb-4 text-gray-800 dark:text-white">Project</h3>
+                                <div class="mb-2">
+                                    <span class="text-4xl font-bold text-blue-500">$249</span>
+                                    <span class="text-gray-600 dark:text-gray-300">/month</span>
+                                </div>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Billed Annually</p>
+                            </div>
+                            
+                            <div class="pricing-features p-6 border-t border-gray-100 dark:border-gray-700">
+                                <div class="text-sm font-medium text-gray-800 dark:text-white mb-4">Includes:</div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">2,000 Tracked Trends</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">500 Trend Analyses</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trends Database</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trending Products</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Meta Trends</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Channel Breakdown</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trending Startups</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trend Forecasting</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">CSV Export</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">Trend Reports</span>
+                                </div>
+                                
+                                <div class="pricing-feature mb-3 flex items-start">
+                                    <svg class="w-5 h-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-gray-700 dark:text-gray-300">API Access</span>
+                                </div>
+                            </div>
+                            
+                            <div class="pricing-cta p-6">
+                                <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-medium transition duration-200">
+                                    Start 7-day free trial
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="backToHome()" class="bg-gray-200 dark:bg-blue-600 hover:bg-gray-300 dark:hover:bg-blue-700 py-3 px-6 rounded-lg font-medium text-gray-800 dark:text-white shadow-md">
+                        Back to Trends
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer px-4 sm:px-6 lg:px-8 py-12 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="footer-column">
+                    <div class="flex items-center mb-4">
+                        <svg class="w-6 h-6 text-blue-500 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 12L7 3L13 9L22 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M2 12L7 21L13 14L22 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <span class="text-xl font-bold">GM TREND</span>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <a href="#" class="footer-link" onclick="showPricingPage(); return false;">Join Pro</a>
+                    <a href="https://t.me/gmtrend" target="_blank" class="footer-link">Newsletter</a>
+                    <a href="#" class="footer-link">Pro Login</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">© 2025 GM Trend is a Trademark of Semrush Inc</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">Privacy Policy</a>
+                    <a href="#" class="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Pro Features Modal
+        function showProModal() {
+            document.getElementById('members-only-modal').style.display = 'flex';
+        }
+        
+        function closeProModal() {
+            document.getElementById('members-only-modal').style.display = 'none';
+        }
+        
+        // Handle Search with PRO restriction
+        function setupProFeatures() {
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        showProModal();
+                    }
+                });
+                
+                // Add click handler for PRO badge
+                const proBadge = searchInput.parentNode.querySelector('.btn-pro');
+                if (proBadge) {
+                    proBadge.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        showProModal();
+                    });
+                }
+            }
+            
+            // Set up PRO features for time filters
+            document.querySelectorAll('.filter-dropdown').forEach(dropdown => {
+                dropdown.addEventListener('change', function(e) {
+                    // If it's a forecast or certain time periods that require PRO
+                    if (this.value.includes('Year') || this.value.includes('Forecast')) {
+                        showProModal();
+                        // Reset the dropdown to default
+                        this.selectedIndex = 0;
+                    }
+                });
+            });
+        }
+        
+        // Dark mode toggle functionality
+        function setThemeMode() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('light-icon').classList.remove('hidden');
+                document.getElementById('dark-icon').classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('dark-icon').classList.remove('hidden');
+                document.getElementById('light-icon').classList.add('hidden');
+            }
+        }
+        
+        // Set initial theme
+        setThemeMode();
+        
+        // Listen for changes in system theme
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            setThemeMode();
+        });
+        
+        // Toggle theme manually
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            document.getElementById('dark-icon').classList.toggle('hidden');
+            document.getElementById('light-icon').classList.toggle('hidden');
+            
+            // Update charts for better visibility in dark mode
+            updateChartsForTheme();
+        });
+        
+        // Update charts based on theme
+        function updateChartsForTheme() {
+            // This function would update chart colors based on theme
+            // For a complete implementation, we would need to destroy and recreate charts
+            // with appropriate colors for the current theme
+        }
+        
+        // Show trend detail page
+        function showTrendDetail(trendId) {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('pricing-page').classList.add('hidden');
+            document.getElementById('trend-detail').classList.remove('hidden');
+            
+            // Update trend details based on the selected trend
+            updateTrendDetails(trendId);
+            
+            // Create or update the detail chart
+            createDetailChart();
+            createRelatedCharts();
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Update trend details
+        function updateTrendDetails(trendId) {
+            const trendData = {
+                linea: {
+                    title: 'LINEA',
+                    description: 'An EVM-equivalent zkRollup by Consensys, designed to scale Ethereum while maintaining security and decentralization. LINEA allows for faster and cheaper transactions while inheriting Ethereum\'s security guarantees through zero-knowledge proofs.',
+                    volume: '125K',
+                    growth: '+2240%',
+                    badge: 'EXPLODING'
+                },
+                monad: {
+                    title: 'MONAD',
+                    description: 'A high-performance blockchain designed for building scalable decentralized applications with improved throughput and lower fees. MONAD differentiates itself by offering an AI-driven approach that simplifies the development process, making it accessible to users without technical expertise.',
+                    volume: '74K',
+                    growth: '+1760%',
+                    badge: 'EXPLODING'
+                },
+                pump: {
+                    title: 'PUMP',
+                    description: 'The community-driven pump fun token designed to reward holders and create excitement in trading. PUMP features gamified mechanics that encourage active participation in coordinated trading events.',
+                    volume: '40.5K',
+                    growth: '+1700%',
+                    badge: 'EXPLODING'
+                },
+                opensea: {
+                    title: 'OPENSEA',
+                    description: 'A leading NFT marketplace that facilitates the trading of digital collectibles, art, and other blockchain-based assets. OPENSEA provides a user-friendly platform for creators and collectors to discover, buy, sell and showcase unique digital items.',
+                    volume: '246K',
+                    growth: '+5300%',
+                    badge: 'EXPLODING'
+                },
+                polymarket: {
+                    title: 'POLYMARKET',
+                    description: 'A decentralized prediction market platform where users can trade on the outcome of events and get rewarded for accurate forecasts. POLYMARKET is creating a more transparent information ecosystem through market-based forecasting.',
+                    volume: '186K',
+                    growth: '+1970%',
+                    badge: 'EXPLODING'
+                },
+                succinct: {
+                    title: 'SUCCINCT',
+                    description: 'A zero-knowledge proof system for blockchain applications, enabling efficient verification of complex computations. SUCCINCT is making blockchain technology more scalable and private without sacrificing security.',
+                    volume: '78K',
+                    growth: '+1255%',
+                    badge: 'REGULAR'
+                },
+                megaeth: {
+                    title: 'MEGAETH',
+                    description: 'A scaling solution designed to significantly increase Ethereum\'s transaction throughput while maintaining security. MEGAETH aims to reduce gas fees and improve user experience for Ethereum-based applications.',
+                    volume: '95K',
+                    growth: '+1420%',
+                    badge: 'REGULAR'
+                },
+                met: {
+                    title: 'MET',
+                    description: 'A governance token for a decentralized autonomous organization focused on metaverse infrastructure development. MET enables token holders to participate in protocol governance and decision-making.',
+                    volume: '68K',
+                    growth: '+950%',
+                    badge: 'REGULAR'
+                },
+                msu: {
+                    title: 'MSU',
+                    description: 'A cross-chain messaging protocol that enables secure communication between different blockchain networks. MSU facilitates interoperability and composability across the Web3 ecosystem.',
+                    volume: '62K',
+                    growth: '+890%',
+                    badge: 'EXPLODING'
+                },
+                farcaster: {
+                    title: 'FARCASTER',
+                    description: 'A decentralized social media protocol built on Ethereum that allows users to own their social graph and content. FARCASTER creates a censorship-resistant alternative to traditional social platforms.',
+                    volume: '81K',
+                    growth: '+1150%',
+                    badge: 'EXPLODING'
+                },
+                initia: {
+                    title: 'INITIA',
+                    description: 'A Layer 1 blockchain designed for high throughput and low transaction costs, using a novel consensus mechanism. INITIA aims to provide a scalable foundation for decentralized applications.',
+                    volume: '71K',
+                    growth: '+980%',
+                    badge: 'REGULAR'
+                }
+            };
+            
+            // Default to monad if trend not found
+            const trend = trendData[trendId] || trendData.monad;
+            
+            document.getElementById('detail-title').textContent = trend.title;
+            document.getElementById('detail-description').textContent = trend.description;
+            document.getElementById('detail-volume').textContent = trend.volume;
+            document.getElementById('detail-growth').textContent = trend.growth;
+            document.getElementById('detail-badge').textContent = trend.badge;
+            document.getElementById('detail-badge').className = trend.badge === 'EXPLODING' ? 'exploding-badge' : 'regular-badge';
+        }
+        
+        // Back to home page
+        function backToHome() {
+            document.getElementById('home-page').classList.remove('hidden');
+            document.getElementById('trend-detail').classList.add('hidden');
+            document.getElementById('pricing-page').classList.add('hidden');
+            document.getElementById('members-only-modal').classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Show pricing page
+        function showPricingPage() {
+            document.getElementById('home-page').classList.add('hidden');
+            document.getElementById('trend-detail').classList.add('hidden');
+            document.getElementById('pricing-page').classList.remove('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Generate trend data (increasing with spike)
+        function generateTrendDataWithSpike(length) {
+            const data = [];
+            let value = 5;
+            
+            // Flat/low beginning (30% of points)
+            for (let i = 0; i < length * 0.3; i++) {
+                value *= (1 + Math.random() * 0.01);
+                data.push(value);
+            }
+            
+            // Spike starts (20% of points)
+            for (let i = 0; i < length * 0.2; i++) {
+                value *= (1 + Math.random() * 0.2);
+                data.push(value);
+            }
+            
+            // Volatile growth (50% of points)
+            for (let i = 0; i < length * 0.5; i++) {
+                // Add some volatility
+                const volatilityFactor = 0.2 * Math.sin(i / 3) + 0.1;
+                value *= (1 + (Math.random() - 0.3) * volatilityFactor);
+                data.push(value);
+            }
+            
+            return data;
+        }
+        
+        // Create trend charts
+        function createTrendCharts() {
+            const trendIds = [
+                'monad', 'pump', 'opensea', 'polymarket', 'megaeth', 'succinct',
+                'met', 'msu', 'farcaster', 'initia', 'linea'
+            ];
+            
+            trendIds.forEach(id => {
+                const canvas = document.getElementById(`${id}Chart`);
+                const tooltip = document.getElementById(`${id}Tooltip`);
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                const data = generateTrendDataWithSpike(60);
+                
+                // Set up the hover effect manually
+                canvas.addEventListener('mousemove', function(event) {
+                    const rect = canvas.getBoundingClientRect();
+                    const x = event.clientX - rect.left;
+                    const y = event.clientY - rect.top;
+                    
+                    // Show tooltip anywhere over the chart
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = `${x - 30}px`;
+                    tooltip.style.top = `${y - 60}px`;
+                });
+                
+                canvas.addEventListener('mouseleave', function() {
+                    tooltip.style.display = 'none';
+                });
+                
+                // Disable click handler to ensure only hover shows tooltip
+                canvas.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    return false;
+                });
+                
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({length: data.length}, (_, i) => i),
+                        datasets: [{
+                            data: data,
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: true,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: false,
+                                beginAtZero: true,
+                                grid: {
+                                    display: false
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Create detail chart
+        function createDetailChart() {
+            const canvas = document.getElementById('detailChart');
+            const tooltip = document.getElementById('chart-tooltip');
+            const chartContainer = canvas.parentElement;
+            
+            if (!canvas) return;
+            
+            // Clear existing chart
+            if (Chart.getChart(canvas)) {
+                Chart.getChart(canvas).destroy();
+            }
+            
+            // Generate data with more points for a smoother line
+            const data = generateTrendDataWithSpike(60);
+            
+            // Month labels for x-axis (to create timeline dots)
+            const yearMonths = [
+                // 2021
+                "JAN 2021", "FEB 2021", "MAR 2021", "APR 2021", "MAY 2021", "JUN 2021", 
+                "JUL 2021", "AUG 2021", "SEP 2021", "OCT 2021", "NOV 2021", "DEC 2021",
+                // 2022
+                "JAN 2022", "FEB 2022", "MAR 2022", "APR 2022", "MAY 2022", "JUN 2022", 
+                "JUL 2022", "AUG 2022", "SEP 2022", "OCT 2022", "NOV 2022", "DEC 2022",
+                // 2023
+                "JAN 2023", "FEB 2023", "MAR 2023", "APR 2023", "MAY 2023", "JUN 2023", 
+                "JUL 2023", "AUG 2023", "SEP 2023", "OCT 2023", "NOV 2023", "DEC 2023",
+                // 2024
+                "JAN 2024", "FEB 2024", "MAR 2024", "APR 2024", "MAY 2024", "JUN 2024", 
+                "JUL 2024", "AUG 2024", "SEP 2024", "OCT 2024", "NOV 2024", "DEC 2024",
+                // 2025
+                "JAN 2025", "FEB 2025", "MAR 2025", "APR 2025", "MAY 2025", "JUN 2025"
+            ];
+            
+            // To get proper timeline spacing, each datapoint represents half a month
+            const labels = yearMonths.map((month, i) => {
+                // Each month is represented by two data points
+                return (i % 2 === 0) ? month : "";
+            });
+            
+            // Smaller dataset for cleaner visualization
+            const visibleData = [];
+            for (let i = 0; i < labels.length; i++) {
+                // Use the original data but sample at a more granular level
+                const index = Math.floor(i * (data.length / labels.length));
+                visibleData.push(data[index] || 0);
+            }
+            
+            // Create the chart
+            const chart = new Chart(canvas.getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: visibleData,
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0, // No visible points by default
+                        pointHoverRadius: 0 // Disable default hover
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false // Disable default tooltip
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false
+                        },
+                        y: {
+                            display: true,
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.2)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                display: true,
+                                color: 'rgba(156, 163, 175, 0.7)',
+                                padding: 10,
+                                stepSize: 10,
+                                callback: function(value) {
+                                    if (value === 0) return '0';
+                                    return value + 'K';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Create timeline dots at the bottom
+            // First get the chart area dimensions
+            const chartArea = chart.chartArea;
+            const ctx = chart.ctx;
+            
+            // Create a timeline ruler with dots and years
+            const createTimelineDots = () => {
+                // Calculate positions for year labels
+                const years = ['2021', '2022', '2023', '2024', '2025'];
+                const yearPositions = years.map((year, i) => {
+                    return chartArea.left + (chartArea.width * (i / (years.length - 1)));
+                });
+                
+                // Get all data points on the line for hover calculations later
+                const linePoints = [];
+                const meta = chart.getDatasetMeta(0);
+                
+                for (let i = 0; i < meta.data.length; i++) {
+                    // Only add points that have a valid month label
+                    if (labels[i] && labels[i].trim() !== "") {
+                        const point = meta.data[i];
+                        linePoints.push({
+                            x: point.x,
+                            y: point.y,
+                            value: Math.round(visibleData[i] / 10) * 10, // Round to nearest 10K
+                            month: labels[i].split(' ')[0] // Just get the month name
+                        });
+                    }
+                }
+                
+                // Override chart's draw method to add the timeline dots
+                const originalDraw = chart.draw;
+                chart.draw = function() {
+                    originalDraw.apply(this, arguments);
+                    
+                    // Draw the dots at bottom of chart
+                    const bottomY = chartArea.bottom + 10; // 10px below chart
+                    
+                    // For each year position, draw a dot
+                    yearPositions.forEach((x) => {
+                        ctx.beginPath();
+                        ctx.arc(x, bottomY, 2.5, 0, 2 * Math.PI);
+                        ctx.fillStyle = '#FFFFFF';
+                        ctx.fill();
+                    });
+                    
+                    // Create hover detection zone for line - we're using canvas not container for more direct mouse tracking
+                    canvas.onmousemove = function(e) {
+                        const rect = canvas.getBoundingClientRect();
+                        const mouseX = e.clientX - rect.left;
+                        const mouseY = e.clientY - rect.top;
+                        
+                        // Check if mouse is in chart area
+                        if (
+                            mouseX >= chartArea.left && 
+                            mouseX <= chartArea.right && 
+                            mouseY >= chartArea.top && 
+                            mouseY <= chartArea.bottom
+                        ) {
+                            // Find closest point on the line
+                            let closestPoint = null;
+                            let closestDistance = Infinity;
+                            
+                            for (const point of linePoints) {
+                                const distance = Math.abs(mouseX - point.x);
+                                if (distance < closestDistance) {
+                                    closestDistance = distance;
+                                    closestPoint = point;
+                                }
+                            }
+                            
+                            if (closestPoint) {
+                                // Calculate tooltip dimensions if not done yet
+                                if(!tooltip.offsetWidth) {
+                                    tooltip.style.display = 'block';
+                                    tooltip.style.visibility = 'hidden';
+                                    requestAnimationFrame(() => {
+                                        const tooltipWidth = tooltip.offsetWidth;
+                                        const tooltipHeight = tooltip.offsetHeight;
+                                        tooltip.style.visibility = 'visible';
+                                    });
+                                } else {
+                                    tooltip.style.display = 'block';
+                                }
+                                
+                                // Position the tooltip above the point on the line
+                                const tooltipX = closestPoint.x - (tooltip.offsetWidth / 2);
+                                const tooltipY = closestPoint.y - tooltip.offsetHeight - 10;
+                                
+                                tooltip.style.left = `${tooltipX}px`;
+                                tooltip.style.top = `${tooltipY}px`;
+                                
+                                // Update tooltip content
+                                document.getElementById('tooltip-month').textContent = closestPoint.month;
+                                document.getElementById('tooltip-value').textContent = `${closestPoint.value}K/mo`;
+                                
+                                // Draw a vertical guideline
+                                ctx.save();
+                                ctx.beginPath();
+                                ctx.setLineDash([3, 3]);
+                                ctx.strokeStyle = 'rgba(156, 163, 175, 0.5)';
+                                ctx.moveTo(closestPoint.x, chartArea.top);
+                                ctx.lineTo(closestPoint.x, chartArea.bottom);
+                                ctx.stroke();
+                                
+                                // Draw a highlighted point on the line
+                                ctx.beginPath();
+                                ctx.arc(closestPoint.x, closestPoint.y, 4, 0, 2 * Math.PI);
+                                ctx.fillStyle = '#FFFFFF';
+                                ctx.strokeStyle = '#3B82F6';
+                                ctx.lineWidth = 2;
+                                ctx.fill();
+                                ctx.stroke();
+                                ctx.restore();
+                                
+                                // Force an update to keep the highlight and guideline visible
+                                this._hoverActive = true;
+                            }
+                        } else {
+                            tooltip.style.display = 'none';
+                            if (this._hoverActive) {
+                                // Only redraw when needed to remove guideline
+                                chart.update('none');
+                                this._hoverActive = false;
+                            }
+                        }
+                    };
+                    
+                    // Handle mouse leave to clean up
+                    chartContainer.onmouseleave = function() {
+                        tooltip.style.display = 'none';
+                        // Redraw chart to remove guideline and highlight
+                        chart.update('none');
+                    };
+                };
+            };
+            
+            // Run once chart is ready
+            chart.options.animation.onComplete = () => {
+                createTimelineDots();
+            };
+            
+            // Initial draw
+            chart.update();
+        }
+        
+        // Create related charts
+        function createRelatedCharts() {
+            const relatedChartIds = [
+                'relatedChart1', 'relatedChart2', 'relatedChart3',
+                'relatedChart4', 'relatedChart5', 'relatedChart6'
+            ];
+            
+            relatedChartIds.forEach(id => {
+                const canvas = document.getElementById(id);
+                if (!canvas) return;
+                
+                // Clear existing chart
+                if (Chart.getChart(canvas)) {
+                    Chart.getChart(canvas).destroy();
+                }
+                
+                const data = generateTrendDataWithSpike(20);
+                
+                new Chart(canvas.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: Array.from({length: data.length}, (_, i) => i),
+                        datasets: [{
+                            data: data,
+                            borderColor: '#3B82F6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            tension: 0.4,
+                            fill: false,
+                            pointRadius: 0,
+                            borderWidth: 1.5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                enabled: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                display: false
+                            },
+                            y: {
+                                display: false,
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set theme mode properly
+            setThemeMode();
+            
+            // Initialize charts
+            createTrendCharts();
+            
+            // Setup PRO features
+            setupProFeatures();
+            
+            // Add pagination functionality
+            document.querySelectorAll('.pagination-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    document.querySelectorAll('.pagination-item').forEach(i => {
+                        i.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+            
+            // Add click handling for forecast toggle to show modal
+            const forecastToggle = document.querySelector('.forecast-toggle');
+            if (forecastToggle) {
+                forecastToggle.addEventListener('click', function(e) {
+                    showProModal();
+                });
+            }
+        });
+    </script>
+
+
+</body></html>

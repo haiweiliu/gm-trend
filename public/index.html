@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web3 Trend Intelligence</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Navigation -->
+        <nav class="flex items-center justify-between mb-8">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-blue-500 mr-2" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 12L7 3L13 9L22 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L7 21L13 14L22 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-2xl font-bold">GM TREND</span>
+            </div>
+            <div class="flex items-center space-x-6">
+                <a href="#" class="text-gray-600">Newsletter</a>
+                <button id="theme-toggle" class="text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div id="home-page">
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold mb-4">Discover Web3 Trends</h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We surface rapidly growing Web3 topics and Pre-TGE projects before they take off.
+                </p>
+            </div>
+
+            <!-- Filters -->
+            <div class="mb-8">
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <select id="timeFilter" class="bg-white border border-gray-200 rounded-lg px-4 py-2">
+                        <option value="6">Past 6 Months</option>
+                        <option value="12">Past Year</option>
+                        <option value="24">Past 2 Years</option>
+                        <option value="60">Past 5 Years</option>
+                    </select>
+
+                    <select id="categoryFilter" class="bg-white border border-gray-200 rounded-lg px-4 py-2">
+                        <option value="all">All Categories</option>
+                        <option value="blockchain">Blockchain</option>
+                        <option value="defi">DeFi</option>
+                        <option value="nft">NFT</option>
+                        <option value="token">Tokens</option>
+                    </select>
+
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search trends..." 
+                               class="bg-white border border-gray-200 rounded-lg pl-10 pr-4 py-2 w-64">
+                        <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" 
+                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trend Grid -->
+            <div id="trendGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Trend cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="text-center py-12 hidden">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto"></div>
+                <p class="mt-4 text-gray-600">Loading trend data...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="errorState" class="text-center py-12 hidden">
+                <svg class="w-12 h-12 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                </svg>
+                <p class="text-gray-600">Failed to load trend data. Please try again later.</p>
+            </div>
+        </div>
+
+        <!-- Trend Detail Page -->
+        <div id="trendDetail" class="hidden">
+            <button onclick="showHomePage()" class="mb-6 flex items-center text-blue-600 hover:text-blue-700">
+                <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Back to Trends
+            </button>
+
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <h1 class="text-3xl font-bold mb-4" id="detailName"></h1>
+                <p class="text-gray-600 mb-8" id="detailDescription"></p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-sm text-gray-500 mb-2">Volume</h3>
+                        <p class="text-3xl font-bold" id="detailVolume"></p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-sm text-gray-500 mb-2">Growth</h3>
+                        <p class="text-3xl font-bold" id="detailGrowth"></p>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6">
+                        <h3 class="text-sm text-gray-500 mb-2">Competition</h3>
+                        <p class="text-3xl font-bold" id="detailCompetition"></p>
+                    </div>
+                </div>
+
+                <div class="relative h-96">
+                    <canvas id="detailChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Utility functions
+        function formatNumber(num) {
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(0) + 'K';
+            return num.toString();
+        }
+
+        function formatGrowth(growth) {
+            return (growth >= 0 ? '+' : '') + growth.toFixed(1) + '%';
+        }
+
+        function getCompetitionColor(competition) {
+            const colors = {
+                'high': 'text-red-500',
+                'medium': 'text-yellow-500',
+                'low': 'text-green-500'
+            };
+            return colors[competition.toLowerCase()] || 'text-gray-500';
+        }
+
+        // DOM Elements
+        const homePage = document.getElementById('home-page');
+        const trendDetail = document.getElementById('trendDetail');
+        const trendGrid = document.getElementById('trendGrid');
+        const loadingState = document.getElementById('loadingState');
+        const errorState = document.getElementById('errorState');
+        const searchInput = document.getElementById('searchInput');
+        const timeFilter = document.getElementById('timeFilter');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        // State
+        let trendsData = [];
+        let currentTrend = null;
+
+        // Fetch all trends
+        async function fetchTrends() {
+            try {
+                showLoading();
+                const response = await fetch('/api/trends');
+                if (!response.ok) throw new Error('Failed to fetch trends');
+                trendsData = await response.json();
+                renderTrendCards(trendsData);
+                hideLoading();
+            } catch (error) {
+                console.error('Error:', error);
+                showError();
+            }
+        }
+
+        // Fetch single trend
+        async function fetchTrendDetail(keyword) {
+            try {
+                const response = await fetch(`/api/trend/${encodeURIComponent(keyword)}`);
+                if (!response.ok) throw new Error('Failed to fetch trend detail');
+                return await response.json();
+            } catch (error) {
+                console.error('Error:', error);
+                return null;
+            }
+        }
+
+        // Create trend card
+        function createTrendCard(trend) {
+            const card = document.createElement('div');
+            card.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 cursor-pointer hover:shadow-xl transition-shadow';
+            card.onclick = () => showTrendDetail(trend.id);
+
+            card.innerHTML = `
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-semibold text-blue-600 dark:text-blue-400">${trend.name}</h3>
+                    <div class="text-right">
+                        <div class="text-2xl font-bold">${formatNumber(trend.currentVolume)}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">Monthly Searches</div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="text-2xl font-bold ${trend.growth >= 0 ? 'text-green-500' : 'text-red-500'}">
+                        ${formatGrowth(trend.growth)}
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Year over Year Growth</div>
+                </div>
+                <div class="mb-4 h-32">
+                    <canvas class="trend-chart"></canvas>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <div class="text-gray-500 dark:text-gray-400">
+                        CPC: $${trend.cpc.toFixed(2)}
+                    </div>
+                    <div class="${getCompetitionColor(trend.competition)}">
+                        ${trend.competition.charAt(0).toUpperCase() + trend.competition.slice(1)} Competition
+                    </div>
+                </div>
+            `;
+
+            // Initialize mini chart
+            const canvas = card.querySelector('.trend-chart');
+            const ctx = canvas.getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 12}, (_, i) => {
+                        const date = new Date();
+                        date.setMonth(date.getMonth() - (11 - i));
+                        return date;
+                    }),
+                    datasets: [{
+                        data: trend.monthlyData[currentYear].slice(-12).filter(v => v !== null),
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return `${formatNumber(context.raw)} searches`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'month',
+                                displayFormats: {
+                                    month: 'MMM'
+                                }
+                            },
+                            display: false
+                        },
+                        y: {
+                            display: false,
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            return card;
+        }
+
+        // Render trend cards
+        function renderTrendCards(trends) {
+            trendGrid.innerHTML = '';
+            trends.forEach(trend => {
+                const card = createTrendCard(trend);
+                trendGrid.appendChild(card);
+            });
+        }
+
+        // Show trend detail
+        async function showTrendDetail(keyword) {
+            const trend = await fetchTrendDetail(keyword);
+            if (!trend) return;
+
+            currentTrend = trend;
+            document.getElementById('detailName').textContent = trend.name;
+            document.getElementById('detailDescription').textContent = trend.description;
+            document.getElementById('detailVolume').textContent = formatNumber(trend.currentVolume);
+            document.getElementById('detailGrowth').textContent = formatGrowth(trend.growth);
+            document.getElementById('detailCompetition').textContent = 
+                trend.competition.charAt(0).toUpperCase() + trend.competition.slice(1);
+
+            createDetailChart(trend);
+            homePage.classList.add('hidden');
+            trendDetail.classList.remove('hidden');
+        }
+
+        // Create detail chart
+        function createDetailChart(trend) {
+            const canvas = document.getElementById('detailChart');
+            if (!canvas) return;
+
+            // Clear existing chart
+            if (Chart.getChart(canvas)) {
+                Chart.getChart(canvas).destroy();
+            }
+
+            const ctx = canvas.getContext('2d');
+            
+            // Get current date to determine valid date range
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear();
+            const currentMonth = currentDate.getMonth();
+
+            // Create chart
+            const chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [], // Will be populated with dates
+                    datasets: [{
+                        data: [],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                title: function(context) {
+                                    return context[0].label;
+                                },
+                                label: function(context) {
+                                    return `${formatNumber(context.raw)} monthly searches`;
+                                }
+                            },
+                            backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                            titleColor: '#1F2937',
+                            bodyColor: '#1F2937',
+                            borderColor: '#E5E7EB',
+                            borderWidth: 1,
+                            padding: 10,
+                            bodyFont: {
+                                size: 13
+                            },
+                            titleFont: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'time',
+                            time: {
+                                unit: 'month',
+                                displayFormats: {
+                                    month: 'MMM YYYY'
+                                }
+                            },
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                maxRotation: 45,
+                                color: '#6B7280'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(156, 163, 175, 0.1)',
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    if (value >= 1000000) return (value / 1000000).toFixed(1) + 'M';
+                                    if (value >= 1000) return (value / 1000).toFixed(0) + 'K';
+                                    return value;
+                                },
+                                color: '#6B7280',
+                                padding: 10
+                            },
+                            title: {
+                                display: true,
+                                text: 'Monthly Search Volume',
+                                color: '#6B7280'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Update chart data
+            function updateChartData(trend) {
+                const labels = [];
+                const data = [];
+                
+                Object.entries(trend.monthlyData).forEach(([year, months]) => {
+                    months.forEach((value, monthIndex) => {
+                        const date = new Date(parseInt(year), monthIndex);
+                        // Only include data up to current month
+                        if (date <= currentDate && value !== null) {
+                            labels.push(date);
+                            data.push(value);
+                        }
+                    });
+                });
+
+                chart.data.labels = labels;
+                chart.data.datasets[0].data = data;
+                chart.update();
+            }
+
+            // Initialize with current trend data
+            if (currentTrend) {
+                updateChartData(currentTrend);
+            }
+
+            return updateChartData;
+        }
+
+        // Show home page
+        function showHomePage() {
+            trendDetail.classList.add('hidden');
+            homePage.classList.remove('hidden');
+            currentTrend = null;
+        }
+
+        // UI State functions
+        function showLoading() {
+            loadingState.classList.remove('hidden');
+            errorState.classList.add('hidden');
+            trendGrid.classList.add('hidden');
+        }
+
+        function hideLoading() {
+            loadingState.classList.add('hidden');
+            trendGrid.classList.remove('hidden');
+        }
+
+        function showError() {
+            loadingState.classList.add('hidden');
+            errorState.classList.remove('hidden');
+            trendGrid.classList.add('hidden');
+        }
+
+        // Event listeners
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredTrends = trendsData.filter(trend => 
+                trend.name.toLowerCase().includes(searchTerm)
+            );
+            renderTrendCards(filteredTrends);
+        });
+
+        timeFilter.addEventListener('change', () => {
+            // Re-render current view with new time filter
+            if (currentTrend) {
+                showTrendDetail(currentTrend.id);
+            }
+        });
+
+        categoryFilter.addEventListener('change', () => {
+            const category = categoryFilter.value;
+            const filteredTrends = category === 'all' 
+                ? trendsData 
+                : trendsData.filter(trend => trend.name.toLowerCase().includes(category));
+            renderTrendCards(filteredTrends);
+        });
+
+        // Initialize
+        fetchTrends();
+    </script>
+</body>
+</html> 
