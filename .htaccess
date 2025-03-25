@@ -1,0 +1,15 @@
+RewriteEngine On
+
+# Remove .html extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Handle /topic/[name] URLs
+RewriteRule ^topic/([^/]+)/?$ topic.html?topic=$1 [NC,L]
+
+# Redirect /index.html to /
+RewriteRule ^index\.html$ / [R=301,L]
+
+# Set default index page
+DirectoryIndex index.html 
