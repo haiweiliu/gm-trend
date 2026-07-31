@@ -6,27 +6,22 @@
     <title>GM Trend - Search</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #3B82F6;
             --primary-light: #60A5FA;
             --primary-dark: #2563EB;
             --bg-light: #F8F9FC;
-            --bg-dark: #0F172A;
-            --card-light: #FFFFFF;
-            --card-dark: #1E293B;
-            --text-light: #F9FAFB;
             --text-dark: #111827;
         }
-        
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             background-color: var(--bg-light);
             color: var(--text-dark);
-            transition: background-color 0.3s, color 0.3s;
         }
-        
+
         .search-input {
             border: 2px solid #E5E7EB;
             border-radius: 1rem;
@@ -37,13 +32,13 @@
             transition: all 0.2s;
             background-color: white;
         }
-        
+
         .search-input:focus {
             outline: none;
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
-        
+
         .trend-card {
             background-color: white;
             border-radius: 1rem;
@@ -54,13 +49,13 @@
             max-width: 600px;
             width: 100%;
         }
-        
+
         .trend-chart {
             height: 200px;
             margin: 1.5rem 0;
             position: relative;
         }
-        
+
         .loading-spinner {
             display: none;
             width: 40px;
@@ -71,12 +66,12 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-        
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
+
         .chart-tooltip {
             position: absolute;
             background-color: white;
@@ -88,6 +83,8 @@
             display: none;
             z-index: 10;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transform: translateX(-50%);
+            white-space: nowrap;
         }
 
         .nav-link {
@@ -101,30 +98,14 @@
             color: var(--primary);
         }
 
-        .trend-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .metric-card {
-            background-color: #F8F9FC;
-            padding: 1rem;
+        .notice {
+            margin-top: 0.75rem;
+            font-size: 0.8rem;
+            color: #B45309;
+            background: #FFFBEB;
+            border: 1px solid #FDE68A;
             border-radius: 0.5rem;
-            text-align: center;
-        }
-
-        .metric-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary);
-        }
-
-        .metric-label {
-            font-size: 0.875rem;
-            color: #6B7280;
-            margin-top: 0.25rem;
+            padding: 0.5rem 0.75rem;
         }
     </style>
 </head>
@@ -132,7 +113,7 @@
     <div class="max-w-7xl mx-auto px-4 py-8">
         <nav class="flex items-center justify-between mb-8">
             <div class="flex items-center">
-                <a href="home.html" class="text-gray-600 hover:text-gray-900 mr-4">
+                <a href="home.html" class="text-gray-600 hover:text-gray-900 mr-4" aria-label="Back to home">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
@@ -146,13 +127,14 @@
         </nav>
 
         <div class="flex flex-col items-center">
-            <input type="text" 
-                   class="search-input" 
+            <input type="text"
+                   class="search-input"
                    placeholder="Search for a trend..."
-                   id="searchInput">
-            
-            <div id="loadingSpinner" class="loading-spinner"></div>
-            
+                   id="searchInput"
+                   autocomplete="off"
+                   spellcheck="false">
+
+            <div id="loadingSpinner" class="loading-spinner" aria-hidden="true"></div>
             <div id="searchResults"></div>
         </div>
     </div>
@@ -161,25 +143,40 @@
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
         const loadingSpinner = document.getElementById('loadingSpinner');
-        
-        // Cache configuration
-        const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-        const RATE_LIMIT_RESET = 60 * 1000; // 1 minute cooldown
-        let lastApiCall = 0;
-        let remainingCalls = 10; // Assume 10 calls per minute limit
 
-        // Initialize cache from localStorage
+        const CACHE_DURATION = 24 * 60 * 60 * 1000;
+        const RATE_LIMIT_RESET = 60 * 1000;
+        let lastApiCall = 0;
+        let remainingCalls = 10;
+        let searchTimeout = null;
+        let activeRequestId = 0;
+        let activeChart = null;
+
+        function escapeHtml(value) {
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function normalizeKeyword(keyword) {
+            return String(keyword || '').trim().replace(/\s+/g, ' ').toLowerCase();
+        }
+
         const trendCache = {
             get: (keyword) => {
                 try {
-                    const cached = localStorage.getItem(`trend_${keyword}`);
+                    const cached = localStorage.getItem(`trend_v2_${keyword}`);
                     if (!cached) return null;
-                    
                     const { data, timestamp } = JSON.parse(cached);
                     if (Date.now() - timestamp > CACHE_DURATION) {
-                        localStorage.removeItem(`trend_${keyword}`);
+                        localStorage.removeItem(`trend_v2_${keyword}`);
                         return null;
                     }
+                    // Reject stale all-zero charts that older builds cached.
+                    if (!Array.isArray(data?.monthlyData) || data.monthlyData.length === 0) return null;
                     return data;
                 } catch (e) {
                     console.error('Cache error:', e);
@@ -188,7 +185,7 @@
             },
             set: (keyword, data) => {
                 try {
-                    localStorage.setItem(`trend_${keyword}`, JSON.stringify({
+                    localStorage.setItem(`trend_v2_${keyword}`, JSON.stringify({
                         data,
                         timestamp: Date.now()
                     }));
@@ -198,36 +195,77 @@
             }
         };
 
-        // Fallback data generation
+        function lastTwelveMonthLabels() {
+            const labels = [];
+            const now = new Date();
+            for (let i = 11; i >= 0; i--) {
+                const date = new Date(now.getFullYear(), now.getMonth() - i, 1);
+                labels.push(date.toLocaleString('en-US', { month: 'short' }));
+            }
+            return labels;
+        }
+
+        function labelsFromTrend(trend) {
+            if (!Array.isArray(trend) || trend.length === 0) return lastTwelveMonthLabels();
+            return trend.map((point) => {
+                if (point?.month) {
+                    const raw = String(point.month);
+                    return raw.length <= 3 ? raw : raw.slice(0, 3);
+                }
+                return '';
+            }).map((label, index, arr) => label || lastTwelveMonthLabels()[index] || `M${index + 1}`);
+        }
+
+        function hasUsableTrend(trend) {
+            return Array.isArray(trend)
+                && trend.length > 0
+                && trend.some((point) => Number(point?.value || 0) > 0);
+        }
+
+        function monthlyFromVolume(volume) {
+            const base = Math.max(0, Number(volume) || 0);
+            // Flat series: honest when the API returns volume but no monthly trend.
+            return Array.from({ length: 12 }, () => base);
+        }
+
         function generateFallbackData(keyword) {
             const monthlyData = [];
             let value = 5000 + Math.random() * 2000;
-            
-            // Generate realistic-looking data
+
             for (let i = 0; i < 12; i++) {
-                if (i < 7) {
-                    value *= (1 + (Math.random() - 0.5) * 0.1);
-                } else if (i < 10) {
-                    value *= (1 + Math.random() * 0.15);
-                } else {
-                    value *= (1 + Math.random() * 0.2);
-                }
+                if (i < 7) value *= (1 + (Math.random() - 0.5) * 0.1);
+                else if (i < 10) value *= (1 + Math.random() * 0.15);
+                else value *= (1 + Math.random() * 0.2);
                 monthlyData.push(Math.round(value));
             }
-            
-            const growth = ((monthlyData[11] - monthlyData[0]) / monthlyData[0] * 100).toFixed(1);
-            
+
+            const growth = calcGrowth(monthlyData);
             return {
                 keyword: keyword.toUpperCase(),
-                volume: monthlyData[11],
-                growth: growth,
-                monthlyData: monthlyData,
-                description: `Estimated trend analysis for ${keyword}. (Using fallback data)`,
-                isFallback: true
+                volume: monthlyData[monthlyData.length - 1],
+                growth,
+                monthlyData,
+                monthLabels: lastTwelveMonthLabels(),
+                description: `Estimated trend analysis for ${keyword}.`,
+                isFallback: true,
+                trendUnavailable: true
             };
         }
 
-        // Rate limit handling
+        function calcGrowth(monthlyData) {
+            if (!Array.isArray(monthlyData) || monthlyData.length < 2) return 0;
+            const first = Number(monthlyData[0]) || 0;
+            const last = Number(monthlyData[monthlyData.length - 1]) || 0;
+            if (first <= 0) return last > 0 ? 100 : 0;
+            return Number((((last - first) / first) * 100).toFixed(1));
+        }
+
+        function growthCopy(growth) {
+            if (growth > 0.5) return 'growth';
+            if (growth < -0.5) return 'decline';
+            return 'stability';
+        }
+
         function checkRateLimit() {
             const now = Date.now();
             if (now - lastApiCall >= RATE_LIMIT_RESET) {
@@ -237,16 +275,29 @@
             return remainingCalls > 0;
         }
 
-        // Keyword Everywhere API integration with improvements
-        async function fetchTrendData(keyword) {
-            try {
-                // Check cache first
-                const cachedData = trendCache.get(keyword);
-                if (cachedData) {
-                    return cachedData;
-                }
+        function yScale(values) {
+            const nums = (values || []).map((v) => Number(v) || 0);
+            const maxValue = nums.length ? Math.max(...nums) : 0;
+            if (maxValue <= 0) return { min: 0, max: 1, step: 1 };
 
-                // Check rate limit
+            const padded = maxValue * 1.15;
+            const rough = padded / 5;
+            const magnitude = Math.pow(10, Math.floor(Math.log10(rough)));
+            const niceSteps = [1, 2, 2.5, 5, 10];
+            const step = niceSteps
+                .map((n) => n * magnitude)
+                .find((n) => n >= rough) || magnitude * 10;
+            const max = Math.ceil(padded / step) * step;
+            return { min: 0, max, step };
+        }
+
+        async function fetchTrendData(keyword) {
+            const cacheKey = normalizeKeyword(keyword);
+
+            try {
+                const cachedData = trendCache.get(cacheKey);
+                if (cachedData) return cachedData;
+
                 if (!checkRateLimit()) {
                     throw new Error('Rate limit exceeded. Please try again later.');
                 }
@@ -260,9 +311,9 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        dataSource: "cli",
-                        country: "global",
-                        currency: "USD",
+                        dataSource: 'cli',
+                        country: 'global',
+                        currency: 'USD',
                         kw: [keyword]
                     })
                 });
@@ -272,103 +323,114 @@
                 }
 
                 const data = await response.json();
-                if (!data || !data.data || !data.data[0]) {
+                if (!data?.data?.[0]) {
                     throw new Error('No data found in response');
                 }
 
                 const keywordData = data.data[0];
                 remainingCalls--;
 
-                // Use actual trend data if available, otherwise generate from volume
+                const volume = Number(keywordData.vol) || 0;
+                const usableTrend = hasUsableTrend(keywordData.trend);
                 let monthlyData;
-                if (keywordData.trend && Array.isArray(keywordData.trend)) {
-                    monthlyData = keywordData.trend.map(point => point.value || 0);
+                let monthLabels;
+                let trendUnavailable = false;
+
+                if (usableTrend) {
+                    monthlyData = keywordData.trend.map((point) => Number(point.value) || 0);
+                    monthLabels = labelsFromTrend(keywordData.trend);
+                } else if (volume > 0) {
+                    monthlyData = monthlyFromVolume(volume);
+                    monthLabels = lastTwelveMonthLabels();
+                    trendUnavailable = true;
                 } else {
-                    // Generate monthly data based on search volume with less variation
-                    const baseVolume = keywordData.vol || 0;
-                    monthlyData = Array(12).fill(0).map(() => 
-                        Math.floor(baseVolume * (0.95 + Math.random() * 0.1))
-                    );
+                    throw new Error('No volume or trend data available');
                 }
 
-                // Calculate growth from first to last month
-                const firstMonth = monthlyData[0];
-                const lastMonth = monthlyData[monthlyData.length - 1];
-                const growth = firstMonth > 0 ? ((lastMonth - firstMonth) / firstMonth * 100).toFixed(1) : 0;
-
+                const growth = usableTrend ? calcGrowth(monthlyData) : 0;
                 const result = {
-                    keyword: keyword.toUpperCase(),
-                    volume: keywordData.vol || 0,
-                    growth: growth,
-                    monthlyData: monthlyData,
-                    description: `Trend analysis for ${keyword} showing ${growth > 0 ? 'growth' : 'decline'} in search volume and user interest over the past year.`
+                    keyword: String(keywordData.keyword || keyword).toUpperCase(),
+                    volume,
+                    growth,
+                    monthlyData,
+                    monthLabels,
+                    description: trendUnavailable
+                        ? `Current global search volume for ${keyword}. Monthly trend history is unavailable for this keyword.`
+                        : `Trend analysis for ${keyword} showing ${growthCopy(growth)} in search volume over the past year.`,
+                    trendUnavailable,
+                    isFallback: false
                 };
 
-                // Cache the successful result
-                trendCache.set(keyword, result);
+                trendCache.set(cacheKey, result);
                 return result;
-
             } catch (error) {
                 console.error('API Error:', error);
-                // If API fails, use fallback data
                 return generateFallbackData(keyword);
             }
         }
-        
+
+        function clearResults() {
+            if (activeChart) {
+                activeChart.destroy();
+                activeChart = null;
+            }
+            searchResults.innerHTML = '';
+        }
+
         function createTrendCard(data) {
+            clearResults();
+
             const card = document.createElement('div');
             card.className = 'trend-card';
-            
-            // Format the growth with proper sign
-            const growthFormatted = data.growth > 0 ? `+${data.growth}` : data.growth;
-            const growthColor = data.growth >= 0 ? 'text-green-500' : 'text-red-500';
-            
+
+            const growthNum = Number(data.growth) || 0;
+            const growthFormatted = growthNum > 0 ? `+${growthNum}` : String(growthNum);
+            const growthColor = growthNum > 0.5
+                ? 'text-green-500'
+                : growthNum < -0.5
+                    ? 'text-red-500'
+                    : 'text-gray-500';
+
+            const notice = data.isFallback
+                ? '<div class="notice">Estimated data — API unavailable or rate limited.</div>'
+                : data.trendUnavailable
+                    ? '<div class="notice">Monthly trend history unavailable; chart shows current volume level.</div>'
+                    : '';
+
             card.innerHTML = `
-                <div class="flex justify-between items-start">
-                    <h2 class="text-xl font-semibold text-blue-600">${data.keyword}</h2>
-                    <div class="text-right">
-                        <div class="text-3xl font-bold">${formatNumber(data.volume)}</div>
+                <div class="flex justify-between items-start gap-4">
+                    <h2 class="text-xl font-semibold text-blue-600 break-all">${escapeHtml(data.keyword)}</h2>
+                    <div class="text-right shrink-0">
+                        <div class="text-3xl font-bold">${escapeHtml(formatNumber(data.volume))}</div>
                         <div class="text-sm text-gray-500">Volume</div>
                     </div>
                 </div>
-                
+
                 <div class="text-right mt-2">
-                    <div class="text-3xl font-bold ${growthColor}">${growthFormatted}%</div>
+                    <div class="text-3xl font-bold ${growthColor}">${escapeHtml(growthFormatted)}%</div>
                     <div class="text-sm text-gray-500">Growth</div>
                 </div>
-                
-                <div class="trend-chart">
-                    <canvas id="trendChart"></canvas>
-                    <div class="chart-tooltip" id="chartTooltip"></div>
-                </div>
-                
-                <p class="text-gray-600 text-sm">
-                    ${data.description}
-                    ${data.isFallback ? '<span class="text-yellow-600 ml-2">(Estimated data)</span>' : ''}
-                </p>
-            `;
-            
-            searchResults.appendChild(card);
-            
-            // Create chart
-            const ctx = card.querySelector('#trendChart').getContext('2d');
-            const tooltip = card.querySelector('#chartTooltip');
-            
-            // Generate month labels for the last 12 months
-            const monthLabels = Array.from({length: 12}, (_, i) => {
-                const date = new Date();
-                date.setMonth(date.getMonth() - (11 - i));
-                return date.toLocaleString('default', { month: 'short' });
-            });
 
-            // Calculate y-axis range based on actual data
-            const maxValue = Math.max(...data.monthlyData);
-            const minValue = Math.min(...data.monthlyData);
-            const range = maxValue - minValue;
-            const step = Math.ceil(range / 5 / 1000) * 1000;
-            const max = Math.ceil(maxValue / 1000) * 1000;
-            
-            const chart = new Chart(ctx, {
+                <div class="trend-chart">
+                    <canvas class="trend-chart-canvas"></canvas>
+                    <div class="chart-tooltip"></div>
+                </div>
+
+                <p class="text-gray-600 text-sm">${escapeHtml(data.description)}</p>
+                ${notice}
+            `;
+
+            searchResults.appendChild(card);
+
+            const canvas = card.querySelector('.trend-chart-canvas');
+            const tooltip = card.querySelector('.chart-tooltip');
+            const ctx = canvas.getContext('2d');
+            const monthLabels = (Array.isArray(data.monthLabels) && data.monthLabels.length === data.monthlyData.length)
+                ? data.monthLabels
+                : lastTwelveMonthLabels();
+            const scale = yScale(data.monthlyData);
+
+            activeChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: monthLabels,
@@ -376,7 +438,7 @@
                         data: data.monthlyData,
                         borderColor: '#3B82F6',
                         backgroundColor: 'rgba(59, 130, 246, 0.05)',
-                        tension: 0.3,
+                        tension: data.trendUnavailable ? 0 : 0.3,
                         fill: true,
                         pointRadius: 0,
                         borderWidth: 1.5
@@ -386,23 +448,15 @@
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            enabled: false
-                        }
+                        legend: { display: false },
+                        tooltip: { enabled: false }
                     },
                     scales: {
                         x: {
                             display: true,
-                            grid: {
-                                display: false
-                            },
+                            grid: { display: false },
                             ticks: {
-                                font: {
-                                    size: 12
-                                },
+                                font: { size: 12 },
                                 color: '#6B7280'
                             }
                         },
@@ -414,80 +468,95 @@
                                 drawBorder: false
                             },
                             ticks: {
-                                font: {
-                                    size: 12
-                                },
+                                font: { size: 12 },
                                 color: '#6B7280',
-                                callback: value => formatNumber(value),
-                                stepSize: step
+                                callback: (value) => formatNumber(value),
+                                stepSize: scale.step
                             },
-                            min: 0,
-                            max: max,
+                            min: scale.min,
+                            max: scale.max,
                             beginAtZero: true
                         }
                     }
                 }
             });
-            
-            // Add hover effect
-            const canvas = card.querySelector('#trendChart');
+
             canvas.addEventListener('mousemove', (e) => {
                 const rect = canvas.getBoundingClientRect();
+                if (!rect.width) return;
                 const x = e.clientX - rect.left;
-                const tooltipIndex = Math.floor((x / rect.width) * data.monthlyData.length);
-                
-                if (tooltipIndex >= 0 && tooltipIndex < data.monthlyData.length) {
-                    tooltip.style.display = 'block';
-                    tooltip.style.left = `${x}px`;
-                    tooltip.style.top = `${e.clientY - rect.top - 40}px`;
-                    tooltip.innerHTML = `
-                        <div class="font-semibold">${monthLabels[tooltipIndex]}</div>
-                        <div>${formatNumber(data.monthlyData[tooltipIndex])}</div>
-                    `;
-                }
+                const tooltipIndex = Math.min(
+                    data.monthlyData.length - 1,
+                    Math.max(0, Math.floor((x / rect.width) * data.monthlyData.length))
+                );
+
+                tooltip.style.display = 'block';
+                tooltip.style.left = `${x}px`;
+                tooltip.style.top = `${Math.max(8, e.clientY - rect.top - 48)}px`;
+                tooltip.innerHTML = `
+                    <div class="font-semibold">${escapeHtml(monthLabels[tooltipIndex])}</div>
+                    <div>${escapeHtml(formatNumber(data.monthlyData[tooltipIndex]))}</div>
+                `;
             });
-            
+
             canvas.addEventListener('mouseleave', () => {
                 tooltip.style.display = 'none';
             });
         }
-        
+
         function formatNumber(num) {
-            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
-            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
-            return num.toString();
+            const n = Number(num);
+            if (!Number.isFinite(n)) return '0';
+            if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+            if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+            return String(Math.round(n));
         }
-        
-        let searchTimeout;
+
+        async function runSearch(keyword, requestId) {
+            loadingSpinner.style.display = 'block';
+            try {
+                const data = await fetchTrendData(keyword);
+                if (requestId !== activeRequestId) return;
+                loadingSpinner.style.display = 'none';
+                createTrendCard(data);
+            } catch (error) {
+                if (requestId !== activeRequestId) return;
+                console.error('Search error:', error);
+                loadingSpinner.style.display = 'none';
+                clearResults();
+                searchResults.innerHTML = `
+                    <div class="text-red-500 mt-4">
+                        Error loading trend data: ${escapeHtml(error.message)}. Please try again.
+                    </div>
+                `;
+            }
+        }
+
         searchInput.addEventListener('input', (e) => {
             clearTimeout(searchTimeout);
             const keyword = e.target.value.trim();
-            
+
             if (keyword.length < 2) {
-                searchResults.innerHTML = '';
+                activeRequestId += 1;
+                clearResults();
                 loadingSpinner.style.display = 'none';
                 return;
             }
-            
-            searchTimeout = setTimeout(async () => {
-                searchResults.innerHTML = '';
-                loadingSpinner.style.display = 'block';
-                
-                try {
-                    const data = await fetchTrendData(keyword);
-                    loadingSpinner.style.display = 'none';
-                    createTrendCard(data);
-                } catch (error) {
-                    console.error('Search error:', error);
-                    loadingSpinner.style.display = 'none';
-                    searchResults.innerHTML = `
-                        <div class="text-red-500 mt-4">
-                            Error loading trend data: ${error.message}. Please try again.
-                        </div>
-                    `;
-                }
+
+            searchTimeout = setTimeout(() => {
+                const requestId = ++activeRequestId;
+                clearResults();
+                runSearch(keyword, requestId);
             }, 300);
         });
+
+        // Deep-link support for Topics and shared URLs: search.html?q=bitcoin
+        const initialQuery = new URLSearchParams(window.location.search).get('q');
+        if (initialQuery && initialQuery.trim().length >= 2) {
+            searchInput.value = initialQuery.trim();
+            const requestId = ++activeRequestId;
+            runSearch(initialQuery.trim(), requestId);
+        }
     </script>
 </body>
-</html> 
+</html>
