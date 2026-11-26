@@ -152,8 +152,9 @@
                 <div class="md:col-span-3">
                     <label for="modeSelect" class="block text-xs font-medium text-slate-600 mb-1">Provider Mode</label>
                     <select id="modeSelect" class="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 bg-white focus:outline-none focus:border-blue-500">
-                        <option value="auto">Auto (Live if Key &rarr; Snapshot)</option>
-                        <option value="team">TrafficLens API (tlk_ key)</option>
+                        <option value="auto">Auto (Default 1k/day Backend)</option>
+                        <option value="public">Default Backend (1k/day cap)</option>
+                        <option value="team">Personal Key (tlk_ key)</option>
                         <option value="local">Local Bridge (127.0.0.1:4170)</option>
                         <option value="static">Static Snapshot Only ($0)</option>
                     </select>
@@ -368,7 +369,7 @@
                 statusLabel.textContent = 'Local Bridge (4170)';
                 return;
             }
-            if (s.key) {
+            if (s.key && (s.mode === 'auto' || s.mode === 'team')) {
                 statusDot.className = 'w-2 h-2 rounded-full bg-emerald-500';
                 if (lastQuota && typeof lastQuota.opsLeft === 'number' && typeof lastQuota.opsCap === 'number') {
                     statusLabel.textContent = `KP Live · ${lastQuota.opsLeft.toLocaleString()}/${lastQuota.opsCap.toLocaleString()} left`;
@@ -377,8 +378,12 @@
                 }
                 return;
             }
-            statusDot.className = 'w-2 h-2 rounded-full bg-amber-400';
-            statusLabel.textContent = 'Static Snapshot';
+            statusDot.className = 'w-2 h-2 rounded-full bg-emerald-500';
+            if (lastQuota && typeof lastQuota.opsLeft === 'number' && typeof lastQuota.opsCap === 'number') {
+                statusLabel.textContent = `Live Backend · ${lastQuota.opsLeft.toLocaleString()}/${lastQuota.opsCap.toLocaleString()} left`;
+            } else {
+                statusLabel.textContent = 'Live Backend · 1k/day';
+            }
         }
 
         const clientCache = {
@@ -448,8 +453,9 @@
             const { key, mode } = getSettings();
             if (mode === 'static') return 'static';
             if (mode === 'local') return 'local';
+            if (mode === 'public') return 'public';
             if (mode === 'team') return key ? 'team' : 'missing_key';
-            return key ? 'team' : 'static';
+            return key ? 'team' : 'public';
         }
 
         async function testTeamHealth(key) {
@@ -468,10 +474,34 @@
             return json;
         }
 
+        async function refreshPublicHealth() {
+            try {
+                const res = await fetch(`${TEAM_BASE}/api/kp/public/health`, {
+                    method: 'GET',
+                    credentials: 'omit',
+                    cache: 'no-store'
+                });
+                if (!res.ok) return null;
+                const json = await res.json().catch(() => null);
+                if (json?.quota) {
+                    lastQuota = json.quota;
+                    updateStatusBadge();
+                }
+                return json;
+            } catch {
+                return null;
+            }
+        }
+
         async function fetchLiveLookup(keyword, geo, network, providerMode) {
             const s = getSettings();
             const isTeam = providerMode === 'team';
-            const url = isTeam ? `${TEAM_BASE}/api/kp/lookup` : `${LOCAL_BRIDGE}/api/lookup`;
+            const isPublic = providerMode === 'public';
+            const url = isTeam
+                ? `${TEAM_BASE}/api/kp/lookup`
+                : isPublic
+                    ? `${TEAM_BASE}/api/kp/public/lookup`
+                    : `${LOCAL_BRIDGE}/api/lookup`;
             const headers = { 'Content-Type': 'application/json' };
             if (isTeam) headers.Authorization = `Bearer ${s.key}`;
 
@@ -499,7 +529,12 @@
         async function fetchLiveIdeas(keyword, geo, network, providerMode) {
             const s = getSettings();
             const isTeam = providerMode === 'team';
-            const url = isTeam ? `${TEAM_BASE}/api/kp/ideas` : `${LOCAL_BRIDGE}/api/ideas`;
+            const isPublic = providerMode === 'public';
+            const url = isTeam
+                ? `${TEAM_BASE}/api/kp/ideas`
+                : isPublic
+                    ? `${TEAM_BASE}/api/kp/public/ideas`
+                    : `${LOCAL_BRIDGE}/api/ideas`;
             const headers = { 'Content-Type': 'application/json' };
             if (isTeam) headers.Authorization = `Bearer ${s.key}`;
 
@@ -670,7 +705,7 @@
 
         function renderIdeasSection(container, ideas, primaryRow, providerMode, geo, network) {
             if (!ideas || !ideas.length) {
-                const canFetchLive = providerMode === 'team' || providerMode === 'local';
+                const canFetchLive = providerMode === 'team' || providerMode === 'public' || providerMode === 'local';
                 container.innerHTML = canFetchLive
                     ? `<div class="mt-6 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
                            <div>
@@ -959,7 +994,11 @@
                 const payload = {
                     item,
                     ideas,
-                    sourceLabel: providerMode === 'team' ? 'TrafficLens Keyword Pulse' : 'Local Keyword Pulse Bridge'
+                    sourceLabel: providerMode === 'team'
+                        ? 'TrafficLens Keyword Pulse'
+                        : providerMode === 'public'
+                            ? 'Google Ads Native (1k/day Backend)'
+                            : 'Local Keyword Pulse Bridge'
                 };
                 if (item && item.vol != null) clientCache.set(geo, network, keyword, payload);
                 renderResultCard({ ...payload, providerMode, geo, network });
@@ -968,7 +1007,7 @@
                 loadingSpinner.style.display = 'none';
                 renderErrorCard(
                     'Live keyword lookup failed',
-                    `${err.message}. If you are running on GitHub Pages, make sure your tlk_ key is valid and TrafficLens has CORS enabled for haiweiliu.github.io.`,
+                    `${err.message}.`,
                     true
                 );
             }
@@ -1000,7 +1039,15 @@
             }
 
             if (!key) {
-                apiHealthMsg.textContent = 'Saved without key. Using built-in 24M static snapshot.';
+                if (getEffectiveProviderMode() === 'public') {
+                    apiHealthMsg.textContent = 'Checking default 1k/day backend quota...';
+                    const pub = await refreshPublicHealth();
+                    apiHealthMsg.textContent = pub?.quota
+                        ? `Default backend active — ${pub.quota.opsLeft} / ${pub.quota.opsCap} daily ops remaining.`
+                        : 'Saved. Using default 1k/day live backend.';
+                } else {
+                    apiHealthMsg.textContent = 'Saved without key. Using built-in 24M static snapshot.';
+                }
                 return;
             }
             apiHealthMsg.textContent = 'Verifying tlk_ key with TrafficLens...';
@@ -1046,6 +1093,9 @@
             updateStatusBadge();
             renderChips();
             await loadStaticShowcase();
+            if (getEffectiveProviderMode() === 'public') {
+                refreshPublicHealth();
+            }
 
             const urlQ = new URLSearchParams(window.location.search).get('q');
             const initial = urlQ && urlQ.trim().length >= 2 ? urlQ.trim() : 'ai agent';
