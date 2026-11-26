@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GM Trend — Keyword Intelligence</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%2309090B'/%3E%3Cpath d='M5 16l5-5 4 4 5-7' fill='none' stroke='%2310B981' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -63,15 +64,14 @@
         }
 
         .chip-btn:hover {
-            border-color: #93C5FD;
-            color: #1D4ED8;
-            background: #EFF6FF;
+            border-color: #A1A1AA;
+            color: #09090B;
         }
 
         .chip-btn.active {
-            border-color: #2563EB;
-            background: #2563EB;
-            color: #FFFFFF;
+            border-color: #09090B;
+            background: #09090B;
+            color: #FAFAFA;
         }
 
         .badge {
@@ -86,11 +86,8 @@
             text-transform: uppercase;
         }
 
-        .badge-breakout { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
-        .badge-rising   { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
-        .badge-seasonal { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
-        .badge-cooling  { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
-        .badge-steady   { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+        .badge-breakout, .badge-rising { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+        .badge-seasonal, .badge-cooling, .badge-steady { background: #F4F4F5; color: #52525B; border: 1px solid #E4E4E7; }
 
         .chart-wrap {
             position: relative;
@@ -128,41 +125,40 @@
         }
         .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
 
+        .primary-btn { background: #09090B; color: #FAFAFA; }
+        .primary-btn:hover { background: #27272A; }
+
         html.dark { color-scheme: dark; }
-        html.dark body { background-color: #09090B; color: #F8FAFC; }
-        html.dark .surface-card { background: #12151C; border-color: #232834; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35); }
-        html.dark .chip-btn { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
-        html.dark .chip-btn:hover { background: #1E293B; border-color: #3B82F6; color: #93C5FD; }
-        html.dark .chip-btn.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
+        html.dark body { background-color: #09090B; color: #FAFAFA; }
+        html.dark .surface-card { background: #121215; border-color: #27272A; box-shadow: none; }
+        html.dark .chip-btn { background: #161619; border-color: #27272A; color: #A1A1AA; }
+        html.dark .chip-btn:hover { border-color: #52525B; color: #FAFAFA; }
+        html.dark .chip-btn.active { background: #FAFAFA; border-color: #FAFAFA; color: #09090B; }
         html.dark .theme-btn, html.dark #apiToggleBtn, html.dark #exportPrimaryBtn, html.dark #exportCsvBtn, html.dark #clearKeyBtn, html.dark #clearCacheBtn {
-            background: #161A24 !important; border-color: #262C3A !important; color: #CBD5E1 !important;
+            background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important;
         }
-        html.dark .theme-btn:hover, html.dark #apiToggleBtn:hover { border-color: #60A5FA !important; color: #93C5FD !important; }
+        html.dark .theme-btn:hover, html.dark #apiToggleBtn:hover { border-color: #52525B !important; color: #FAFAFA !important; }
+        html.dark .primary-btn, html.dark #saveKeyBtn, html.dark #loadIdeasBtn { background: #FAFAFA !important; color: #09090B !important; }
+        html.dark .primary-btn:hover, html.dark #saveKeyBtn:hover, html.dark #loadIdeasBtn:hover { background: #E4E4E7 !important; }
+        html.dark .header-pill { background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important; }
         html.dark input:not([type="checkbox"]), html.dark select {
-            background-color: #161A24 !important; border-color: #2A3142 !important; color: #F1F5F9 !important;
+            background-color: #161619 !important; border-color: #27272A !important; color: #FAFAFA !important;
         }
-        html.dark input::placeholder { color: #64748B; }
-        html.dark .bg-slate-50, html.dark .bg-slate-50\/60 { background-color: #181C26 !important; }
-        html.dark .bg-slate-100 { background-color: #1E2432 !important; }
-        html.dark .bg-white { background-color: #12151C !important; }
-        html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-200\/80 { border-color: #232834 !important; }
-        html.dark .text-slate-900 { color: #F8FAFC !important; }
-        html.dark .text-slate-800 { color: #E2E8F0 !important; }
-        html.dark .text-slate-700 { color: #CBD5E1 !important; }
-        html.dark .text-slate-600 { color: #94A3B8 !important; }
-        html.dark .text-slate-500 { color: #94A3B8 !important; }
-        html.dark .text-blue-600 { color: #60A5FA !important; }
-        html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.14) !important; }
-        html.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.3) !important; }
-        html.dark .text-blue-700 { color: #93C5FD !important; }
-        html.dark .bg-amber-50\/40 { background-color: rgba(245, 158, 11, 0.08) !important; }
-        html.dark .border-amber-200 { border-color: rgba(251, 191, 36, 0.3) !important; }
-        html.dark tbody tr:hover { background-color: rgba(30, 41, 59, 0.55) !important; }
-        html.dark .badge-breakout { background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3); }
-        html.dark .badge-rising   { background: rgba(59, 130, 246, 0.16); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3); }
-        html.dark .badge-seasonal { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3); }
-        html.dark .badge-cooling  { background: rgba(244, 63, 94, 0.16); color: #FB7185; border-color: rgba(251, 113, 133, 0.3); }
-        html.dark .badge-steady   { background: rgba(148, 163, 184, 0.14); color: #CBD5E1; border-color: rgba(148, 163, 184, 0.28); }
+        html.dark input::placeholder { color: #71717A; }
+        html.dark .bg-slate-50, html.dark .bg-slate-50\/60 { background-color: #161619 !important; }
+        html.dark .bg-slate-100 { background-color: #1C1C21 !important; }
+        html.dark .bg-white { background-color: #121215 !important; }
+        html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-200\/80 { border-color: #27272A !important; }
+        html.dark .text-slate-900 { color: #FAFAFA !important; }
+        html.dark .text-slate-800 { color: #E4E4E7 !important; }
+        html.dark .text-slate-700 { color: #D4D4D8 !important; }
+        html.dark .text-slate-600 { color: #A1A1AA !important; }
+        html.dark .text-slate-500, html.dark .text-slate-400 { color: #71717A !important; }
+        html.dark .bg-amber-50\/40 { background-color: rgba(161, 161, 170, 0.06) !important; }
+        html.dark .border-amber-200 { border-color: #27272A !important; }
+        html.dark tbody tr:hover { background-color: rgba(39, 39, 42, 0.45) !important; }
+        html.dark .badge-breakout, html.dark .badge-rising { background: rgba(16, 185, 129, 0.12); color: #34D399; border-color: rgba(16, 185, 129, 0.28); }
+        html.dark .badge-seasonal, html.dark .badge-cooling, html.dark .badge-steady { background: rgba(161, 161, 170, 0.08); color: #A1A1AA; border-color: #27272A; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -178,8 +174,8 @@
                 <div>
                     <div class="flex items-center gap-2">
                         <h1 class="text-2xl font-bold tracking-tight text-slate-900">GM Trend</h1>
-                        <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(37,99,235,0.16)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                        <span class="header-pill inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                             <span>AI Keyword Intelligence</span>
                         </span>
                     </div>
@@ -270,7 +266,7 @@
                         <option value="GOOGLE_SEARCH_AND_PARTNERS">Search + Partners</option>
                     </select>
 
-                    <button type="submit" class="px-5 py-3 rounded-xl text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition shrink-0">
+                    <button type="submit" class="primary-btn px-5 py-3 rounded-xl text-sm font-semibold transition shrink-0">
                         Analyze
                     </button>
                 </div>
@@ -387,9 +383,8 @@
             if (val === null || val === undefined) return 'text-slate-400';
             const n = Number(val);
             if (!Number.isFinite(n)) return 'text-slate-400';
-            if (n > 0) return 'text-emerald-600';
-            if (n < 0) return 'text-rose-600';
-            return 'text-slate-600';
+            if (n > 0) return 'text-emerald-400';
+            return 'text-slate-500';
         }
 
         const CuteIcons = {
@@ -696,13 +691,13 @@
             const values = slice.map((p) => Number(p.vol) || 0);
 
             const isDark = document.documentElement.classList.contains('dark');
-            const lineColor = isDark ? '#60A5FA' : '#2563EB';
-            const tickColor = isDark ? '#94A3B8' : '#64748B';
-            const gridColor = isDark ? '#232834' : '#E2E8F0';
+            const lineColor = isDark ? '#10B981' : '#059669';
+            const tickColor = isDark ? '#71717A' : '#64748B';
+            const gridColor = isDark ? '#27272A' : '#E2E8F0';
             const ctx = canvas.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 240);
-            gradient.addColorStop(0, isDark ? 'rgba(96, 165, 250, 0.25)' : 'rgba(37, 99, 235, 0.22)');
-            gradient.addColorStop(1, isDark ? 'rgba(96, 165, 250, 0.0)' : 'rgba(37, 99, 235, 0.0)');
+            gradient.addColorStop(0, isDark ? 'rgba(16, 185, 129, 0.16)' : 'rgba(5, 150, 105, 0.14)');
+            gradient.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
 
             activeChart = new Chart(ctx, {
                 type: 'line',
@@ -836,7 +831,7 @@
                 return `
                     <tr class="border-t border-slate-100 hover:bg-slate-50/80 transition">
                         <td class="py-2.5 pr-3">
-                            <button type="button" data-idea-kw="${escapeHtml(r.keyword)}" class="text-left font-medium text-blue-600 hover:underline">${escapeHtml(r.keyword)}</button>
+                            <button type="button" data-idea-kw="${escapeHtml(r.keyword)}" class="text-left font-medium text-slate-900 hover:underline">${escapeHtml(r.keyword)}</button>
                         </td>
                         <td class="py-2.5 px-3 text-right mono text-slate-800">${escapeHtml(formatInt(r.vol))}</td>
                         <td class="py-2.5 px-3 text-right mono ${pctClass(ts.yoyPct)}">${escapeHtml(formatSignedPct(ts.yoyPct))}</td>

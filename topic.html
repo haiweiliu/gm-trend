@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GM Trend — Vertical AI Topics</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%2309090B'/%3E%3Cpath d='M5 16l5-5 4 4 5-7' fill='none' stroke='%2310B981' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         (function () {
@@ -16,8 +17,8 @@
     <style>
         body {
             font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #F8FAFC;
-            color: #0F172A;
+            background-color: #FAFAFA;
+            color: #09090B;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
@@ -29,10 +30,10 @@
 
         .topic-card {
             background: #FFFFFF;
-            border: 1px solid #E2E8F0;
-            border-radius: 1rem;
+            border: 1px solid #E4E4E7;
+            border-radius: 0.9rem;
             padding: 1.25rem 1.35rem;
-            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+            transition: transform 0.16s ease, border-color 0.16s ease;
             text-decoration: none;
             color: inherit;
             display: flex;
@@ -41,8 +42,7 @@
 
         .topic-card:hover {
             transform: translateY(-2px);
-            border-color: #93C5FD;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+            border-color: #A1A1AA;
         }
 
         .badge {
@@ -57,11 +57,8 @@
             text-transform: uppercase;
         }
 
-        .badge-breakout { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
-        .badge-rising   { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
-        .badge-seasonal { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
-        .badge-cooling  { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
-        .badge-steady   { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+        .badge-breakout, .badge-rising { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+        .badge-seasonal, .badge-cooling, .badge-steady { background: #F4F4F5; color: #52525B; border: 1px solid #E4E4E7; }
 
         .cat-pill {
             display: inline-flex;
@@ -71,15 +68,15 @@
             border-radius: 9999px;
             font-size: 0.8125rem;
             font-weight: 500;
-            border: 1px solid #E2E8F0;
+            border: 1px solid #E4E4E7;
             background: #FFFFFF;
-            color: #475569;
-            transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+            color: #52525B;
+            transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
             cursor: pointer;
         }
 
-        .cat-pill:hover { border-color: #93C5FD; color: #1D4ED8; background: #EFF6FF; transform: scale(1.03); }
-        .cat-pill.active { background: #0F172A; border-color: #0F172A; color: #FFFFFF; }
+        .cat-pill:hover { border-color: #A1A1AA; color: #09090B; transform: scale(1.02); }
+        .cat-pill.active { background: #09090B; border-color: #09090B; color: #FAFAFA; }
 
         .theme-btn {
             display: inline-flex;
@@ -87,39 +84,33 @@
             justify-content: center;
             width: 34px;
             height: 34px;
-            border-radius: 0.65rem;
-            border: 1px solid #E2E8F0;
+            border-radius: 0.6rem;
+            border: 1px solid #E4E4E7;
             background: #FFFFFF;
-            color: #475569;
+            color: #52525B;
             transition: transform 0.15s ease, border-color 0.15s ease;
             cursor: pointer;
         }
-        .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
+        .theme-btn:hover { transform: scale(1.04); border-color: #A1A1AA; color: #09090B; }
 
         html.dark { color-scheme: dark; }
-        html.dark body { background-color: #09090B; color: #F8FAFC; }
-        html.dark .topic-card { background: #12151C; border-color: #232834; }
-        html.dark .topic-card:hover { border-color: #3B82F6; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45); }
-        html.dark .cat-pill { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
-        html.dark .cat-pill:hover { background: #1E293B; border-color: #3B82F6; color: #93C5FD; }
-        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
-        html.dark .theme-btn { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
-        html.dark .theme-btn:hover { border-color: #60A5FA; color: #93C5FD; }
-        html.dark input { background-color: #161A24 !important; border-color: #2A3142 !important; color: #F1F5F9 !important; }
-        html.dark input::placeholder { color: #64748B; }
-        html.dark .text-slate-900 { color: #F8FAFC !important; }
-        html.dark .text-slate-600 { color: #94A3B8 !important; }
-        html.dark .text-slate-500 { color: #94A3B8 !important; }
-        html.dark .text-blue-600 { color: #60A5FA !important; }
-        html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #232834 !important; }
-        html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.14) !important; }
-        html.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.3) !important; }
-        html.dark .text-blue-700 { color: #93C5FD !important; }
-        html.dark .badge-breakout { background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3); }
-        html.dark .badge-rising   { background: rgba(59, 130, 246, 0.16); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3); }
-        html.dark .badge-seasonal { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3); }
-        html.dark .badge-cooling  { background: rgba(244, 63, 94, 0.16); color: #FB7185; border-color: rgba(251, 113, 133, 0.3); }
-        html.dark .badge-steady   { background: rgba(148, 163, 184, 0.14); color: #CBD5E1; border-color: rgba(148, 163, 184, 0.28); }
+        html.dark body { background-color: #09090B; color: #FAFAFA; }
+        html.dark .topic-card { background: #121215; border-color: #27272A; }
+        html.dark .topic-card:hover { border-color: #52525B; }
+        html.dark .cat-pill { background: #161619; border-color: #27272A; color: #A1A1AA; }
+        html.dark .cat-pill:hover { border-color: #52525B; color: #FAFAFA; }
+        html.dark .cat-pill.active { background: #FAFAFA; border-color: #FAFAFA; color: #09090B; }
+        html.dark .theme-btn { background: #161619; border-color: #27272A; color: #A1A1AA; }
+        html.dark .theme-btn:hover { border-color: #52525B; color: #FAFAFA; }
+        html.dark input { background-color: #161619 !important; border-color: #27272A !important; color: #FAFAFA !important; }
+        html.dark input::placeholder { color: #71717A; }
+        html.dark .text-slate-900 { color: #FAFAFA !important; }
+        html.dark .text-slate-600 { color: #A1A1AA !important; }
+        html.dark .text-slate-500 { color: #71717A !important; }
+        html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #27272A !important; }
+        html.dark .header-pill { background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important; }
+        html.dark .badge-breakout, html.dark .badge-rising { background: rgba(16, 185, 129, 0.12); color: #34D399; border-color: rgba(16, 185, 129, 0.28); }
+        html.dark .badge-seasonal, html.dark .badge-cooling, html.dark .badge-steady { background: rgba(161, 161, 170, 0.08); color: #A1A1AA; border-color: #27272A; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -127,16 +118,16 @@
         <nav class="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div class="flex items-center gap-2.5">
                 <h1 class="text-2xl font-bold tracking-tight text-slate-900">GM Trend</h1>
-                <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(37,99,235,0.16)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                <span class="header-pill inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                     <span>Vertical AI Topics</span>
                 </span>
             </div>
             <div class="flex items-center gap-5">
-                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Home</a>
-                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Search</a>
-                <a href="grid.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Grid</a>
-                <a href="topic.html" class="text-sm font-semibold text-blue-600">Topics</a>
+                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Home</a>
+                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Search</a>
+                <a href="grid.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Grid</a>
+                <a href="topic.html" class="text-sm font-semibold text-slate-900">Topics</a>
                 <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
             </div>
         </nav>
@@ -289,12 +280,12 @@
                 const volText = row?.vol ? `${formatCompact(row.vol)}/mo` : '--';
                 const yoy = ts.yoyPct;
                 const yoyText = yoy != null ? `${yoy > 0 ? '+' : ''}${yoy}% YoY` : '';
-                const yoyColor = (yoy ?? 0) > 0 ? 'text-emerald-600' : (yoy ?? 0) < 0 ? 'text-rose-600' : 'text-slate-500';
+                const yoyColor = (yoy ?? 0) > 0 ? 'text-emerald-400' : 'text-slate-500';
                 return `
                     <a class="topic-card" href="search.html?q=${encodeURIComponent(topic.query)}">
                         <div class="flex items-start justify-between gap-2">
                             <div>
-                                <h3 class="text-lg font-bold text-blue-600">${escapeHtml(topic.title)}</h3>
+                                <h3 class="text-lg font-bold text-slate-900">${escapeHtml(topic.title)}</h3>
                                 <div class="text-xs text-slate-500 font-medium">${escapeHtml(topic.sector)}</div>
                             </div>
                             ${signalBadgeHtml(ts.signalTag || 'STEADY')}

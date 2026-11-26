@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GM Trend — Vertical AI Market Grid</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%2309090B'/%3E%3Cpath d='M5 16l5-5 4 4 5-7' fill='none' stroke='%2310B981' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         (function () {
@@ -55,11 +56,8 @@
             text-transform: uppercase;
         }
 
-        .badge-breakout { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
-        .badge-rising   { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
-        .badge-seasonal { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
-        .badge-cooling  { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
-        .badge-steady   { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+        .badge-breakout, .badge-rising { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+        .badge-seasonal, .badge-cooling, .badge-steady { background: #F4F4F5; color: #52525B; border: 1px solid #E4E4E7; }
 
         .cat-pill {
             display: inline-flex;
@@ -69,15 +67,15 @@
             border-radius: 9999px;
             font-size: 0.8125rem;
             font-weight: 500;
-            border: 1px solid #E2E8F0;
+            border: 1px solid #E4E4E7;
             background: #FFFFFF;
-            color: #475569;
-            transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+            color: #52525B;
+            transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
             cursor: pointer;
         }
 
-        .cat-pill:hover { border-color: #93C5FD; color: #1D4ED8; background: #EFF6FF; transform: scale(1.03); }
-        .cat-pill.active { background: #0F172A; border-color: #0F172A; color: #FFFFFF; }
+        .cat-pill:hover { border-color: #A1A1AA; color: #09090B; transform: scale(1.02); }
+        .cat-pill.active { background: #09090B; border-color: #09090B; color: #FAFAFA; }
 
         .theme-btn {
             display: inline-flex;
@@ -85,14 +83,17 @@
             justify-content: center;
             width: 34px;
             height: 34px;
-            border-radius: 0.65rem;
-            border: 1px solid #E2E8F0;
+            border-radius: 0.6rem;
+            border: 1px solid #E4E4E7;
             background: #FFFFFF;
-            color: #475569;
+            color: #52525B;
             transition: transform 0.15s ease, border-color 0.15s ease;
             cursor: pointer;
         }
-        .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
+        .theme-btn:hover { transform: scale(1.04); border-color: #A1A1AA; color: #09090B; }
+
+        .primary-btn { background: #09090B; color: #FAFAFA; }
+        .primary-btn:hover { background: #27272A; }
 
         .quadrant-board {
             position: relative;
@@ -100,10 +101,10 @@
             height: 520px;
             background-color: #FFFFFF;
             background-image:
-                linear-gradient(to right, rgba(148, 163, 184, 0.14) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+                linear-gradient(to right, rgba(161, 161, 170, 0.12) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(161, 161, 170, 0.12) 1px, transparent 1px);
             background-size: 10% 10%;
-            border: 1px solid #E2E8F0;
+            border: 1px solid #E4E4E7;
             border-radius: 1rem;
             overflow: hidden;
         }
@@ -112,20 +113,20 @@
             .quadrant-board { height: 420px; }
         }
 
-        .q-axis-v { position: absolute; top: 0; bottom: 0; left: 50%; width: 1.5px; background: rgba(37, 99, 235, 0.25); pointer-events: none; }
-        .q-axis-h { position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: rgba(37, 99, 235, 0.25); pointer-events: none; }
+        .q-axis-v { position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: rgba(161, 161, 170, 0.35); pointer-events: none; }
+        .q-axis-h { position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(161, 161, 170, 0.35); pointer-events: none; }
 
         .q-label {
             position: absolute;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 0.04em;
             text-transform: uppercase;
-            padding: 0.25rem 0.55rem;
+            padding: 0.24rem 0.52rem;
             border-radius: 0.4rem;
             pointer-events: none;
-            background: rgba(248, 250, 252, 0.85);
-            color: #64748B;
+            background: rgba(250, 250, 250, 0.9);
+            color: #71717A;
         }
 
         .brand-node {
@@ -134,21 +135,20 @@
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            padding: 0.35rem 0.65rem 0.35rem 0.4rem;
+            padding: 0.32rem 0.65rem 0.32rem 0.38rem;
             border-radius: 9999px;
             background: #FFFFFF;
-            border: 1.5px solid #CBD5E1;
-            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+            border: 1px solid #D4D4D8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             cursor: pointer;
-            transition: transform 0.15s ease, box-shadow 0.15s ease, z-index 0s;
+            transition: transform 0.15s ease, border-color 0.15s ease;
             z-index: 10;
             white-space: nowrap;
         }
 
         .brand-node:hover, .brand-node.selected {
-            transform: translate(-50%, -50%) scale(1.08);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
-            border-color: #2563EB;
+            transform: translate(-50%, -50%) scale(1.07);
+            border-color: #10B981;
             z-index: 30;
         }
 
@@ -159,48 +159,57 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: 700;
-            color: #FFFFFF;
+            background: #27272A;
+            color: #FAFAFA;
+            flex-shrink: 0;
+        }
+
+        .brand-dot.accent { background: rgba(16, 185, 129, 0.16); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.35); }
+
+        .brand-favicon {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            object-fit: contain;
+            background: #FFFFFF;
+            padding: 1.5px;
             flex-shrink: 0;
         }
 
         html.dark { color-scheme: dark; }
-        html.dark body { background-color: #09090B; color: #F8FAFC; }
-        html.dark .surface-card { background: #12151C; border-color: #232834; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35); }
+        html.dark body { background-color: #09090B; color: #FAFAFA; }
+        html.dark .surface-card { background: #121215; border-color: #27272A; box-shadow: none; }
         html.dark .quadrant-board {
-            background-color: #12151C;
-            border-color: #232834;
+            background-color: #121215;
+            border-color: #27272A;
             background-image:
-                linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+                linear-gradient(to right, rgba(161, 161, 170, 0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(161, 161, 170, 0.07) 1px, transparent 1px);
         }
-        html.dark .q-axis-v, html.dark .q-axis-h { background: rgba(96, 165, 250, 0.25); }
-        html.dark .q-label { background: rgba(22, 26, 36, 0.85); color: #94A3B8; }
-        html.dark .brand-node { background: #181C26; border-color: #334155; color: #F8FAFC; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45); }
-        html.dark .brand-node:hover, html.dark .brand-node.selected { border-color: #60A5FA; }
-        html.dark .cat-pill { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
-        html.dark .cat-pill:hover { background: #1E293B; border-color: #3B82F6; color: #93C5FD; }
-        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
-        html.dark .theme-btn { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
-        html.dark .theme-btn:hover { border-color: #60A5FA; color: #93C5FD; }
-        html.dark select { background-color: #161A24 !important; border-color: #2A3142 !important; color: #F1F5F9 !important; }
-        html.dark .text-slate-900 { color: #F8FAFC !important; }
-        html.dark .text-slate-800 { color: #E2E8F0 !important; }
-        html.dark .text-slate-700 { color: #CBD5E1 !important; }
-        html.dark .text-slate-600 { color: #94A3B8 !important; }
-        html.dark .text-slate-500 { color: #94A3B8 !important; }
-        html.dark .text-blue-600 { color: #60A5FA !important; }
-        html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #232834 !important; }
-        html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.14) !important; }
-        html.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.3) !important; }
-        html.dark .text-blue-700 { color: #93C5FD !important; }
-        html.dark tbody tr:hover { background-color: rgba(30, 41, 59, 0.55) !important; }
-        html.dark .badge-breakout { background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3); }
-        html.dark .badge-rising   { background: rgba(59, 130, 246, 0.16); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3); }
-        html.dark .badge-seasonal { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3); }
-        html.dark .badge-cooling  { background: rgba(244, 63, 94, 0.16); color: #FB7185; border-color: rgba(251, 113, 133, 0.3); }
-        html.dark .badge-steady   { background: rgba(148, 163, 184, 0.14); color: #CBD5E1; border-color: rgba(148, 163, 184, 0.28); }
+        html.dark .q-axis-v, html.dark .q-axis-h { background: rgba(161, 161, 170, 0.22); }
+        html.dark .q-label { background: rgba(24, 24, 27, 0.9); color: #71717A; }
+        html.dark .brand-node { background: #18181B; border-color: #27272A; color: #FAFAFA; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
+        html.dark .brand-node:hover, html.dark .brand-node.selected { border-color: #10B981; }
+        html.dark .cat-pill { background: #161619; border-color: #27272A; color: #A1A1AA; }
+        html.dark .cat-pill:hover { border-color: #52525B; color: #FAFAFA; }
+        html.dark .cat-pill.active { background: #FAFAFA; border-color: #FAFAFA; color: #09090B; }
+        html.dark .theme-btn { background: #161619; border-color: #27272A; color: #A1A1AA; }
+        html.dark .theme-btn:hover { border-color: #52525B; color: #FAFAFA; }
+        html.dark .primary-btn { background: #FAFAFA; color: #09090B; }
+        html.dark .primary-btn:hover { background: #E4E4E7; }
+        html.dark .header-pill { background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important; }
+        html.dark select { background-color: #161619 !important; border-color: #27272A !important; color: #FAFAFA !important; }
+        html.dark .text-slate-900 { color: #FAFAFA !important; }
+        html.dark .text-slate-800 { color: #E4E4E7 !important; }
+        html.dark .text-slate-700 { color: #D4D4D8 !important; }
+        html.dark .text-slate-600 { color: #A1A1AA !important; }
+        html.dark .text-slate-500 { color: #71717A !important; }
+        html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #27272A !important; }
+        html.dark tbody tr:hover { background-color: rgba(39, 39, 42, 0.45) !important; }
+        html.dark .badge-breakout, html.dark .badge-rising { background: rgba(16, 185, 129, 0.12); color: #34D399; border-color: rgba(16, 185, 129, 0.28); }
+        html.dark .badge-seasonal, html.dark .badge-cooling, html.dark .badge-steady { background: rgba(161, 161, 170, 0.08); color: #A1A1AA; border-color: #27272A; }
     </style>
 </head>
 <body class="min-h-screen">
@@ -209,16 +218,16 @@
         <nav class="flex flex-wrap items-center justify-between gap-4 mb-8">
             <div class="flex items-center gap-2.5">
                 <h1 class="text-2xl font-bold tracking-tight text-slate-900">GM Trend</h1>
-                <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(37,99,235,0.16)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                <span class="header-pill inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
                     <span>Vertical AI Grid</span>
                 </span>
             </div>
             <div class="flex items-center gap-5">
-                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Home</a>
-                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Search</a>
-                <a href="grid.html" class="text-sm font-semibold text-blue-600">Grid</a>
-                <a href="topic.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Topics</a>
+                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Home</a>
+                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Search</a>
+                <a href="grid.html" class="text-sm font-semibold text-slate-900">Grid</a>
+                <a href="topic.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Topics</a>
                 <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
             </div>
         </nav>
@@ -227,7 +236,7 @@
         <section class="surface-card p-6 mb-6">
             <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                    <div class="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-1">24-Month Demand &times; Momentum Matrix</div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">24-Month Demand &times; Momentum Matrix</div>
                     <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Vertical AI Brands Market Grid</h2>
                     <p class="text-sm text-slate-600 mt-1.5 max-w-2xl">
                         Compare leading vertical AI companies across healthcare, legal, software engineering, enterprise search, recruiting, and video by monthly search volume (X-axis, log scale) and year-over-year growth (Y-axis). Click any brand to inspect details.
@@ -251,7 +260,7 @@
                     <div class="q-axis-v"></div>
                     <div class="q-axis-h"></div>
                     <div class="q-label" style="top: 14px; left: 14px;">Emerging Challengers</div>
-                    <div class="q-label" style="top: 14px; right: 14px; color: #059669;">Breakout Leaders</div>
+                    <div class="q-label" style="top: 14px; right: 14px; color: #10B981;">Breakout Leaders</div>
                     <div class="q-label" style="bottom: 14px; left: 14px;">Niche Specialists</div>
                     <div class="q-label" style="bottom: 14px; right: 14px;">Established Scale</div>
                     <div class="q-label" style="bottom: 14px; left: 50%; transform: translateX(-50%);">Search Volume &rarr;</div>
@@ -353,6 +362,16 @@
             return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
+        function brandAvatarHtml(brand, isAccent, sizePx = 20) {
+            let domain = '';
+            try { domain = new URL(brand.url).hostname; } catch { domain = ''; }
+            const initials = escapeHtml(brand.label.slice(0, 2).toUpperCase());
+            const fallback = `<span class="brand-dot ${isAccent ? 'accent' : ''}" style="display:none;width:${sizePx}px;height:${sizePx}px;font-size:${Math.max(9, Math.round(sizePx * 0.42))}px">${initials}</span>`;
+            if (!domain) return `<span class="brand-dot ${isAccent ? 'accent' : ''}" style="width:${sizePx}px;height:${sizePx}px">${initials}</span>`;
+            const faviconUrl = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`;
+            return `<img src="${escapeHtml(faviconUrl)}" alt="${escapeHtml(brand.label)} icon" class="brand-favicon" style="width:${sizePx}px;height:${sizePx}px" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex';">${fallback}`;
+        }
+
         function formatCompact(n) {
             const num = Number(n);
             if (!Number.isFinite(num)) return 'N/A';
@@ -416,13 +435,14 @@
             }
             const { brand, row, ts } = entry;
             const cpcText = row.averageCpc != null ? `$${Number(row.averageCpc).toFixed(2)} CAD` : 'N/A';
-            const yoyColor = (ts.yoyPct ?? 0) > 0 ? 'text-emerald-600' : (ts.yoyPct ?? 0) < 0 ? 'text-rose-600' : 'text-slate-600';
+            const isAccent = ts.signalTag === 'BREAKOUT' || ts.signalTag === 'RISING';
+            const yoyColor = (ts.yoyPct ?? 0) > 0 ? 'text-emerald-400' : 'text-slate-500';
 
             inspectorCard.innerHTML = `
                 <div>
                     <div class="flex items-start justify-between gap-3">
                         <div class="flex items-center gap-3">
-                            <span class="brand-dot" style="width:36px;height:36px;font-size:0.85rem;background:${escapeHtml(brand.color)}">${escapeHtml(brand.label.slice(0, 2).toUpperCase())}</span>
+                            ${brandAvatarHtml(brand, isAccent, 36)}
                             <div>
                                 <h3 class="text-xl font-bold text-slate-900">${escapeHtml(brand.label)}</h3>
                                 <div class="text-xs text-slate-500">${escapeHtml(brand.vertical)} &middot; ${escapeHtml(row.geo)}</div>
@@ -455,7 +475,7 @@
 
                 <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
                     <a href="${escapeHtml(brand.url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-slate-500 hover:text-slate-900">Website &nearr;</a>
-                    <a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="px-4 py-2 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white transition">Full 24M Trend &amp; Ideas &rarr;</a>
+                    <a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="primary-btn px-4 py-2 rounded-lg text-xs font-semibold transition">Full 24M Trend &amp; Ideas &rarr;</a>
                 </div>
             `;
         }
@@ -481,27 +501,53 @@
             const logVols = entries.map((e) => Math.log10(Math.max(100, e.row.vol)));
             const minLog = Math.min(...logVols, 3.5);
             const maxLog = Math.max(...logVols, 6);
-            const yVals = entries.map((e) => e.ts.yoyPct ?? 0);
-            const minY = Math.min(...yVals, -60);
-            const maxY = Math.max(...yVals, 120);
+            const yScaleVal = (y) => Math.asinh((y ?? 0) / 35);
+            const yScaled = entries.map((e) => yScaleVal(e.ts.yoyPct));
+            const minY = Math.min(...yScaled, yScaleVal(-55));
+            const maxY = Math.max(...yScaled, yScaleVal(160));
 
             if (!entries.some((e) => e.brand.keyword === selectedKeyword) && entries[0]) {
                 selectedKeyword = entries[0].brand.keyword;
             }
 
-            entries.forEach((entry) => {
-                const { brand, row, ts } = entry;
-                const lv = Math.log10(Math.max(100, row.vol));
-                const xPct = 10 + ((lv - minLog) / Math.max(0.1, maxLog - minLog)) * 80;
-                const yPct = 12 + (((ts.yoyPct ?? 0) - minY) / Math.max(10, maxY - minY)) * 76;
+            const points = entries.map((entry) => {
+                const lv = Math.log10(Math.max(100, entry.row.vol));
+                const x = 11 + ((lv - minLog) / Math.max(0.1, maxLog - minLog)) * 78;
+                const ys = yScaleVal(entry.ts.yoyPct);
+                const y = 12 + ((ys - minY) / Math.max(0.1, maxY - minY)) * 76;
+                return { entry, x, y };
+            });
 
+            // Repel overlapping nodes gently while preserving relative quadrant position
+            for (let pass = 0; pass < 24; pass++) {
+                for (let i = 0; i < points.length; i++) {
+                    for (let j = i + 1; j < points.length; j++) {
+                        const dx = points[i].x - points[j].x;
+                        const dy = points[i].y - points[j].y;
+                        const minDx = 15;
+                        const minDy = 8.5;
+                        if (Math.abs(dx) < minDx && Math.abs(dy) < minDy) {
+                            const pushY = (minDy - Math.abs(dy)) * 0.45 * (dy >= 0 ? 1 : -1);
+                            const pushX = (minDx - Math.abs(dx)) * 0.25 * (dx >= 0 ? 1 : -1);
+                            points[i].y = Math.min(88, Math.max(11, points[i].y + pushY));
+                            points[j].y = Math.min(88, Math.max(11, points[j].y - pushY));
+                            points[i].x = Math.min(89, Math.max(11, points[i].x + pushX));
+                            points[j].x = Math.min(89, Math.max(11, points[j].x - pushX));
+                        }
+                    }
+                }
+            }
+
+            points.forEach(({ entry, x, y }) => {
+                const { brand, ts } = entry;
                 const node = document.createElement('button');
                 node.type = 'button';
                 node.className = `brand-node ${brand.keyword === selectedKeyword ? 'selected' : ''}`;
-                node.style.left = `${xPct.toFixed(1)}%`;
-                node.style.top = `${(100 - yPct).toFixed(1)}%`;
+                node.style.left = `${x.toFixed(1)}%`;
+                node.style.top = `${(100 - y).toFixed(1)}%`;
+                const isAccent = ts.signalTag === 'BREAKOUT' || ts.signalTag === 'RISING';
                 node.innerHTML = `
-                    <span class="brand-dot" style="background:${escapeHtml(brand.color)}">${escapeHtml(brand.label.slice(0, 2).toUpperCase())}</span>
+                    ${brandAvatarHtml(brand, isAccent, 20)}
                     <span class="text-xs font-semibold">${escapeHtml(brand.label)}</span>
                 `;
                 node.addEventListener('click', () => {
@@ -516,11 +562,12 @@
             renderInspector(entries.find((e) => e.brand.keyword === selectedKeyword) || entries[0]);
 
             tableBody.innerHTML = entries.map(({ brand, row, ts }) => {
-                const yoyColor = (ts.yoyPct ?? 0) > 0 ? 'text-emerald-600' : (ts.yoyPct ?? 0) < 0 ? 'text-rose-600' : 'text-slate-600';
+                const yoyColor = (ts.yoyPct ?? 0) > 0 ? 'text-emerald-400' : 'text-slate-500';
                 const cpc = row.averageCpc != null ? `$${Number(row.averageCpc).toFixed(2)}` : 'N/A';
+                const isAccent = ts.signalTag === 'BREAKOUT' || ts.signalTag === 'RISING';
                 return `
                     <tr class="border-t border-slate-100 hover:bg-slate-50/80 transition">
-                        <td class="py-2.5 pr-3 font-semibold"><a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="text-blue-600 hover:underline">${escapeHtml(brand.label)}</a></td>
+                        <td class="py-2.5 pr-3 font-semibold"><a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="inline-flex items-center gap-2 text-slate-900 hover:underline">${brandAvatarHtml(brand, isAccent, 18)}<span>${escapeHtml(brand.label)}</span></a></td>
                         <td class="py-2.5 px-3 text-slate-600">${escapeHtml(brand.vertical)}</td>
                         <td class="py-2.5 px-3 text-right mono text-slate-800">${escapeHtml(formatCompact(row.vol))}</td>
                         <td class="py-2.5 px-3 text-right mono ${yoyColor}">${escapeHtml(formatSignedPct(ts.yoyPct))}</td>
