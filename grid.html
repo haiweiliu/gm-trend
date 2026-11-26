@@ -3,582 +3,548 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GM Trend® for Web3 & DeFi</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-    <script src="encrypted-config.js"></script>
+    <title>GM Trend — Vertical AI Market Grid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        (function () {
+            const saved = localStorage.getItem('gm_trend_theme') || localStorage.getItem('theme');
+            const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.classList.toggle('dark', dark);
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #5D5CDE;
-            --accent-color: #FF6B6B;
-            --grid-color: rgba(59, 130, 246, 0.1);
-            --popup-bg-light: #ffffff;
-            --popup-bg-dark: #222222;
-            --popup-shadow: rgba(0, 0, 0, 0.2);
-            --green: #16a34a;
-            --red: #dc2626;
+            --primary: #2563EB;
+            --bg-light: #F8FAFC;
+            --card-border: #E2E8F0;
+            --text-dark: #0F172A;
         }
-        
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background-color: #fff;
-            color: #333;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        
-        .header {
-            text-align: center;
-            padding: 2rem 0;
-            max-width: 800px;
-            margin: 0 auto;
+
+        .mono {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-variant-numeric: tabular-nums;
         }
-        
-        .header p {
-            color: #666;
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-top: 0.5rem;
+
+        .tabular { font-variant-numeric: tabular-nums; }
+
+        .surface-card {
+            background: #FFFFFF;
+            border: 1px solid var(--card-border);
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 6px 20px rgba(15, 23, 42, 0.03);
         }
-        
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
         }
-        
-        .nav-tab {
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
+
+        .badge-breakout { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+        .badge-rising   { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+        .badge-seasonal { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
+        .badge-cooling  { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
+        .badge-steady   { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+
+        .cat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.38rem;
+            padding: 0.42rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            color: #475569;
+            transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
             cursor: pointer;
-            transition: all 0.2s;
         }
-        
-        .nav-tab.active {
-            background-color: var(--primary-color);
-            color: white;
+
+        .cat-pill:hover { border-color: #93C5FD; color: #1D4ED8; background: #EFF6FF; transform: scale(1.03); }
+        .cat-pill.active { background: #0F172A; border-color: #0F172A; color: #FFFFFF; }
+
+        .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 0.65rem;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            color: #475569;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+            cursor: pointer;
         }
-        
-        .grid-container {
+        .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
+
+        .quadrant-board {
             position: relative;
             width: 100%;
-            max-width: 1200px;
-            aspect-ratio: 1.2 / 1;
-            margin: 2rem auto;
-            background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-                              linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
-            background-size: calc(100% / 10) calc(100% / 10);
-            border: 1px solid var(--grid-color);
-            border-radius: 4px;
+            height: 520px;
+            background-color: #FFFFFF;
+            background-image:
+                linear-gradient(to right, rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+            background-size: 10% 10%;
+            border: 1px solid #E2E8F0;
+            border-radius: 1rem;
+            overflow: hidden;
         }
-        
-        .platform-logo {
+
+        @media (max-width: 640px) {
+            .quadrant-board { height: 420px; }
+        }
+
+        .q-axis-v { position: absolute; top: 0; bottom: 0; left: 50%; width: 1.5px; background: rgba(37, 99, 235, 0.25); pointer-events: none; }
+        .q-axis-h { position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: rgba(37, 99, 235, 0.25); pointer-events: none; }
+
+        .q-label {
             position: absolute;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            padding: 0.25rem 0.55rem;
+            border-radius: 0.4rem;
+            pointer-events: none;
+            background: rgba(248, 250, 252, 0.85);
+            color: #64748B;
+        }
+
+        .brand-node {
+            position: absolute;
             transform: translate(-50%, -50%);
-            display: flex;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.65rem 0.35rem 0.4rem;
+            border-radius: 9999px;
+            background: #FFFFFF;
+            border: 1.5px solid #CBD5E1;
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, z-index 0s;
+            z-index: 10;
+            white-space: nowrap;
+        }
+
+        .brand-node:hover, .brand-node.selected {
+            transform: translate(-50%, -50%) scale(1.08);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.18);
+            border-color: #2563EB;
+            z-index: 30;
+        }
+
+        .brand-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 9999px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            z-index: 5;
-            overflow: hidden;
-            background-color: white;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            flex-shrink: 0;
         }
-        
-        .platform-logo:hover {
-            transform: translate(-50%, -50%) scale(1.1);
-            z-index: 20;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        html.dark { color-scheme: dark; }
+        html.dark body { background-color: #09090B; color: #F8FAFC; }
+        html.dark .surface-card { background: #12151C; border-color: #232834; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35); }
+        html.dark .quadrant-board {
+            background-color: #12151C;
+            border-color: #232834;
+            background-image:
+                linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
         }
-        
-        .platform-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 4px;
-        }
-        
-        .platform-name {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            pointer-events: none;
-            z-index: 10;
-        }
-        
-        .platform-logo:hover .platform-name {
-            opacity: 1;
-        }
-        
-        .grid-line {
-            position: absolute;
-            background-color: var(--primary-color);
-            opacity: 0.2;
-        }
-        
-        .v-line {
-            width: 2px;
-            height: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .h-line {
-            height: 2px;
-            width: 100%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        
-        .quadrant-label {
-            position: absolute;
-            font-weight: 500;
-            color: #666;
-            font-size: 0.875rem;
-        }
-        
-        #contenders-label {
-            top: 20px;
-            left: 20px;
-            color: #4F46E5;
-        }
-        
-        #market-leaders-label {
-            top: 20px;
-            right: 20px;
-            color: #F97316;
-        }
-        
-        #niche-label {
-            bottom: 20px;
-            left: 20px;
-            color: #4F46E5;
-        }
-        
-        #high-performers-label {
-            bottom: 20px;
-            right: 20px;
-            color: #4F46E5;
-        }
-        
-        .axis-label {
-            position: absolute;
-            font-weight: 500;
-            color: #666;
-            text-align: center;
-            font-size: 0.875rem;
-        }
-        
-        #x-axis-label {
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        #y-axis-label {
-            top: 50%;
-            left: -40px;
-            transform: translateY(-50%) rotate(-90deg);
-            white-space: nowrap;
-        }
-        
-        .loading-spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            margin: 2rem auto;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .popup {
-            position: absolute;
-            width: 300px;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 30;
-            display: none;
-        }
-        
-        .popup-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 0.75rem;
-        }
-        
-        .popup-logo {
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .popup-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .popup-title {
-            font-weight: 600;
-            font-size: 1.125rem;
-            color: #333;
-        }
-        
-        .popup-stats {
-            display: grid;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-            color: #666;
-        }
-        
-        .popup-close {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            cursor: pointer;
-            color: #999;
-            font-size: 1.25rem;
-            line-height: 1;
-        }
-        
-        .last-updated {
-            position: absolute;
-            top: -30px;
-            right: 0;
-            font-size: 0.75rem;
-            color: #666;
-        }
+        html.dark .q-axis-v, html.dark .q-axis-h { background: rgba(96, 165, 250, 0.25); }
+        html.dark .q-label { background: rgba(22, 26, 36, 0.85); color: #94A3B8; }
+        html.dark .brand-node { background: #181C26; border-color: #334155; color: #F8FAFC; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45); }
+        html.dark .brand-node:hover, html.dark .brand-node.selected { border-color: #60A5FA; }
+        html.dark .cat-pill { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
+        html.dark .cat-pill:hover { background: #1E293B; border-color: #3B82F6; color: #93C5FD; }
+        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
+        html.dark .theme-btn { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
+        html.dark .theme-btn:hover { border-color: #60A5FA; color: #93C5FD; }
+        html.dark select { background-color: #161A24 !important; border-color: #2A3142 !important; color: #F1F5F9 !important; }
+        html.dark .text-slate-900 { color: #F8FAFC !important; }
+        html.dark .text-slate-800 { color: #E2E8F0 !important; }
+        html.dark .text-slate-700 { color: #CBD5E1 !important; }
+        html.dark .text-slate-600 { color: #94A3B8 !important; }
+        html.dark .text-slate-500 { color: #94A3B8 !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
+        html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #232834 !important; }
+        html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.14) !important; }
+        html.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.3) !important; }
+        html.dark .text-blue-700 { color: #93C5FD !important; }
+        html.dark tbody tr:hover { background-color: rgba(30, 41, 59, 0.55) !important; }
+        html.dark .badge-breakout { background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3); }
+        html.dark .badge-rising   { background: rgba(59, 130, 246, 0.16); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3); }
+        html.dark .badge-seasonal { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3); }
+        html.dark .badge-cooling  { background: rgba(244, 63, 94, 0.16); color: #FB7185; border-color: rgba(251, 113, 133, 0.3); }
+        html.dark .badge-steady   { background: rgba(148, 163, 184, 0.14); color: #CBD5E1; border-color: rgba(148, 163, 184, 0.28); }
     </style>
 </head>
-<body>
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <header class="header">
-            <h1 class="text-3xl font-bold">GM Trend® for Web3 & DeFi</h1>
-            <p class="mt-2">Track DeFi protocols and Web3 AI projects with our trend analysis grid. Discover emerging protocols, monitor market momentum, and identify opportunities before they mainstream.</p>
-            <nav class="nav-tabs mt-4">
-                <button class="nav-tab active">DeFi Protocols</button>
-                <button class="nav-tab">AI Agents</button>
-                <button class="nav-tab">L2 Ecosystems</button>
-                <button class="nav-tab">NFT Collections</button>
-            </nav>
-        </header>
+<body class="min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-7">
+        <!-- Nav -->
+        <nav class="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div class="flex items-center gap-2.5">
+                <h1 class="text-2xl font-bold tracking-tight text-slate-900">GM Trend</h1>
+                <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(37,99,235,0.16)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                    <span>Vertical AI Grid</span>
+                </span>
+            </div>
+            <div class="flex items-center gap-5">
+                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Home</a>
+                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Search</a>
+                <a href="grid.html" class="text-sm font-semibold text-blue-600">Grid</a>
+                <a href="topic.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Topics</a>
+                <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
+            </div>
+        </nav>
 
-        <div id="loadingSpinner" class="loading-spinner"></div>
+        <!-- Header -->
+        <section class="surface-card p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <div class="text-xs font-semibold uppercase tracking-wider text-blue-600 mb-1">24-Month Demand &times; Momentum Matrix</div>
+                    <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-900">Vertical AI Brands Market Grid</h2>
+                    <p class="text-sm text-slate-600 mt-1.5 max-w-2xl">
+                        Compare leading vertical AI companies across healthcare, legal, software engineering, enterprise search, recruiting, and video by monthly search volume (X-axis, log scale) and year-over-year growth (Y-axis). Click any brand to inspect details.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2.5">
+                    <select id="geoFilter" aria-label="Market" class="px-3 py-2 text-xs font-medium rounded-lg border border-slate-200 bg-white text-slate-700 focus:outline-none focus:border-blue-500">
+                        <option value="US">Market: US</option>
+                        <option value="GLOBAL">Market: Global</option>
+                    </select>
+                </div>
+            </div>
 
-        <div class="grid-container">
-            <div class="last-updated">Last updated: March 23, 2025</div>
-            
-            <div class="grid-line v-line"></div>
-            <div class="grid-line h-line"></div>
-            
-            <div class="quadrant-label" id="contenders-label">Contenders</div>
-            <div class="quadrant-label" id="market-leaders-label">Market Leaders</div>
-            <div class="quadrant-label" id="niche-label">Niche Players</div>
-            <div class="quadrant-label" id="high-performers-label">High Performers</div>
-            
-            <div class="axis-label" id="x-axis-label">Monthly Search Trend →</div>
-            <div class="axis-label" id="y-axis-label">Monthly Website Traffic →</div>
+            <div id="sectorPills" class="flex flex-wrap gap-2 mt-5"></div>
+        </section>
+
+        <!-- Grid + Inspector Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-8">
+            <div class="lg:col-span-8">
+                <div id="quadrantBoard" class="quadrant-board">
+                    <div class="q-axis-v"></div>
+                    <div class="q-axis-h"></div>
+                    <div class="q-label" style="top: 14px; left: 14px;">Emerging Challengers</div>
+                    <div class="q-label" style="top: 14px; right: 14px; color: #059669;">Breakout Leaders</div>
+                    <div class="q-label" style="bottom: 14px; left: 14px;">Niche Specialists</div>
+                    <div class="q-label" style="bottom: 14px; right: 14px;">Established Scale</div>
+                    <div class="q-label" style="bottom: 14px; left: 50%; transform: translateX(-50%);">Search Volume &rarr;</div>
+                    <div class="q-label" style="top: 50%; left: 12px; transform: translateY(-50%);">&uarr; YoY %</div>
+                </div>
+            </div>
+
+            <aside class="lg:col-span-4">
+                <div id="inspectorCard" class="surface-card p-5 h-full flex flex-col justify-between">
+                    <div class="text-sm text-slate-500">Select a Vertical AI brand on the grid to inspect its search metrics.</div>
+                </div>
+            </aside>
         </div>
 
-        <div id="popup" class="popup">
-            <div class="popup-close">&times;</div>
-            <div class="popup-content"></div>
-        </div>
+        <!-- Mobile-friendly Vertical AI Leaderboard Table -->
+        <section class="surface-card p-5 sm:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900">Vertical AI Brands Directory</h3>
+                    <p class="text-xs text-slate-500">Sorted by year-over-year search growth; click any brand for 24-month history.</p>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs">
+                    <thead>
+                        <tr class="text-left text-slate-500 uppercase tracking-wider">
+                            <th class="py-2 pr-3 font-medium">Brand</th>
+                            <th class="py-2 px-3 font-medium">Vertical</th>
+                            <th class="py-2 px-3 text-right font-medium">Monthly Vol</th>
+                            <th class="py-2 px-3 text-right font-medium">YoY %</th>
+                            <th class="py-2 px-3 text-right font-medium">Avg CPC</th>
+                            <th class="py-2 pl-3 text-right font-medium">Signal</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </section>
     </div>
 
     <script>
-        // Platform data with proper branding colors
-        const platforms = [
-            { name: 'Lido', url: 'https://lido.fi', logo: 'https://cryptologos.cc/logos/lido-dao-ldo-logo.png', color: '#00A3FF' },
-            { name: 'AAVE', url: 'https://aave.com', logo: 'https://cryptologos.cc/logos/aave-aave-logo.png', color: '#B6509E' },
-            { name: 'EigenLayer', url: 'https://www.eigenlayer.xyz', logo: 'https://pbs.twimg.com/profile_images/1590923671910633472/f_BLxfJE_400x400.jpg', color: '#7C3AED' },
-            { name: 'Ethena', url: 'https://www.ethena.fi', logo: 'https://pbs.twimg.com/profile_images/1722868732247810048/fZr6dhYB_400x400.jpg', color: '#2B2D42' },
-            { name: 'ether.fi', url: 'https://ether.fi', logo: 'https://pbs.twimg.com/profile_images/1625006466254848000/0eqtnX4q_400x400.jpg', color: '#1E40AF' },
-            { name: 'Pendle', url: 'https://app.pendle.finance', logo: 'https://cryptologos.cc/logos/pendle-pendle-logo.png', color: '#3B82F6' },
-            { name: 'Babylon', url: 'https://www.babylonchain.io', logo: 'https://pbs.twimg.com/profile_images/1590161880681947136/mQpxjXTr_400x400.jpg', color: '#7C3AED' },
-            { name: 'Uniswap', url: 'https://uniswap.org', logo: 'https://cryptologos.cc/logos/uniswap-uni-logo.png', color: '#FF007A' },
-            { name: 'Binance Staked ETH', url: 'https://www.binance.com/en/eth-staking', logo: 'https://cryptologos.cc/logos/binance-coin-bnb-logo.png', color: '#F0B90B' },
-            { name: 'Maker', url: 'https://makerdao.com', logo: 'https://cryptologos.cc/logos/maker-mkr-logo.png', color: '#1AAB9B' }
+        const VERTICAL_BRANDS = [
+            { keyword: 'openevidence', label: 'OpenEvidence', vertical: 'Healthcare', color: '#059669', url: 'https://www.openevidence.com', blurb: 'Clinical decision support AI widely adopted by physicians at point of care.' },
+            { keyword: 'abridge', label: 'Abridge', vertical: 'Healthcare', color: '#10B981', url: 'https://www.abridge.com', blurb: 'Medical conversation AI generating structured clinical notes integrated into EHRs.' },
+            { keyword: 'harvey ai', label: 'Harvey AI', vertical: 'Legal & Finance', color: '#1D4ED8', url: 'https://www.harvey.ai', blurb: 'Domain-specific legal AI platform used by global law firms and corporate counsel.' },
+            { keyword: 'devin ai', label: 'Devin AI', vertical: 'Engineering', color: '#2563EB', url: 'https://devin.ai', blurb: 'Autonomous software engineering agent by Cognition handling end-to-end PRs and migrations.' },
+            { keyword: 'claude code', label: 'Claude Code', vertical: 'Engineering', color: '#D97706', url: 'https://claude.ai', blurb: 'Agentic CLI software engineering tool for multi-file code edits and automated verification.' },
+            { keyword: 'cursor ai', label: 'Cursor AI', vertical: 'Engineering', color: '#0F172A', url: 'https://cursor.com', blurb: 'AI-first code editor with repository-wide context and multi-model tab/agent workflows.' },
+            { keyword: 'replit', label: 'Replit', vertical: 'Engineering', color: '#EA580C', url: 'https://replit.com', blurb: 'Cloud IDE and AI Agent platform enabling full-stack application creation in browser.' },
+            { keyword: 'lovable ai', label: 'Lovable AI', vertical: 'Engineering', color: '#DB2777', url: 'https://lovable.dev', blurb: 'Prompt-to-product builder generating production web apps and database workflows.' },
+            { keyword: 'granola ai', label: 'Granola AI', vertical: 'Enterprise', color: '#16A34A', url: 'https://www.granola.ai', blurb: 'Bot-free AI notepad that transcribes meetings and synthesizes executive notes.' },
+            { keyword: 'glean', label: 'Glean', vertical: 'Enterprise', color: '#4F46E5', url: 'https://www.glean.com', blurb: 'Enterprise Work AI indexing internal company knowledge across SaaS tools.' },
+            { keyword: 'sierra ai', label: 'Sierra AI', vertical: 'Enterprise', color: '#0284C7', url: 'https://sierra.ai', blurb: 'Conversational AI customer-experience agents deployed by major consumer brands.' },
+            { keyword: 'mercor', label: 'Mercor', vertical: 'Enterprise', color: '#7C3AED', url: 'https://mercor.com', blurb: 'AI-powered technical talent evaluation, matching, and automated interviewing platform.' },
+            { keyword: 'elevenlabs', label: 'ElevenLabs', vertical: 'Voice & Video', color: '#1E293B', url: 'https://elevenlabs.io', blurb: 'Voice synthesis, dubbing, and real-time conversational speech agents.' },
+            { keyword: 'heygen', label: 'HeyGen', vertical: 'Voice & Video', color: '#6366F1', url: 'https://www.heygen.com', blurb: 'AI video avatar and localization platform for GTM, training, and personalized outreach.' },
+            { keyword: 'synthesia', label: 'Synthesia', vertical: 'Voice & Video', color: '#0EA5E9', url: 'https://www.synthesia.io', blurb: 'Enterprise AI video communications platform turning docs into presenter-led training videos.' },
+            { keyword: 'descript', label: 'Descript', vertical: 'Voice & Video', color: '#2563EB', url: 'https://www.descript.com', blurb: 'Document-style AI audio and video editor with studio sound and overdub tools.' }
         ];
 
-        // Cache configuration - 1 week
-        const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000;
+        const SECTORS = ['All Verticals', 'Healthcare', 'Legal & Finance', 'Engineering', 'Enterprise', 'Voice & Video'];
 
-        // Initialize cache from localStorage
-        const dataCache = {
-            get: (key) => {
-                try {
-                    const cached = localStorage.getItem(key);
-                    if (!cached) return null;
-                    
-                    const { data, timestamp } = JSON.parse(cached);
-                    if (Date.now() - timestamp > CACHE_DURATION) {
-                        localStorage.removeItem(key);
-                        return null;
-                    }
-                    return data;
-                } catch (e) {
-                    console.error('Cache error:', e);
-                    return null;
-                }
-            },
-            set: (key, data) => {
-                try {
-                    localStorage.setItem(key, JSON.stringify({
-                        data,
-                        timestamp: Date.now()
-                    }));
-                } catch (e) {
-                    console.error('Cache save error:', e);
-                }
-            }
+        const CuteIcons = {
+            sparkles: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>`,
+            trendUp: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+            trendDown: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>`,
+            sunWave: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`,
+            checkCircle: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+            heart: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+            scale: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>`,
+            code: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+            briefcase: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+            radio: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>`,
+            moon: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+            sun: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`
         };
 
-        // Function to get API key from encrypted config
-        function getApiKey() {
-            try {
-                const date = new Date();
-                const year = date.getUTCFullYear();
-                const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-                const day = String(date.getUTCDate()).padStart(2, '0');
-                const timestamp = `${year}-${month}-${day}`;
-                
-                if (!window.ENCRYPTED_CONFIG || !window.ENCRYPTED_CONFIG.key || !window.ENCRYPTED_CONFIG.salt) {
-                    throw new Error('Missing encryption configuration');
-                }
-                
-                const decryptionKey = `gm-trend-${timestamp}-${window.ENCRYPTED_CONFIG.salt}`;
-                const decrypted = CryptoJS.AES.decrypt(
-                    window.ENCRYPTED_CONFIG.key,
-                    decryptionKey
-                ).toString(CryptoJS.enc.Utf8);
-                
-                if (!decrypted) {
-                    throw new Error('Decryption resulted in empty string');
-                }
-                
-                return decrypted;
-            } catch (error) {
-                console.error('Failed to decrypt API key:', error);
-                return null;
-            }
-        }
-
-        // Function to fetch website traffic data using Apify
-        async function fetchWebsiteTraffic(url) {
-            const cacheKey = `traffic_${url}`;
-            const cached = dataCache.get(cacheKey);
-            if (cached) return cached;
-
-            try {
-                const response = await fetch('https://api.apify.com/v2/acts/heLi1j7hzjC2gFl1x/runs?token=apify_api_8otpoKhl0dhAqeKcbVtI3IOmXVPUcO2Evhd7', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        websites: [url]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed: ${response.status}`);
-                }
-
-                const data = await response.json();
-                const traffic = data.monthlyVisits || 0;
-                
-                dataCache.set(cacheKey, traffic);
-                return traffic;
-            } catch (error) {
-                console.error('Error fetching traffic data:', error);
-                return 0;
-            }
-        }
-
-        // Function to fetch search trend data using Keywords Everywhere
-        async function fetchSearchTrend(keyword) {
-            const cacheKey = `trend_${keyword}`;
-            const cached = dataCache.get(cacheKey);
-            if (cached) return cached;
-
-            try {
-                const API_KEY = getApiKey();
-                if (!API_KEY) throw new Error('API key not found');
-
-                const response = await fetch('https://api.keywordseverywhere.com/v1/get_keyword_data', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer ' + API_KEY,
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        dataSource: "cli",
-                        country: "global",
-                        currency: "USD",
-                        kw: [keyword]
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API request failed: ${response.status}`);
-                }
-
-                const data = await response.json();
-                const trend = data.data[0]?.vol || 0;
-                
-                dataCache.set(cacheKey, trend);
-                return trend;
-            } catch (error) {
-                console.error('Error fetching trend data:', error);
-                return 0;
-            }
-        }
-
-        // Function to position platform on the grid
-        function positionPlatform(platform, traffic, trend) {
-            const maxTraffic = Math.max(...Object.values(platformData).map(d => d.traffic));
-            const maxTrend = Math.max(...Object.values(platformData).map(d => d.trend));
-            
-            const x = (trend / maxTrend * 80 + 10);
-            const y = (traffic / maxTraffic * 80 + 10);
-            
-            const logo = document.createElement('div');
-            logo.className = 'platform-logo';
-            logo.style.left = `${x}%`;
-            logo.style.top = `${100 - y}%`;
-            logo.style.borderColor = platform.color;
-            logo.innerHTML = `
-                <img src="${platform.logo}" alt="${platform.name} logo">
-                <div class="platform-name" style="background-color: ${platform.color}">${platform.name}</div>
-            `;
-            
-            logo.addEventListener('click', (e) => showPopup(platform, traffic, trend, e));
-            document.querySelector('.grid-container').appendChild(logo);
-        }
-
-        // Function to show popup with platform details
-        function showPopup(platform, traffic, trend, event) {
-            const popup = document.getElementById('popup');
-            
-            const content = `
-                <div class="popup-header">
-                    <div class="popup-logo">
-                        <img src="${platform.logo}" alt="${platform.name} logo">
-                    </div>
-                    <div class="popup-title">${platform.name}</div>
-                </div>
-                <div class="popup-stats">
-                    <div><strong>Monthly Traffic:</strong> ${traffic.toLocaleString()} visits</div>
-                    <div><strong>Search Volume:</strong> ${trend.toLocaleString()} searches/month</div>
-                    <div class="mt-2">
-                        <a href="${platform.url}" target="_blank" class="text-blue-500 hover:text-blue-700">Visit Website →</a>
-                    </div>
-                </div>
-            `;
-            
-            popup.querySelector('.popup-content').innerHTML = content;
-            popup.style.display = 'block';
-            
-            // Position popup
-            const rect = event.target.getBoundingClientRect();
-            popup.style.left = `${rect.left + window.scrollX}px`;
-            popup.style.top = `${rect.top + window.scrollY - popup.offsetHeight - 10}px`;
-        }
-
-        // Close popup when clicking outside
-        document.addEventListener('click', (e) => {
-            const popup = document.getElementById('popup');
-            if (!popup.contains(e.target) && !e.target.closest('.platform-logo')) {
-                popup.style.display = 'none';
-            }
-        });
-
-        // Close popup when clicking the close button
-        document.querySelector('.popup-close').addEventListener('click', () => {
-            document.getElementById('popup').style.display = 'none';
-        });
-
-        // Mock data for initial display
-        const mockData = {
-            'Lido': { traffic: 1800000, trend: 95000 },
-            'AAVE': { traffic: 1600000, trend: 85000 },
-            'EigenLayer': { traffic: 900000, trend: 45000 },
-            'Ethena': { traffic: 850000, trend: 35000 },
-            'ether.fi': { traffic: 700000, trend: 40000 },
-            'Pendle': { traffic: 600000, trend: 30000 },
-            'Babylon': { traffic: 550000, trend: 25000 },
-            'Uniswap': { traffic: 2000000, trend: 100000 },
-            'Binance Staked ETH': { traffic: 1900000, trend: 90000 },
-            'Maker': { traffic: 1200000, trend: 70000 }
+        const SECTOR_ICON = {
+            'All Verticals': () => CuteIcons.sparkles(14),
+            Healthcare: () => CuteIcons.heart(14),
+            'Legal & Finance': () => CuteIcons.scale(14),
+            Engineering: () => CuteIcons.code(14),
+            Enterprise: () => CuteIcons.briefcase(14),
+            'Voice & Video': () => CuteIcons.radio(14)
         };
 
-        // Initialize the grid
-        const platformData = {};
-        
-        async function initializeGrid() {
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            loadingSpinner.style.display = 'block';
-            
-            try {
-                // Fetch data for all platforms
-                for (const platform of platforms) {
-                    try {
-                        const [traffic, trend] = await Promise.all([
-                            fetchWebsiteTraffic(platform.url),
-                            fetchSearchTrend(platform.name)
-                        ]);
-                        
-                        platformData[platform.name] = { 
-                            traffic: traffic || mockData[platform.name].traffic, 
-                            trend: trend || mockData[platform.name].trend 
-                        };
-                    } catch (error) {
-                        console.warn(`Using mock data for ${platform.name}:`, error);
-                        platformData[platform.name] = mockData[platform.name];
-                    }
-                }
-            } catch (error) {
-                console.warn('Using all mock data:', error);
-                Object.assign(platformData, mockData);
-            }
-            
-            // Position all platforms on the grid
-            for (const platform of platforms) {
-                const data = platformData[platform.name];
-                positionPlatform(platform, data.traffic, data.trend);
-            }
-            
-            loadingSpinner.style.display = 'none';
+        const sectorPills = document.getElementById('sectorPills');
+        const geoFilter = document.getElementById('geoFilter');
+        const quadrantBoard = document.getElementById('quadrantBoard');
+        const inspectorCard = document.getElementById('inspectorCard');
+        const tableBody = document.getElementById('tableBody');
+        const themeToggle = document.getElementById('themeToggle');
+
+        let dataset = null;
+        let activeSector = 'All Verticals';
+        let selectedKeyword = 'openevidence';
+
+        function escapeHtml(v) {
+            return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
         }
 
-        // Start initialization when the page loads
-        window.addEventListener('load', initializeGrid);
+        function formatCompact(n) {
+            const num = Number(n);
+            if (!Number.isFinite(num)) return 'N/A';
+            if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(1)}M`;
+            if (num >= 1_000) return `${(num / 1_000).toFixed(1)}K`;
+            return Math.round(num).toLocaleString();
+        }
+
+        function formatSignedPct(v) {
+            if (v === null || v === undefined) return 'N/A';
+            const n = Number(v);
+            return Number.isFinite(n) ? `${n > 0 ? '+' : ''}${n}%` : 'N/A';
+        }
+
+        function signalBadgeHtml(tag) {
+            const t = String(tag || 'STEADY').toUpperCase();
+            const map = {
+                BREAKOUT: ['badge-breakout', CuteIcons.sparkles(11)],
+                RISING: ['badge-rising', CuteIcons.trendUp(11)],
+                SEASONAL: ['badge-seasonal', CuteIcons.sunWave(11)],
+                COOLING: ['badge-cooling', CuteIcons.trendDown(11)],
+                STEADY: ['badge-steady', CuteIcons.checkCircle(11)]
+            };
+            const [cls, icon] = map[t] || map.STEADY;
+            return `<span class="badge ${cls}">${icon}<span>${escapeHtml(t)}</span></span>`;
+        }
+
+        function syncThemeButton() {
+            const dark = document.documentElement.classList.contains('dark');
+            themeToggle.innerHTML = dark ? CuteIcons.sun(16) : CuteIcons.moon(16);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const nextDark = !document.documentElement.classList.contains('dark');
+            document.documentElement.classList.toggle('dark', nextDark);
+            localStorage.setItem('gm_trend_theme', nextDark ? 'dark' : 'light');
+            localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+            syncThemeButton();
+        });
+
+        function renderSectors() {
+            sectorPills.innerHTML = SECTORS.map((s) => `
+                <button type="button" data-sec="${escapeHtml(s)}" class="cat-pill ${activeSector === s ? 'active' : ''}">
+                    ${(SECTOR_ICON[s] || CuteIcons.sparkles)()}
+                    <span>${escapeHtml(s)}</span>
+                </button>
+            `).join('');
+            sectorPills.querySelectorAll('button[data-sec]').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    activeSector = btn.getAttribute('data-sec') || 'All Verticals';
+                    renderSectors();
+                    renderAll();
+                });
+            });
+        }
+
+        function renderInspector(entry) {
+            if (!entry) {
+                inspectorCard.innerHTML = '<div class="text-sm text-slate-500">No brand selected.</div>';
+                return;
+            }
+            const { brand, row, ts } = entry;
+            const cpcText = row.averageCpc != null ? `$${Number(row.averageCpc).toFixed(2)} CAD` : 'N/A';
+            const yoyColor = (ts.yoyPct ?? 0) > 0 ? 'text-emerald-600' : (ts.yoyPct ?? 0) < 0 ? 'text-rose-600' : 'text-slate-600';
+
+            inspectorCard.innerHTML = `
+                <div>
+                    <div class="flex items-start justify-between gap-3">
+                        <div class="flex items-center gap-3">
+                            <span class="brand-dot" style="width:36px;height:36px;font-size:0.85rem;background:${escapeHtml(brand.color)}">${escapeHtml(brand.label.slice(0, 2).toUpperCase())}</span>
+                            <div>
+                                <h3 class="text-xl font-bold text-slate-900">${escapeHtml(brand.label)}</h3>
+                                <div class="text-xs text-slate-500">${escapeHtml(brand.vertical)} &middot; ${escapeHtml(row.geo)}</div>
+                            </div>
+                        </div>
+                        ${signalBadgeHtml(ts.signalTag)}
+                    </div>
+
+                    <p class="text-sm text-slate-600 mt-4 leading-relaxed">${escapeHtml(brand.blurb)}</p>
+
+                    <div class="grid grid-cols-2 gap-3 mt-5">
+                        <div class="p-3 rounded-xl border border-slate-200">
+                            <div class="text-xs text-slate-500">Monthly Searches</div>
+                            <div class="text-xl font-bold text-slate-900 mt-0.5 tabular">${escapeHtml(formatCompact(row.vol))}</div>
+                        </div>
+                        <div class="p-3 rounded-xl border border-slate-200">
+                            <div class="text-xs text-slate-500">YoY Momentum</div>
+                            <div class="text-xl font-bold mt-0.5 tabular ${yoyColor}">${escapeHtml(formatSignedPct(ts.yoyPct))}</div>
+                        </div>
+                        <div class="p-3 rounded-xl border border-slate-200">
+                            <div class="text-xs text-slate-500">Avg CPC</div>
+                            <div class="text-base font-bold text-slate-900 mt-0.5 tabular">${escapeHtml(cpcText)}</div>
+                        </div>
+                        <div class="p-3 rounded-xl border border-slate-200">
+                            <div class="text-xs text-slate-500">3M Momentum</div>
+                            <div class="text-base font-bold text-slate-900 mt-0.5 tabular">${escapeHtml(formatSignedPct(ts.change3mPct))}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+                    <a href="${escapeHtml(brand.url)}" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-slate-500 hover:text-slate-900">Website &nearr;</a>
+                    <a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="px-4 py-2 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white transition">Full 24M Trend &amp; Ideas &rarr;</a>
+                </div>
+            `;
+        }
+
+        function renderAll() {
+            if (!dataset?.byGeo) return;
+            const geo = geoFilter.value || 'US';
+            const bucket = dataset.byGeo[geo] || {};
+
+            const entries = VERTICAL_BRANDS
+                .filter((b) => activeSector === 'All Verticals' || b.vertical === activeSector)
+                .map((brand) => {
+                    const row = bucket[brand.keyword];
+                    if (!row || !row.vol) return null;
+                    return { brand, row, ts: row.trendStats || {} };
+                })
+                .filter(Boolean);
+
+            entries.sort((a, b) => (b.ts.yoyPct ?? -999) - (a.ts.yoyPct ?? -999) || (b.row.vol || 0) - (a.row.vol || 0));
+
+            quadrantBoard.querySelectorAll('.brand-node').forEach((n) => n.remove());
+
+            const logVols = entries.map((e) => Math.log10(Math.max(100, e.row.vol)));
+            const minLog = Math.min(...logVols, 3.5);
+            const maxLog = Math.max(...logVols, 6);
+            const yVals = entries.map((e) => e.ts.yoyPct ?? 0);
+            const minY = Math.min(...yVals, -60);
+            const maxY = Math.max(...yVals, 120);
+
+            if (!entries.some((e) => e.brand.keyword === selectedKeyword) && entries[0]) {
+                selectedKeyword = entries[0].brand.keyword;
+            }
+
+            entries.forEach((entry) => {
+                const { brand, row, ts } = entry;
+                const lv = Math.log10(Math.max(100, row.vol));
+                const xPct = 10 + ((lv - minLog) / Math.max(0.1, maxLog - minLog)) * 80;
+                const yPct = 12 + (((ts.yoyPct ?? 0) - minY) / Math.max(10, maxY - minY)) * 76;
+
+                const node = document.createElement('button');
+                node.type = 'button';
+                node.className = `brand-node ${brand.keyword === selectedKeyword ? 'selected' : ''}`;
+                node.style.left = `${xPct.toFixed(1)}%`;
+                node.style.top = `${(100 - yPct).toFixed(1)}%`;
+                node.innerHTML = `
+                    <span class="brand-dot" style="background:${escapeHtml(brand.color)}">${escapeHtml(brand.label.slice(0, 2).toUpperCase())}</span>
+                    <span class="text-xs font-semibold">${escapeHtml(brand.label)}</span>
+                `;
+                node.addEventListener('click', () => {
+                    selectedKeyword = brand.keyword;
+                    quadrantBoard.querySelectorAll('.brand-node').forEach((el) => el.classList.remove('selected'));
+                    node.classList.add('selected');
+                    renderInspector(entry);
+                });
+                quadrantBoard.appendChild(node);
+            });
+
+            renderInspector(entries.find((e) => e.brand.keyword === selectedKeyword) || entries[0]);
+
+            tableBody.innerHTML = entries.map(({ brand, row, ts }) => {
+                const yoyColor = (ts.yoyPct ?? 0) > 0 ? 'text-emerald-600' : (ts.yoyPct ?? 0) < 0 ? 'text-rose-600' : 'text-slate-600';
+                const cpc = row.averageCpc != null ? `$${Number(row.averageCpc).toFixed(2)}` : 'N/A';
+                return `
+                    <tr class="border-t border-slate-100 hover:bg-slate-50/80 transition">
+                        <td class="py-2.5 pr-3 font-semibold"><a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="text-blue-600 hover:underline">${escapeHtml(brand.label)}</a></td>
+                        <td class="py-2.5 px-3 text-slate-600">${escapeHtml(brand.vertical)}</td>
+                        <td class="py-2.5 px-3 text-right mono text-slate-800">${escapeHtml(formatCompact(row.vol))}</td>
+                        <td class="py-2.5 px-3 text-right mono ${yoyColor}">${escapeHtml(formatSignedPct(ts.yoyPct))}</td>
+                        <td class="py-2.5 px-3 text-right mono text-slate-700">${escapeHtml(cpc)}</td>
+                        <td class="py-2.5 pl-3 text-right">${signalBadgeHtml(ts.signalTag)}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        geoFilter.addEventListener('change', renderAll);
+
+        (async function init() {
+            syncThemeButton();
+            renderSectors();
+            try {
+                const res = await fetch('./data/kw-showcase.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                dataset = await res.json();
+                renderAll();
+            } catch (err) {
+                inspectorCard.innerHTML = `<div class="text-sm text-rose-600">Failed to load Vertical AI dataset: ${escapeHtml(err.message)}</div>`;
+            }
+        })();
     </script>
 </body>
 </html>

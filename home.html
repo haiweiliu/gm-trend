@@ -6,6 +6,13 @@
     <title>GM Trend — AI Trend Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        (function () {
+            const saved = localStorage.getItem('gm_trend_theme') || localStorage.getItem('theme');
+            const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.classList.toggle('dark', dark);
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -112,6 +119,49 @@
             border-color: #0F172A;
             color: #FFFFFF;
         }
+
+        .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 0.65rem;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            color: #475569;
+            transition: transform 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+            cursor: pointer;
+        }
+
+        .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
+
+        html.dark { color-scheme: dark; }
+        html.dark body { background-color: #09090B; color: #F8FAFC; }
+        html.dark .surface-card { background: #12151C; border-color: #232834; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35); }
+        html.dark .trend-card { background: #12151C; border-color: #232834; }
+        html.dark .trend-card:hover { border-color: #3B82F6; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45); }
+        html.dark .cat-pill { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
+        html.dark .cat-pill:hover { background: #1E293B; border-color: #3B82F6; color: #93C5FD; }
+        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
+        html.dark .theme-btn { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
+        html.dark .theme-btn:hover { border-color: #60A5FA; color: #93C5FD; }
+        html.dark input, html.dark select { background-color: #161A24 !important; border-color: #2A3142 !important; color: #F1F5F9 !important; }
+        html.dark input::placeholder { color: #64748B; }
+        html.dark .text-slate-900 { color: #F8FAFC !important; }
+        html.dark .text-slate-700 { color: #CBD5E1 !important; }
+        html.dark .text-slate-600 { color: #94A3B8 !important; }
+        html.dark .text-slate-500 { color: #94A3B8 !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
+        html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #232834 !important; }
+        html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.14) !important; }
+        html.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.3) !important; }
+        html.dark .text-blue-700 { color: #93C5FD !important; }
+        html.dark .badge-breakout { background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3); }
+        html.dark .badge-rising   { background: rgba(59, 130, 246, 0.16); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3); }
+        html.dark .badge-seasonal { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3); }
+        html.dark .badge-cooling  { background: rgba(244, 63, 94, 0.16); color: #FB7185; border-color: rgba(251, 113, 133, 0.3); }
+        html.dark .badge-steady   { background: rgba(148, 163, 184, 0.14); color: #CBD5E1; border-color: rgba(148, 163, 184, 0.28); }
     </style>
 </head>
 <body class="min-h-screen">
@@ -133,6 +183,7 @@
                 <a href="search.html" class="hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition">
                     Live Keyword Lookup
                 </a>
+                <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
             </div>
         </nav>
 
@@ -309,6 +360,7 @@
         const trendGrid = document.getElementById('trendGrid');
         const heroSearchForm = document.getElementById('heroSearchForm');
         const heroSearchInput = document.getElementById('heroSearchInput');
+        const themeToggle = document.getElementById('themeToggle');
 
         let dataset = null;
         let activeCategory = 'All AI';
@@ -348,8 +400,25 @@
             bot: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="12" x="4" y="8" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg>`,
             code: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
             globe: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`,
-            radio: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>`
+            radio: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>`,
+            moon: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+            sun: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`
         };
+
+        function syncThemeButton() {
+            const dark = document.documentElement.classList.contains('dark');
+            themeToggle.innerHTML = dark ? CuteIcons.sun(16) : CuteIcons.moon(16);
+            themeToggle.title = dark ? 'Switch to light theme' : 'Switch to night theme';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const nextDark = !document.documentElement.classList.contains('dark');
+            document.documentElement.classList.toggle('dark', nextDark);
+            localStorage.setItem('gm_trend_theme', nextDark ? 'dark' : 'light');
+            localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+            syncThemeButton();
+            renderGrid();
+        });
 
         const CAT_ICONS = {
             'All AI': () => CuteIcons.sparkles(14),
@@ -493,9 +562,10 @@
                 const canvas = document.getElementById(`aiChart_${idx}`);
                 if (!canvas || !item.spark.length) return;
                 const ctx = canvas.getContext('2d');
+                const isDark = document.documentElement.classList.contains('dark');
                 const isUp = (item.displayPct ?? 0) >= 0;
-                const stroke = isUp ? '#2563EB' : '#64748B';
-                const fill = isUp ? 'rgba(37, 99, 235, 0.08)' : 'rgba(100, 116, 139, 0.08)';
+                const stroke = isUp ? (isDark ? '#60A5FA' : '#2563EB') : (isDark ? '#94A3B8' : '#64748B');
+                const fill = isUp ? (isDark ? 'rgba(96, 165, 250, 0.14)' : 'rgba(37, 99, 235, 0.08)') : 'rgba(100, 116, 139, 0.1)';
 
                 const chart = new Chart(ctx, {
                     type: 'line',
@@ -549,6 +619,7 @@
         });
 
         (async function init() {
+            syncThemeButton();
             renderCategoryPills();
             try {
                 const res = await fetch('./data/kw-showcase.json', { cache: 'no-cache' });

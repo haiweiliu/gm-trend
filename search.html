@@ -6,6 +6,13 @@
     <title>GM Trend — Keyword Intelligence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        (function () {
+            const saved = localStorage.getItem('gm_trend_theme') || localStorage.getItem('theme');
+            const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.classList.toggle('dark', dark);
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -105,6 +112,57 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+
+        .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 0.65rem;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            color: #475569;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+            cursor: pointer;
+        }
+        .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
+
+        html.dark { color-scheme: dark; }
+        html.dark body { background-color: #09090B; color: #F8FAFC; }
+        html.dark .surface-card { background: #12151C; border-color: #232834; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35); }
+        html.dark .chip-btn { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
+        html.dark .chip-btn:hover { background: #1E293B; border-color: #3B82F6; color: #93C5FD; }
+        html.dark .chip-btn.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
+        html.dark .theme-btn, html.dark #apiToggleBtn, html.dark #exportPrimaryBtn, html.dark #exportCsvBtn, html.dark #clearKeyBtn, html.dark #clearCacheBtn {
+            background: #161A24 !important; border-color: #262C3A !important; color: #CBD5E1 !important;
+        }
+        html.dark .theme-btn:hover, html.dark #apiToggleBtn:hover { border-color: #60A5FA !important; color: #93C5FD !important; }
+        html.dark input:not([type="checkbox"]), html.dark select {
+            background-color: #161A24 !important; border-color: #2A3142 !important; color: #F1F5F9 !important;
+        }
+        html.dark input::placeholder { color: #64748B; }
+        html.dark .bg-slate-50, html.dark .bg-slate-50\/60 { background-color: #181C26 !important; }
+        html.dark .bg-slate-100 { background-color: #1E2432 !important; }
+        html.dark .bg-white { background-color: #12151C !important; }
+        html.dark .border-slate-100, html.dark .border-slate-200, html.dark .border-slate-200\/80 { border-color: #232834 !important; }
+        html.dark .text-slate-900 { color: #F8FAFC !important; }
+        html.dark .text-slate-800 { color: #E2E8F0 !important; }
+        html.dark .text-slate-700 { color: #CBD5E1 !important; }
+        html.dark .text-slate-600 { color: #94A3B8 !important; }
+        html.dark .text-slate-500 { color: #94A3B8 !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
+        html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.14) !important; }
+        html.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.3) !important; }
+        html.dark .text-blue-700 { color: #93C5FD !important; }
+        html.dark .bg-amber-50\/40 { background-color: rgba(245, 158, 11, 0.08) !important; }
+        html.dark .border-amber-200 { border-color: rgba(251, 191, 36, 0.3) !important; }
+        html.dark tbody tr:hover { background-color: rgba(30, 41, 59, 0.55) !important; }
+        html.dark .badge-breakout { background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3); }
+        html.dark .badge-rising   { background: rgba(59, 130, 246, 0.16); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3); }
+        html.dark .badge-seasonal { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3); }
+        html.dark .badge-cooling  { background: rgba(244, 63, 94, 0.16); color: #FB7185; border-color: rgba(251, 113, 133, 0.3); }
+        html.dark .badge-steady   { background: rgba(148, 163, 184, 0.14); color: #CBD5E1; border-color: rgba(148, 163, 184, 0.28); }
     </style>
 </head>
 <body class="min-h-screen">
@@ -137,6 +195,7 @@
                     <span id="statusDot" class="w-2 h-2 rounded-full bg-amber-400"></span>
                     <span id="statusLabel">Static Snapshot</span>
                 </button>
+                <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
             </div>
         </nav>
 
@@ -272,12 +331,14 @@
         const apiHealthMsg = document.getElementById('apiHealthMsg');
         const statusDot = document.getElementById('statusDot');
         const statusLabel = document.getElementById('statusLabel');
+        const themeToggle = document.getElementById('themeToggle');
 
         let staticShowcase = null;
         let activeChart = null;
         let activeRequestId = 0;
         let lastQuota = null;
         let currentWindowMonths = 24;
+        let lastRenderedResult = null;
 
         function escapeHtml(value) {
             return String(value ?? '')
@@ -336,8 +397,16 @@
             trendUp: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
             trendDown: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>`,
             sunWave: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`,
-            checkCircle: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`
+            checkCircle: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+            moon: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+            sun: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`
         };
+
+        function syncThemeButton() {
+            const dark = document.documentElement.classList.contains('dark');
+            themeToggle.innerHTML = dark ? CuteIcons.sun(16) : CuteIcons.moon(16);
+            themeToggle.title = dark ? 'Switch to light theme' : 'Switch to night theme';
+        }
 
         function signalBadgeHtml(tag) {
             const t = String(tag || 'NO_DATA').toUpperCase();
@@ -626,10 +695,14 @@
             const labels = slice.map((p) => p.ym);
             const values = slice.map((p) => Number(p.vol) || 0);
 
+            const isDark = document.documentElement.classList.contains('dark');
+            const lineColor = isDark ? '#60A5FA' : '#2563EB';
+            const tickColor = isDark ? '#94A3B8' : '#64748B';
+            const gridColor = isDark ? '#232834' : '#E2E8F0';
             const ctx = canvas.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 240);
-            gradient.addColorStop(0, 'rgba(37, 99, 235, 0.22)');
-            gradient.addColorStop(1, 'rgba(37, 99, 235, 0.0)');
+            gradient.addColorStop(0, isDark ? 'rgba(96, 165, 250, 0.25)' : 'rgba(37, 99, 235, 0.22)');
+            gradient.addColorStop(1, isDark ? 'rgba(96, 165, 250, 0.0)' : 'rgba(37, 99, 235, 0.0)');
 
             activeChart = new Chart(ctx, {
                 type: 'line',
@@ -638,14 +711,14 @@
                     datasets: [{
                         label: 'Monthly Searches',
                         data: values,
-                        borderColor: '#2563EB',
+                        borderColor: lineColor,
                         backgroundColor: gradient,
                         borderWidth: 2,
                         fill: true,
                         tension: 0.25,
                         pointRadius: slice.length <= 14 ? 3 : 2,
                         pointHoverRadius: 5,
-                        pointBackgroundColor: '#2563EB'
+                        pointBackgroundColor: lineColor
                     }]
                 },
                 options: {
@@ -669,14 +742,14 @@
                     scales: {
                         x: {
                             grid: { display: false },
-                            ticks: { color: '#64748B', font: { size: 11 }, maxRotation: 0, autoSkipPadding: 14 }
+                            ticks: { color: tickColor, font: { size: 11 }, maxRotation: 0, autoSkipPadding: 14 }
                         },
                         y: {
                             position: 'right',
                             beginAtZero: true,
-                            grid: { color: '#E2E8F0', drawBorder: false },
+                            grid: { color: gridColor, drawBorder: false },
                             ticks: {
-                                color: '#64748B',
+                                color: tickColor,
                                 font: { size: 11 },
                                 callback: (v) => formatCompact(v)
                             }
@@ -814,6 +887,7 @@
         }
 
         function renderResultCard(result) {
+            lastRenderedResult = result;
             const { item, ideas = [], sourceLabel, providerMode, geo, network } = result;
             if (!item || (item.vol == null && (!item.trendStats || item.trendStats.monthsCount === 0))) {
                 renderErrorCard(
@@ -1097,8 +1171,18 @@
             triggerSearch(searchInput.value);
         });
 
+        themeToggle.addEventListener('click', () => {
+            const nextDark = !document.documentElement.classList.contains('dark');
+            document.documentElement.classList.toggle('dark', nextDark);
+            localStorage.setItem('gm_trend_theme', nextDark ? 'dark' : 'light');
+            localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+            syncThemeButton();
+            if (lastRenderedResult) renderResultCard(lastRenderedResult);
+        });
+
         // Init
         (async function init() {
+            syncThemeButton();
             const s = getSettings();
             modeSelect.value = s.mode;
             teamKeyInput.value = s.key;

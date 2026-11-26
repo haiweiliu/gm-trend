@@ -3,78 +3,325 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GM Trend - Topics</title>
+    <title>GM Trend — Vertical AI Topics</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        (function () {
+            const saved = localStorage.getItem('gm_trend_theme') || localStorage.getItem('theme');
+            const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.classList.toggle('dark', dark);
+        })();
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: #F8F9FC;
-            color: #111827;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        .nav-link {
-            color: #4B5563;
-            text-decoration: none;
-            font-weight: 500;
+
+        .mono {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            font-variant-numeric: tabular-nums;
         }
-        .nav-link:hover { color: #3B82F6; }
+
         .topic-card {
-            background: white;
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
             border-radius: 1rem;
-            padding: 1.25rem 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08);
-            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            padding: 1.25rem 1.35rem;
+            transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
         }
+
         .topic-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+            border-color: #93C5FD;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
         }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .badge-breakout { background: #ECFDF5; color: #047857; border: 1px solid #A7F3D0; }
+        .badge-rising   { background: #EFF6FF; color: #1D4ED8; border: 1px solid #BFDBFE; }
+        .badge-seasonal { background: #FFFBEB; color: #B45309; border: 1px solid #FDE68A; }
+        .badge-cooling  { background: #FEF2F2; color: #B91C1C; border: 1px solid #FECACA; }
+        .badge-steady   { background: #F1F5F9; color: #475569; border: 1px solid #CBD5E1; }
+
+        .cat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.38rem;
+            padding: 0.42rem 0.85rem;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            color: #475569;
+            transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+            cursor: pointer;
+        }
+
+        .cat-pill:hover { border-color: #93C5FD; color: #1D4ED8; background: #EFF6FF; transform: scale(1.03); }
+        .cat-pill.active { background: #0F172A; border-color: #0F172A; color: #FFFFFF; }
+
+        .theme-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 0.65rem;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            color: #475569;
+            transition: transform 0.15s ease, border-color 0.15s ease;
+            cursor: pointer;
+        }
+        .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
+
+        html.dark { color-scheme: dark; }
+        html.dark body { background-color: #09090B; color: #F8FAFC; }
+        html.dark .topic-card { background: #12151C; border-color: #232834; }
+        html.dark .topic-card:hover { border-color: #3B82F6; box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45); }
+        html.dark .cat-pill { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
+        html.dark .cat-pill:hover { background: #1E293B; border-color: #3B82F6; color: #93C5FD; }
+        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
+        html.dark .theme-btn { background: #161A24; border-color: #262C3A; color: #CBD5E1; }
+        html.dark .theme-btn:hover { border-color: #60A5FA; color: #93C5FD; }
+        html.dark input { background-color: #161A24 !important; border-color: #2A3142 !important; color: #F1F5F9 !important; }
+        html.dark input::placeholder { color: #64748B; }
+        html.dark .text-slate-900 { color: #F8FAFC !important; }
+        html.dark .text-slate-600 { color: #94A3B8 !important; }
+        html.dark .text-slate-500 { color: #94A3B8 !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
+        html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #232834 !important; }
+        html.dark .bg-blue-50 { background-color: rgba(59, 130, 246, 0.14) !important; }
+        html.dark .border-blue-200 { border-color: rgba(96, 165, 250, 0.3) !important; }
+        html.dark .text-blue-700 { color: #93C5FD !important; }
+        html.dark .badge-breakout { background: rgba(16, 185, 129, 0.15); color: #34D399; border-color: rgba(52, 211, 153, 0.3); }
+        html.dark .badge-rising   { background: rgba(59, 130, 246, 0.16); color: #60A5FA; border-color: rgba(96, 165, 250, 0.3); }
+        html.dark .badge-seasonal { background: rgba(245, 158, 11, 0.16); color: #FBBF24; border-color: rgba(251, 191, 36, 0.3); }
+        html.dark .badge-cooling  { background: rgba(244, 63, 94, 0.16); color: #FB7185; border-color: rgba(251, 113, 133, 0.3); }
+        html.dark .badge-steady   { background: rgba(148, 163, 184, 0.14); color: #CBD5E1; border-color: rgba(148, 163, 184, 0.28); }
     </style>
 </head>
-<body>
-    <div class="max-w-7xl mx-auto px-4 py-8">
-        <nav class="flex items-center justify-between mb-8">
-            <div class="flex items-center">
-                <a href="home.html" class="text-gray-600 hover:text-gray-900 mr-4" aria-label="Back to home">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                    </svg>
-                </a>
-                <h1 class="text-3xl font-bold">Topics</h1>
+<body class="min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-7">
+        <nav class="flex flex-wrap items-center justify-between gap-4 mb-8">
+            <div class="flex items-center gap-2.5">
+                <h1 class="text-2xl font-bold tracking-tight text-slate-900">GM Trend</h1>
+                <span class="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="rgba(37,99,235,0.16)" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+                    <span>Vertical AI Topics</span>
+                </span>
             </div>
-            <div class="flex space-x-4">
-                <a href="search.html" class="nav-link">Search</a>
-                <a href="grid.html" class="nav-link">Grid</a>
+            <div class="flex items-center gap-5">
+                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Home</a>
+                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Search</a>
+                <a href="grid.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Grid</a>
+                <a href="topic.html" class="text-sm font-semibold text-blue-600">Topics</a>
+                <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
             </div>
         </nav>
 
-        <p class="text-gray-600 mb-8 max-w-2xl">
-            Jump into curated Web3 topic searches. Each topic opens the search tool with a ready query.
-        </p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+                <h2 class="text-3xl font-bold tracking-tight text-slate-900">Vertical AI Brands &amp; Sectors</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-1.5 max-w-2xl">
+                    Explore curated Vertical AI companies across Healthcare, Legal, Software Engineering, Enterprise Search, and Voice/Video. Clicking any topic opens its 24-month demand curve and related keywords.
+                </p>
+            </div>
+            <input id="filterInput" type="text" placeholder="Filter vertical AI topics..." class="w-full md:w-64 px-3.5 py-2 text-sm rounded-xl border border-slate-200 bg-white focus:outline-none focus:border-blue-500">
+        </div>
 
+        <div id="sectorPills" class="flex flex-wrap gap-2 mb-6"></div>
         <div id="topics" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
     </div>
 
     <script>
-        const topics = [
-            { title: 'Bitcoin', query: 'bitcoin', blurb: 'BTC search interest and volume.' },
-            { title: 'Ethereum', query: 'ethereum', blurb: 'ETH ecosystem demand signals.' },
-            { title: 'Solana', query: 'solana', blurb: 'SOL network attention trends.' },
-            { title: 'NFT', query: 'nft', blurb: 'Collectibles and marketplace interest.' },
-            { title: 'AI Agent', query: 'ai agent', blurb: 'Agentic AI search momentum.' },
-            { title: 'Web3', query: 'web3', blurb: 'Broader decentralized web interest.' },
-            { title: 'DeFi', query: 'defi', blurb: 'Decentralized finance keywords.' },
-            { title: 'Layer 2', query: 'layer 2', blurb: 'Scaling solutions and rollups.' },
-            { title: 'Memecoin', query: 'memecoin', blurb: 'Community-token hype cycles.' }
+        const TOPICS = [
+            { title: 'OpenEvidence', query: 'openevidence', sector: 'Healthcare', blurb: 'Medical clinical evidence AI used by doctors for fast bedside synthesis.' },
+            { title: 'Abridge', query: 'abridge', sector: 'Healthcare', blurb: 'Clinical conversation AI automating EHR documentation in health systems.' },
+            { title: 'Harvey AI', query: 'harvey ai', sector: 'Legal', blurb: 'Enterprise legal AI for contract analysis, litigation research, and diligence.' },
+            { title: 'Devin AI', query: 'devin ai', sector: 'Engineering', blurb: 'Autonomous AI software engineer handling tickets, PRs, and refactors.' },
+            { title: 'Claude Code', query: 'claude code', sector: 'Engineering', blurb: 'Agentic CLI coding assistant for multi-file development and verification.' },
+            { title: 'Cursor AI', query: 'cursor ai', sector: 'Engineering', blurb: 'AI-native code editor with codebase indexing and inline diff workflows.' },
+            { title: 'Replit', query: 'replit', sector: 'Engineering', blurb: 'Cloud coding environment and AI agent turning prompts into deployed apps.' },
+            { title: 'Lovable AI', query: 'lovable ai', sector: 'Engineering', blurb: 'Full-stack AI web builder generating UI, schemas, and hosted apps.' },
+            { title: 'Vibe Coding', query: 'vibe coding', sector: 'Engineering', blurb: 'Natural-language software development powered by agentic coding loops.' },
+            { title: 'Granola AI', query: 'granola ai', sector: 'Enterprise', blurb: 'Bot-free AI meeting notepad turning calls into structured action memos.' },
+            { title: 'Glean', query: 'glean', sector: 'Enterprise', blurb: 'Enterprise AI search and assistant connected across internal workplace apps.' },
+            { title: 'Sierra AI', query: 'sierra ai', sector: 'Enterprise', blurb: 'Customer-experience AI agents built for high-trust enterprise support.' },
+            { title: 'Mercor', query: 'mercor', sector: 'Enterprise', blurb: 'AI-driven technical talent sourcing, interviewing, and placement.' },
+            { title: 'ElevenLabs', query: 'elevenlabs', sector: 'Media & Voice', blurb: 'Neural speech synthesis, voice cloning, and conversational voice AI.' },
+            { title: 'HeyGen', query: 'heygen', sector: 'Media & Voice', blurb: 'AI video avatars and multilingual lip-sync localization for GTM teams.' },
+            { title: 'Synthesia', query: 'synthesia', sector: 'Media & Voice', blurb: 'Enterprise AI video production replacing studio shoots for training.' },
+            { title: 'Descript', query: 'descript', sector: 'Media & Voice', blurb: 'Text-based AI audio and video editing with automated studio cleanup.' },
+            { title: 'AI Agent', query: 'ai agent', sector: 'Agents & Infra', blurb: 'Autonomous workflow agents chaining tool calls, memory, and APIs.' },
+            { title: 'MCP Server', query: 'mcp server', sector: 'Agents & Infra', blurb: 'Model Context Protocol integrations connecting AI models to live data.' },
+            { title: 'n8n', query: 'n8n', sector: 'Agents & Infra', blurb: 'Visual workflow automation engine widely used for self-hosted AI agents.' }
         ];
 
+        const SECTORS = ['All', 'Healthcare', 'Legal', 'Engineering', 'Enterprise', 'Media & Voice', 'Agents & Infra'];
+
+        const CuteIcons = {
+            sparkles: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>`,
+            trendUp: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`,
+            trendDown: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 17 13.5 8.5 8.5 13.5 2 7"/><polyline points="16 17 22 17 22 11"/></svg>`,
+            sunWave: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`,
+            checkCircle: (s = 12) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
+            heart: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`,
+            scale: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>`,
+            code: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+            briefcase: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`,
+            radio: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2"/><path d="M16.24 7.76a6 6 0 0 1 0 8.49m-8.48-.01a6 6 0 0 1 0-8.49m11.31-2.82a10 10 0 0 1 0 14.14m-14.14 0a10 10 0 0 1 0-14.14"/></svg>`,
+            bot: (s = 14) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="12" x="4" y="8" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01"/></svg>`,
+            moon: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`,
+            sun: (s = 16) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>`
+        };
+
+        const SECTOR_ICONS = {
+            All: () => CuteIcons.sparkles(14),
+            Healthcare: () => CuteIcons.heart(14),
+            Legal: () => CuteIcons.scale(14),
+            Engineering: () => CuteIcons.code(14),
+            Enterprise: () => CuteIcons.briefcase(14),
+            'Media & Voice': () => CuteIcons.radio(14),
+            'Agents & Infra': () => CuteIcons.bot(14)
+        };
+
+        const sectorPills = document.getElementById('sectorPills');
+        const filterInput = document.getElementById('filterInput');
         const root = document.getElementById('topics');
-        root.innerHTML = topics.map((topic) => `
-            <a class="topic-card block" href="search.html?q=${encodeURIComponent(topic.query)}">
-                <h2 class="text-lg font-semibold text-blue-600">${topic.title}</h2>
-                <p class="text-sm text-gray-500 mt-1">${topic.blurb}</p>
-            </a>
-        `).join('');
+        const themeToggle = document.getElementById('themeToggle');
+
+        let dataset = null;
+        let activeSector = 'All';
+
+        function escapeHtml(v) {
+            return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        function formatCompact(n) {
+            const num = Number(n);
+            if (!Number.isFinite(num)) return '--';
+            if (num >= 1_000_000) return `${(num / 1_000_000).toFixed(1)}M`;
+            if (num >= 1_000) return `${(num / 1_000).toFixed(1)}K`;
+            return Math.round(num).toLocaleString();
+        }
+
+        function signalBadgeHtml(tag) {
+            const t = String(tag || 'STEADY').toUpperCase();
+            const map = {
+                BREAKOUT: ['badge-breakout', CuteIcons.sparkles(11)],
+                RISING: ['badge-rising', CuteIcons.trendUp(11)],
+                SEASONAL: ['badge-seasonal', CuteIcons.sunWave(11)],
+                COOLING: ['badge-cooling', CuteIcons.trendDown(11)],
+                STEADY: ['badge-steady', CuteIcons.checkCircle(11)]
+            };
+            const [cls, icon] = map[t] || map.STEADY;
+            return `<span class="badge ${cls}">${icon}<span>${escapeHtml(t)}</span></span>`;
+        }
+
+        function syncThemeButton() {
+            const dark = document.documentElement.classList.contains('dark');
+            themeToggle.innerHTML = dark ? CuteIcons.sun(16) : CuteIcons.moon(16);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const nextDark = !document.documentElement.classList.contains('dark');
+            document.documentElement.classList.toggle('dark', nextDark);
+            localStorage.setItem('gm_trend_theme', nextDark ? 'dark' : 'light');
+            localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+            syncThemeButton();
+        });
+
+        function renderSectors() {
+            sectorPills.innerHTML = SECTORS.map((s) => `
+                <button type="button" data-sec="${escapeHtml(s)}" class="cat-pill ${activeSector === s ? 'active' : ''}">
+                    ${(SECTOR_ICONS[s] || CuteIcons.sparkles)()}
+                    <span>${escapeHtml(s)}</span>
+                </button>
+            `).join('');
+            sectorPills.querySelectorAll('button[data-sec]').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    activeSector = btn.getAttribute('data-sec') || 'All';
+                    renderSectors();
+                    renderTopics();
+                });
+            });
+        }
+
+        function renderTopics() {
+            const q = filterInput.value.trim().toLowerCase();
+            const us = dataset?.byGeo?.US || {};
+            const filtered = TOPICS.filter((t) => {
+                if (activeSector !== 'All' && t.sector !== activeSector) return false;
+                if (q && !`${t.title} ${t.sector} ${t.blurb}`.toLowerCase().includes(q)) return false;
+                return true;
+            });
+
+            if (!filtered.length) {
+                root.innerHTML = '<div class="col-span-full topic-card text-sm text-slate-500">No vertical AI topics matched your filter.</div>';
+                return;
+            }
+
+            root.innerHTML = filtered.map((topic) => {
+                const row = us[topic.query];
+                const ts = row?.trendStats || {};
+                const volText = row?.vol ? `${formatCompact(row.vol)}/mo` : '--';
+                const yoy = ts.yoyPct;
+                const yoyText = yoy != null ? `${yoy > 0 ? '+' : ''}${yoy}% YoY` : '';
+                const yoyColor = (yoy ?? 0) > 0 ? 'text-emerald-600' : (yoy ?? 0) < 0 ? 'text-rose-600' : 'text-slate-500';
+                return `
+                    <a class="topic-card" href="search.html?q=${encodeURIComponent(topic.query)}">
+                        <div class="flex items-start justify-between gap-2">
+                            <div>
+                                <h3 class="text-lg font-bold text-blue-600">${escapeHtml(topic.title)}</h3>
+                                <div class="text-xs text-slate-500 font-medium">${escapeHtml(topic.sector)}</div>
+                            </div>
+                            ${signalBadgeHtml(ts.signalTag || 'STEADY')}
+                        </div>
+                        <p class="text-sm text-slate-600 mt-2.5 leading-relaxed">${escapeHtml(topic.blurb)}</p>
+                        <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
+                            <span class="mono font-semibold text-slate-900">${escapeHtml(volText)}</span>
+                            <span class="mono font-semibold ${yoyColor}">${escapeHtml(yoyText)}</span>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        filterInput.addEventListener('input', renderTopics);
+
+        (async function init() {
+            syncThemeButton();
+            renderSectors();
+            try {
+                const res = await fetch('./data/kw-showcase.json', { cache: 'no-cache' });
+                if (res.ok) dataset = await res.json();
+            } catch {
+                // Render topic links even if stats JSON fails
+            }
+            renderTopics();
+        })();
     </script>
 </body>
 </html>
