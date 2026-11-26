@@ -75,8 +75,8 @@
             cursor: pointer;
         }
 
-        .cat-pill:hover { border-color: #A1A1AA; color: #09090B; transform: scale(1.02); }
-        .cat-pill.active { background: #09090B; border-color: #09090B; color: #FAFAFA; }
+        .cat-pill:hover { border-color: #3B82F6; color: #1D4ED8; transform: scale(1.02); }
+        .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
 
         .theme-btn {
             display: inline-flex;
@@ -91,24 +91,25 @@
             transition: transform 0.15s ease, border-color 0.15s ease;
             cursor: pointer;
         }
-        .theme-btn:hover { transform: scale(1.04); border-color: #A1A1AA; color: #09090B; }
+        .theme-btn:hover { transform: scale(1.04); border-color: #3B82F6; color: #2563EB; }
 
         html.dark { color-scheme: dark; }
         html.dark body { background-color: #09090B; color: #FAFAFA; }
         html.dark .topic-card { background: #121215; border-color: #27272A; }
-        html.dark .topic-card:hover { border-color: #52525B; }
+        html.dark .topic-card:hover { border-color: #3B82F6; }
         html.dark .cat-pill { background: #161619; border-color: #27272A; color: #A1A1AA; }
-        html.dark .cat-pill:hover { border-color: #52525B; color: #FAFAFA; }
-        html.dark .cat-pill.active { background: #FAFAFA; border-color: #FAFAFA; color: #09090B; }
+        html.dark .cat-pill:hover { border-color: #3B82F6; color: #93C5FD; }
+        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
         html.dark .theme-btn { background: #161619; border-color: #27272A; color: #A1A1AA; }
-        html.dark .theme-btn:hover { border-color: #52525B; color: #FAFAFA; }
+        html.dark .theme-btn:hover { border-color: #3B82F6; color: #60A5FA; }
         html.dark input { background-color: #161619 !important; border-color: #27272A !important; color: #FAFAFA !important; }
         html.dark input::placeholder { color: #71717A; }
         html.dark .text-slate-900 { color: #FAFAFA !important; }
         html.dark .text-slate-600 { color: #A1A1AA !important; }
         html.dark .text-slate-500 { color: #71717A !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
         html.dark .border-slate-100, html.dark .border-slate-200 { border-color: #27272A !important; }
-        html.dark .header-pill { background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important; }
+        html.dark .header-pill { background: rgba(59, 130, 246, 0.14) !important; border-color: rgba(96, 165, 250, 0.3) !important; color: #93C5FD !important; }
         html.dark .badge-breakout, html.dark .badge-rising { background: rgba(16, 185, 129, 0.12); color: #34D399; border-color: rgba(16, 185, 129, 0.28); }
         html.dark .badge-seasonal, html.dark .badge-cooling, html.dark .badge-steady { background: rgba(161, 161, 170, 0.08); color: #A1A1AA; border-color: #27272A; }
     </style>
@@ -124,10 +125,10 @@
                 </span>
             </div>
             <div class="flex items-center gap-5">
-                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Home</a>
-                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Search</a>
-                <a href="grid.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Grid</a>
-                <a href="topic.html" class="text-sm font-semibold text-slate-900">Topics</a>
+                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Home</a>
+                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Search</a>
+                <a href="grid.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Grid</a>
+                <a href="topic.html" class="text-sm font-semibold text-blue-600">Topics</a>
                 <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
             </div>
         </nav>
@@ -285,7 +286,7 @@
                     <a class="topic-card" href="search.html?q=${encodeURIComponent(topic.query)}">
                         <div class="flex items-start justify-between gap-2">
                             <div>
-                                <h3 class="text-lg font-bold text-slate-900">${escapeHtml(topic.title)}</h3>
+                                <h3 class="text-lg font-bold text-blue-600">${escapeHtml(topic.title)}</h3>
                                 <div class="text-xs text-slate-500 font-medium">${escapeHtml(topic.sector)}</div>
                             </div>
                             ${signalBadgeHtml(ts.signalTag || 'STEADY')}

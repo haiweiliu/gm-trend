@@ -64,14 +64,14 @@
         }
 
         .chip-btn:hover {
-            border-color: #A1A1AA;
-            color: #09090B;
+            border-color: #3B82F6;
+            color: #1D4ED8;
         }
 
         .chip-btn.active {
-            border-color: #09090B;
-            background: #09090B;
-            color: #FAFAFA;
+            border-color: #2563EB;
+            background: #2563EB;
+            color: #FFFFFF;
         }
 
         .badge {
@@ -125,22 +125,23 @@
         }
         .theme-btn:hover { transform: scale(1.05); border-color: #93C5FD; color: #1D4ED8; }
 
-        .primary-btn { background: #09090B; color: #FAFAFA; }
-        .primary-btn:hover { background: #27272A; }
+        .primary-btn { background: #2563EB; color: #FFFFFF; }
+        .primary-btn:hover { background: #1D4ED8; }
 
         html.dark { color-scheme: dark; }
         html.dark body { background-color: #09090B; color: #FAFAFA; }
         html.dark .surface-card { background: #121215; border-color: #27272A; box-shadow: none; }
         html.dark .chip-btn { background: #161619; border-color: #27272A; color: #A1A1AA; }
-        html.dark .chip-btn:hover { border-color: #52525B; color: #FAFAFA; }
-        html.dark .chip-btn.active { background: #FAFAFA; border-color: #FAFAFA; color: #09090B; }
+        html.dark .chip-btn:hover { border-color: #3B82F6; color: #93C5FD; }
+        html.dark .chip-btn.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
         html.dark .theme-btn, html.dark #apiToggleBtn, html.dark #exportPrimaryBtn, html.dark #exportCsvBtn, html.dark #clearKeyBtn, html.dark #clearCacheBtn {
             background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important;
         }
-        html.dark .theme-btn:hover, html.dark #apiToggleBtn:hover { border-color: #52525B !important; color: #FAFAFA !important; }
-        html.dark .primary-btn, html.dark #saveKeyBtn, html.dark #loadIdeasBtn { background: #FAFAFA !important; color: #09090B !important; }
-        html.dark .primary-btn:hover, html.dark #saveKeyBtn:hover, html.dark #loadIdeasBtn:hover { background: #E4E4E7 !important; }
-        html.dark .header-pill { background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important; }
+        html.dark .theme-btn:hover, html.dark #apiToggleBtn:hover { border-color: #3B82F6 !important; color: #60A5FA !important; }
+        html.dark .primary-btn, html.dark #saveKeyBtn, html.dark #loadIdeasBtn { background: #2563EB !important; color: #FFFFFF !important; }
+        html.dark .primary-btn:hover, html.dark #saveKeyBtn:hover, html.dark #loadIdeasBtn:hover { background: #1D4ED8 !important; }
+        html.dark .header-pill { background: rgba(59, 130, 246, 0.14) !important; border-color: rgba(96, 165, 250, 0.3) !important; color: #93C5FD !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
         html.dark input:not([type="checkbox"]), html.dark select {
             background-color: #161619 !important; border-color: #27272A !important; color: #FAFAFA !important;
         }
@@ -691,13 +692,13 @@
             const values = slice.map((p) => Number(p.vol) || 0);
 
             const isDark = document.documentElement.classList.contains('dark');
-            const lineColor = isDark ? '#10B981' : '#059669';
+            const lineColor = isDark ? '#60A5FA' : '#2563EB';
             const tickColor = isDark ? '#71717A' : '#64748B';
             const gridColor = isDark ? '#27272A' : '#E2E8F0';
             const ctx = canvas.getContext('2d');
             const gradient = ctx.createLinearGradient(0, 0, 0, 240);
-            gradient.addColorStop(0, isDark ? 'rgba(16, 185, 129, 0.16)' : 'rgba(5, 150, 105, 0.14)');
-            gradient.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+            gradient.addColorStop(0, isDark ? 'rgba(59, 130, 246, 0.22)' : 'rgba(37, 99, 235, 0.16)');
+            gradient.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
 
             activeChart = new Chart(ctx, {
                 type: 'line',
@@ -831,7 +832,7 @@
                 return `
                     <tr class="border-t border-slate-100 hover:bg-slate-50/80 transition">
                         <td class="py-2.5 pr-3">
-                            <button type="button" data-idea-kw="${escapeHtml(r.keyword)}" class="text-left font-medium text-slate-900 hover:underline">${escapeHtml(r.keyword)}</button>
+                            <button type="button" data-idea-kw="${escapeHtml(r.keyword)}" class="text-left font-medium text-blue-600 hover:underline">${escapeHtml(r.keyword)}</button>
                         </td>
                         <td class="py-2.5 px-3 text-right mono text-slate-800">${escapeHtml(formatInt(r.vol))}</td>
                         <td class="py-2.5 px-3 text-right mono ${pctClass(ts.yoyPct)}">${escapeHtml(formatSignedPct(ts.yoyPct))}</td>

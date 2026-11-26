@@ -74,8 +74,8 @@
             cursor: pointer;
         }
 
-        .cat-pill:hover { border-color: #A1A1AA; color: #09090B; transform: scale(1.02); }
-        .cat-pill.active { background: #09090B; border-color: #09090B; color: #FAFAFA; }
+        .cat-pill:hover { border-color: #3B82F6; color: #1D4ED8; transform: scale(1.02); }
+        .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
 
         .theme-btn {
             display: inline-flex;
@@ -90,10 +90,10 @@
             transition: transform 0.15s ease, border-color 0.15s ease;
             cursor: pointer;
         }
-        .theme-btn:hover { transform: scale(1.04); border-color: #A1A1AA; color: #09090B; }
+        .theme-btn:hover { transform: scale(1.04); border-color: #3B82F6; color: #2563EB; }
 
-        .primary-btn { background: #09090B; color: #FAFAFA; }
-        .primary-btn:hover { background: #27272A; }
+        .primary-btn { background: #2563EB; color: #FFFFFF; }
+        .primary-btn:hover { background: #1D4ED8; }
 
         .quadrant-board {
             position: relative;
@@ -148,7 +148,7 @@
 
         .brand-node:hover, .brand-node.selected {
             transform: translate(-50%, -50%) scale(1.07);
-            border-color: #10B981;
+            border-color: #3B82F6;
             z-index: 30;
         }
 
@@ -191,15 +191,16 @@
         html.dark .q-axis-v, html.dark .q-axis-h { background: rgba(161, 161, 170, 0.22); }
         html.dark .q-label { background: rgba(24, 24, 27, 0.9); color: #71717A; }
         html.dark .brand-node { background: #18181B; border-color: #27272A; color: #FAFAFA; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); }
-        html.dark .brand-node:hover, html.dark .brand-node.selected { border-color: #10B981; }
+        html.dark .brand-node:hover, html.dark .brand-node.selected { border-color: #60A5FA; }
         html.dark .cat-pill { background: #161619; border-color: #27272A; color: #A1A1AA; }
-        html.dark .cat-pill:hover { border-color: #52525B; color: #FAFAFA; }
-        html.dark .cat-pill.active { background: #FAFAFA; border-color: #FAFAFA; color: #09090B; }
+        html.dark .cat-pill:hover { border-color: #3B82F6; color: #93C5FD; }
+        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
         html.dark .theme-btn { background: #161619; border-color: #27272A; color: #A1A1AA; }
-        html.dark .theme-btn:hover { border-color: #52525B; color: #FAFAFA; }
-        html.dark .primary-btn { background: #FAFAFA; color: #09090B; }
-        html.dark .primary-btn:hover { background: #E4E4E7; }
-        html.dark .header-pill { background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important; }
+        html.dark .theme-btn:hover { border-color: #3B82F6; color: #60A5FA; }
+        html.dark .primary-btn { background: #2563EB; color: #FFFFFF; }
+        html.dark .primary-btn:hover { background: #1D4ED8; }
+        html.dark .header-pill { background: rgba(59, 130, 246, 0.14) !important; border-color: rgba(96, 165, 250, 0.3) !important; color: #93C5FD !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
         html.dark select { background-color: #161619 !important; border-color: #27272A !important; color: #FAFAFA !important; }
         html.dark .text-slate-900 { color: #FAFAFA !important; }
         html.dark .text-slate-800 { color: #E4E4E7 !important; }
@@ -224,10 +225,10 @@
                 </span>
             </div>
             <div class="flex items-center gap-5">
-                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Home</a>
-                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Search</a>
-                <a href="grid.html" class="text-sm font-semibold text-slate-900">Grid</a>
-                <a href="topic.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Topics</a>
+                <a href="home.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Home</a>
+                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Search</a>
+                <a href="grid.html" class="text-sm font-semibold text-blue-600">Grid</a>
+                <a href="topic.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Topics</a>
                 <button id="themeToggle" type="button" class="theme-btn" aria-label="Toggle night theme" title="Toggle night theme"></button>
             </div>
         </nav>
@@ -567,7 +568,7 @@
                 const isAccent = ts.signalTag === 'BREAKOUT' || ts.signalTag === 'RISING';
                 return `
                     <tr class="border-t border-slate-100 hover:bg-slate-50/80 transition">
-                        <td class="py-2.5 pr-3 font-semibold"><a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="inline-flex items-center gap-2 text-slate-900 hover:underline">${brandAvatarHtml(brand, isAccent, 18)}<span>${escapeHtml(brand.label)}</span></a></td>
+                        <td class="py-2.5 pr-3 font-semibold"><a href="search.html?q=${encodeURIComponent(brand.keyword)}" class="inline-flex items-center gap-2 text-blue-600 hover:underline">${brandAvatarHtml(brand, isAccent, 18)}<span>${escapeHtml(brand.label)}</span></a></td>
                         <td class="py-2.5 px-3 text-slate-600">${escapeHtml(brand.vertical)}</td>
                         <td class="py-2.5 px-3 text-right mono text-slate-800">${escapeHtml(formatCompact(row.vol))}</td>
                         <td class="py-2.5 px-3 text-right mono ${yoyColor}">${escapeHtml(formatSignedPct(ts.yoyPct))}</td>

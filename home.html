@@ -106,15 +106,15 @@
         }
 
         .cat-pill:hover {
-            border-color: #A1A1AA;
-            color: #09090B;
+            border-color: #3B82F6;
+            color: #1D4ED8;
             transform: scale(1.02);
         }
 
         .cat-pill.active {
-            background: #09090B;
-            border-color: #09090B;
-            color: #FAFAFA;
+            background: #2563EB;
+            border-color: #2563EB;
+            color: #FFFFFF;
         }
 
         .theme-btn {
@@ -131,24 +131,25 @@
             cursor: pointer;
         }
 
-        .theme-btn:hover { transform: scale(1.04); border-color: #A1A1AA; color: #09090B; }
+        .theme-btn:hover { transform: scale(1.04); border-color: #3B82F6; color: #2563EB; }
 
-        .primary-btn { background: #09090B; color: #FAFAFA; }
-        .primary-btn:hover { background: #27272A; }
+        .primary-btn { background: #2563EB; color: #FFFFFF; }
+        .primary-btn:hover { background: #1D4ED8; }
 
         html.dark { color-scheme: dark; }
         html.dark body { background-color: #09090B; color: #FAFAFA; }
         html.dark .surface-card { background: #121215; border-color: #27272A; box-shadow: none; }
         html.dark .trend-card { background: #121215; border-color: #27272A; }
-        html.dark .trend-card:hover { border-color: #52525B; box-shadow: none; }
+        html.dark .trend-card:hover { border-color: #3B82F6; box-shadow: none; }
         html.dark .cat-pill { background: #161619; border-color: #27272A; color: #A1A1AA; }
-        html.dark .cat-pill:hover { border-color: #52525B; color: #FAFAFA; }
-        html.dark .cat-pill.active { background: #FAFAFA; border-color: #FAFAFA; color: #09090B; }
+        html.dark .cat-pill:hover { border-color: #3B82F6; color: #93C5FD; }
+        html.dark .cat-pill.active { background: #2563EB; border-color: #2563EB; color: #FFFFFF; }
         html.dark .theme-btn { background: #161619; border-color: #27272A; color: #A1A1AA; }
-        html.dark .theme-btn:hover { border-color: #52525B; color: #FAFAFA; }
-        html.dark .primary-btn { background: #FAFAFA; color: #09090B; }
-        html.dark .primary-btn:hover { background: #E4E4E7; }
-        html.dark .header-pill { background: #161619 !important; border-color: #27272A !important; color: #A1A1AA !important; }
+        html.dark .theme-btn:hover { border-color: #3B82F6; color: #60A5FA; }
+        html.dark .primary-btn { background: #2563EB; color: #FFFFFF; }
+        html.dark .primary-btn:hover { background: #1D4ED8; }
+        html.dark .header-pill { background: rgba(59, 130, 246, 0.14) !important; border-color: rgba(96, 165, 250, 0.3) !important; color: #93C5FD !important; }
+        html.dark .text-blue-600 { color: #60A5FA !important; }
         html.dark input, html.dark select { background-color: #161619 !important; border-color: #27272A !important; color: #FAFAFA !important; }
         html.dark input::placeholder { color: #71717A; }
         html.dark .text-slate-900 { color: #FAFAFA !important; }
@@ -172,10 +173,10 @@
                 </span>
             </div>
             <div class="flex items-center gap-5">
-                <a href="home.html" class="text-sm font-semibold text-slate-900">Home</a>
-                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Search</a>
-                <a href="grid.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Grid</a>
-                <a href="topic.html" class="text-sm font-medium text-slate-600 hover:text-slate-900 transition">Topics</a>
+                <a href="home.html" class="text-sm font-semibold text-blue-600">Home</a>
+                <a href="search.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Search</a>
+                <a href="grid.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Grid</a>
+                <a href="topic.html" class="text-sm font-medium text-slate-600 hover:text-blue-600 transition">Topics</a>
                 <a href="search.html" class="primary-btn hidden sm:inline-flex items-center px-3.5 py-1.5 rounded-lg text-xs font-semibold transition">
                     Live Keyword Lookup
                 </a>
@@ -256,28 +257,58 @@
     <script>
         const AI_CATALOG = [
             {
+                keyword: 'devin ai',
+                label: 'Devin AI',
+                category: 'Coding',
+                description: 'Autonomous software engineering agent handling end-to-end tickets, PRs, and codebase migrations.'
+            },
+            {
+                keyword: 'granola ai',
+                label: 'Granola AI',
+                category: 'Agents',
+                description: 'Bot-free AI meeting notepad turning live conversations into structured executive memos.'
+            },
+            {
+                keyword: 'harvey ai',
+                label: 'Harvey AI',
+                category: 'Agents',
+                description: 'Domain-specific legal AI platform adopted by global law firms and enterprise counsel.'
+            },
+            {
+                keyword: 'openevidence',
+                label: 'OpenEvidence',
+                category: 'Models',
+                description: 'Medical clinical decision-support AI used by physicians for rapid point-of-care synthesis.'
+            },
+            {
+                keyword: 'claude code',
+                label: 'Claude Code',
+                category: 'Coding',
+                description: 'Terminal-native agentic coding assistant for multi-file engineering, testing, and refactoring.'
+            },
+            {
                 keyword: 'ai agent',
                 label: 'AI Agent',
                 category: 'Agents',
                 description: 'Autonomous task-executing agents integrating tool calls, memory, and enterprise workflows.'
             },
             {
-                keyword: 'claude code',
-                label: 'Claude Code',
+                keyword: 'vibe coding',
+                label: 'Vibe Coding',
                 category: 'Coding',
-                description: 'Terminal-native agentic coding assistant for multi-file engineering, testing, and repository refactoring.'
+                description: 'Natural-language software creation where builders direct LLM coding agents end-to-end.'
+            },
+            {
+                keyword: 'mercor',
+                label: 'Mercor',
+                category: 'Agents',
+                description: 'AI-powered technical talent evaluation, matching, and automated interviewing platform.'
             },
             {
                 keyword: 'notebooklm',
                 label: 'NotebookLM',
                 category: 'Models',
                 description: 'Source-grounded AI research notebook turning documents into structured briefs and audio overviews.'
-            },
-            {
-                keyword: 'vibe coding',
-                label: 'Vibe Coding',
-                category: 'Coding',
-                description: 'Natural-language software creation where builders direct LLM coding agents rather than writing boilerplate.'
             },
             {
                 keyword: 'mcp server',
@@ -292,28 +323,16 @@
                 description: 'Neural voice synthesis, dubbing, and conversational audio infrastructure for creators and apps.'
             },
             {
-                keyword: 'manus ai',
-                label: 'Manus AI',
+                keyword: 'glean',
+                label: 'Glean',
                 category: 'Agents',
-                description: 'General-purpose autonomous execution agent chaining web research, code execution, and deliverables.'
+                description: 'Enterprise Work AI indexing internal company knowledge across workplace SaaS tools.'
             },
             {
-                keyword: 'grok',
-                label: 'Grok',
-                category: 'Models',
-                description: 'Real-time conversational model paired with live social intelligence and multimodal generation.'
-            },
-            {
-                keyword: 'perplexity ai',
-                label: 'Perplexity AI',
-                category: 'Models',
-                description: 'Citation-first AI answer engine competing directly with traditional link-based search.'
-            },
-            {
-                keyword: 'n8n',
-                label: 'n8n',
-                category: 'Agents',
-                description: 'Visual workflow orchestration platform heavily adopted for self-hosted AI agent pipelines.'
+                keyword: 'heygen',
+                label: 'HeyGen',
+                category: 'Media',
+                description: 'AI video avatar and multilingual localization platform for GTM teams and training.'
             },
             {
                 keyword: 'cursor ai',
@@ -322,28 +341,10 @@
                 description: 'AI-native code editor with codebase indexing, inline diffs, and multi-model agent execution.'
             },
             {
-                keyword: 'ai video',
-                label: 'AI Video',
-                category: 'Media',
-                description: 'Text-to-video, image-to-video, and automated post-production tools for marketing and film.'
-            },
-            {
-                keyword: 'lovable ai',
-                label: 'Lovable AI',
+                keyword: 'replit',
+                label: 'Replit',
                 category: 'Coding',
-                description: 'Prompt-to-full-stack web app builder generating React UI, database schemas, and live deployments.'
-            },
-            {
-                keyword: 'ai voice generator',
-                label: 'AI Voice Generator',
-                category: 'Media',
-                description: 'Commercial text-to-speech and voice cloning queries driven by video and customer-support automation.'
-            },
-            {
-                keyword: 'ai workflow',
-                label: 'AI Workflow',
-                category: 'Agents',
-                description: 'Structured multi-step LLM pipelines replacing manual back-office triage and data enrichment.'
+                description: 'Cloud IDE and AI Agent platform enabling full-stack application creation in browser.'
             }
         ];
 
@@ -519,29 +520,25 @@
             trendGrid.innerHTML = items.map((item, idx) => {
                 const { meta, row, ts, displayPct } = item;
                 const pctColor = (displayPct ?? 0) > 0 ? 'text-emerald-400' : 'text-slate-500';
-                const pctTitle = winMonths === 24 ? 'YoY Growth' : `${winMonths}M Change`;
-                const cpcText = row.averageCpc != null ? `$${Number(row.averageCpc).toFixed(2)} CAD` : 'N/A';
+                const pctTitle = winMonths === 24 ? 'Growth' : `${winMonths}M`;
+                const etLabel = ts.signalTag === 'BREAKOUT' ? 'EXPLODING' : ts.signalTag === 'RISING' ? 'RISING' : 'REGULAR';
 
                 return `
                     <a href="search.html?q=${encodeURIComponent(meta.keyword)}" class="trend-card">
                         <div class="flex items-start justify-between gap-3">
                             <div>
-                                <div class="flex items-center gap-2">
-                                    <h3 class="text-lg font-bold text-slate-900">${escapeHtml(meta.label)}</h3>
+                                <h3 class="text-xl font-bold text-blue-600">${escapeHtml(meta.label)}</h3>
+                                <div class="text-xs text-slate-500 font-medium mt-0.5">${escapeHtml(meta.category)}</div>
+                            </div>
+                            <div class="flex items-baseline gap-4 text-right shrink-0">
+                                <div>
+                                    <div class="text-xl font-bold text-slate-900 tabular leading-none">${escapeHtml(formatCompact(row.vol))}</div>
+                                    <div class="text-[11px] font-medium text-slate-400 mt-1">Volume</div>
                                 </div>
-                                <div class="text-xs text-slate-400 font-medium mt-0.5">${escapeHtml(meta.category)} &middot; Avg CPC ${escapeHtml(cpcText)}</div>
-                            </div>
-                            <div class="text-right shrink-0">
-                                <div class="text-2xl font-bold text-slate-900 tabular">${escapeHtml(formatCompact(row.vol))}</div>
-                                <div class="text-[11px] font-medium text-slate-400 uppercase tracking-wider">Monthly Vol</div>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-between mt-3">
-                            ${signalBadgeHtml(ts.signalTag)}
-                            <div class="text-right">
-                                <span class="text-lg font-bold tabular ${pctColor}">${escapeHtml(formatSignedPct(displayPct))}</span>
-                                <span class="text-[11px] text-slate-400 ml-1">${escapeHtml(pctTitle)}</span>
+                                <div>
+                                    <div class="text-xl font-bold tabular leading-none ${pctColor}">${escapeHtml(formatSignedPct(displayPct))}</div>
+                                    <div class="text-[11px] font-medium text-slate-400 mt-1">${escapeHtml(pctTitle)}</div>
+                                </div>
                             </div>
                         </div>
 
@@ -549,7 +546,13 @@
                             <canvas id="aiChart_${idx}"></canvas>
                         </div>
 
-                        <p class="text-xs text-slate-600 leading-relaxed mt-auto">${escapeHtml(meta.description)}</p>
+                        <p class="text-xs text-slate-600 leading-relaxed mt-auto mb-3">${escapeHtml(meta.description)}</p>
+                        <div>
+                            <span class="badge ${ts.signalTag === 'BREAKOUT' || ts.signalTag === 'RISING' ? 'badge-breakout' : 'badge-steady'}">
+                                ${ts.signalTag === 'BREAKOUT' ? CuteIcons.sparkles(11) : ts.signalTag === 'RISING' ? CuteIcons.trendUp(11) : CuteIcons.checkCircle(11)}
+                                <span>${etLabel}</span>
+                            </span>
+                        </div>
                     </a>
                 `;
             }).join('');
@@ -560,8 +563,10 @@
                 const ctx = canvas.getContext('2d');
                 const isDark = document.documentElement.classList.contains('dark');
                 const isUp = (item.displayPct ?? 0) >= 0;
-                const stroke = isUp ? (isDark ? '#10B981' : '#059669') : (isDark ? '#71717A' : '#A1A1AA');
-                const fill = isUp ? (isDark ? 'rgba(16, 185, 129, 0.1)' : 'rgba(5, 150, 105, 0.08)') : 'rgba(161, 161, 170, 0.07)';
+                const stroke = isUp ? (isDark ? '#60A5FA' : '#2563EB') : (isDark ? '#71717A' : '#A1A1AA');
+                const grad = ctx.createLinearGradient(0, 0, 0, 110);
+                grad.addColorStop(0, isUp ? (isDark ? 'rgba(59, 130, 246, 0.22)' : 'rgba(37, 99, 235, 0.14)') : 'rgba(161, 161, 170, 0.1)');
+                grad.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
 
                 const chart = new Chart(ctx, {
                     type: 'line',
@@ -570,10 +575,10 @@
                         datasets: [{
                             data: item.spark.map((p) => Number(p.vol) || 0),
                             borderColor: stroke,
-                            backgroundColor: fill,
-                            borderWidth: 1.8,
+                            backgroundColor: grad,
+                            borderWidth: 2,
                             fill: true,
-                            tension: 0.28,
+                            tension: 0.3,
                             pointRadius: 0,
                             pointHoverRadius: 4
                         }]
