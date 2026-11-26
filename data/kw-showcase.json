@@ -1,0 +1,6356 @@
+{
+  "generatedAt": "2026-11-26T05:13:08Z",
+  "source": "Google Ads Keyword Planner Native API (v26, read-only test manager account, CAD)",
+  "network": "GOOGLE_SEARCH",
+  "currency": "CAD",
+  "byGeo": {
+    "US": {
+      "nft": {
+        "keyword": "nft",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 7.94,
+        "cpcLow": 0.04,
+        "cpcHigh": 7.57,
+        "competition": "LOW",
+        "competitionIndex": 0,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 67292,
+          "latestVolume": 74000,
+          "peakVolume": 90500,
+          "peakMonth": "2024-11",
+          "momPct": 22,
+          "change3mPct": 41,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.34,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 90500
+            },
+            {
+              "ym": "2024-12",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-01",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 74000
+            }
+          ],
+          "growthScore": 55,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "ai agent": {
+        "keyword": "ai agent",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 28.94,
+        "cpcLow": 6.44,
+        "cpcHigh": 28.76,
+        "competition": "MEDIUM",
+        "competitionIndex": 33,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 59717,
+          "latestVolume": 90500,
+          "peakVolume": 90500,
+          "peakMonth": "2025-01",
+          "momPct": 22,
+          "change3mPct": 34,
+          "yoyPct": 83,
+          "seasonalityIndex": 1.52,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 33100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-01",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-02",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-03",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-05",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-10",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 90500
+            }
+          ],
+          "growthScore": 63,
+          "addedPerMonth": 41000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "web3": {
+        "keyword": "web3",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 9900,
+        "averageCpc": 16.55,
+        "cpcLow": 1.95,
+        "cpcHigh": 17.62,
+        "competition": "LOW",
+        "competitionIndex": 6,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 16454,
+          "latestVolume": 9900,
+          "peakVolume": 33100,
+          "peakMonth": "2025-01",
+          "momPct": 22,
+          "change3mPct": 7,
+          "yoyPct": -45,
+          "seasonalityIndex": 2.01,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 18100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-01",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-04",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-05",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-06",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-07",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-08",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-09",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-01",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-02",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-03",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-04",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-05",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-06",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 9900
+            }
+          ],
+          "growthScore": 46,
+          "addedPerMonth": -8200
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "defi": {
+        "keyword": "defi",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 9900,
+        "averageCpc": 23.33,
+        "cpcLow": 2.52,
+        "cpcHigh": 21.69,
+        "competition": "LOW",
+        "competitionIndex": 1,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 12792,
+          "latestVolume": 12100,
+          "peakVolume": 18100,
+          "peakMonth": "2024-12",
+          "momPct": 22,
+          "change3mPct": 15,
+          "yoyPct": -33,
+          "seasonalityIndex": 1.41,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 14800
+            },
+            {
+              "ym": "2024-12",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-01",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-03",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-04",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-05",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-06",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-07",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-09",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-10",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-01",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-03",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-04",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-06",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-10",
+              "vol": 12100
+            }
+          ],
+          "growthScore": 49,
+          "addedPerMonth": -6000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "layer 2": {
+        "keyword": "layer 2",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 880,
+        "averageCpc": null,
+        "cpcLow": null,
+        "cpcHigh": null,
+        "competition": "LOW",
+        "competitionIndex": 0,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 994,
+          "latestVolume": 1300,
+          "peakVolume": 1300,
+          "peakMonth": "2024-11",
+          "momPct": 0,
+          "change3mPct": 36,
+          "yoyPct": 48,
+          "seasonalityIndex": 1.31,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 1300
+            },
+            {
+              "ym": "2024-12",
+              "vol": 1300
+            },
+            {
+              "ym": "2025-01",
+              "vol": 1300
+            },
+            {
+              "ym": "2025-02",
+              "vol": 1300
+            },
+            {
+              "ym": "2025-03",
+              "vol": 1300
+            },
+            {
+              "ym": "2025-04",
+              "vol": 1000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 1000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 880
+            },
+            {
+              "ym": "2025-07",
+              "vol": 1000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 720
+            },
+            {
+              "ym": "2025-09",
+              "vol": 1000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 880
+            },
+            {
+              "ym": "2025-11",
+              "vol": 880
+            },
+            {
+              "ym": "2025-12",
+              "vol": 720
+            },
+            {
+              "ym": "2026-01",
+              "vol": 720
+            },
+            {
+              "ym": "2026-02",
+              "vol": 720
+            },
+            {
+              "ym": "2026-03",
+              "vol": 880
+            },
+            {
+              "ym": "2026-04",
+              "vol": 720
+            },
+            {
+              "ym": "2026-05",
+              "vol": 880
+            },
+            {
+              "ym": "2026-06",
+              "vol": 880
+            },
+            {
+              "ym": "2026-07",
+              "vol": 880
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-10",
+              "vol": 1300
+            }
+          ],
+          "growthScore": 60,
+          "addedPerMonth": 420
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "memecoin": {
+        "keyword": "memecoin",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 22200,
+        "averageCpc": 14.82,
+        "cpcLow": 3.41,
+        "cpcHigh": 14.33,
+        "competition": "LOW",
+        "competitionIndex": 21,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 48729,
+          "latestVolume": 33100,
+          "peakVolume": 301000,
+          "peakMonth": "2025-01",
+          "momPct": -18,
+          "change3mPct": 146,
+          "yoyPct": 22,
+          "seasonalityIndex": 6.18,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 110000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-04",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-05",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-07",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-08",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-09",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-12",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-04",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-06",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 22200
+            },
+            {
+              "ym": "2026-08",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 33100
+            }
+          ],
+          "growthScore": 72,
+          "addedPerMonth": 6000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "monad": {
+        "keyword": "monad",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 27100,
+        "averageCpc": 10.94,
+        "cpcLow": 2.84,
+        "cpcHigh": 18.67,
+        "competition": "LOW",
+        "competitionIndex": 0,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 21329,
+          "latestVolume": 22200,
+          "peakVolume": 60500,
+          "peakMonth": "2025-11",
+          "momPct": 23,
+          "change3mPct": 23,
+          "yoyPct": -18,
+          "seasonalityIndex": 2.84,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 12100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-01",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-03",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-04",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-05",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-06",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-07",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-08",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-09",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-06",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-08",
+              "vol": 22200
+            },
+            {
+              "ym": "2026-09",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 22200
+            }
+          ],
+          "growthScore": 51,
+          "addedPerMonth": -4900
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "farcaster": {
+        "keyword": "farcaster",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 1900,
+        "averageCpc": null,
+        "cpcLow": null,
+        "cpcHigh": null,
+        "competition": "LOW",
+        "competitionIndex": 0,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 3204,
+          "latestVolume": 1300,
+          "peakVolume": 5400,
+          "peakMonth": "2024-11",
+          "momPct": 30,
+          "change3mPct": -14,
+          "yoyPct": -76,
+          "seasonalityIndex": 1.69,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 5400
+            },
+            {
+              "ym": "2024-12",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-01",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-02",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-03",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-04",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-05",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-06",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-07",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-08",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-09",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-10",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-11",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-12",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-01",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-02",
+              "vol": 2400
+            },
+            {
+              "ym": "2026-03",
+              "vol": 1900
+            },
+            {
+              "ym": "2026-04",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-05",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-06",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-07",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-09",
+              "vol": 1000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 1300
+            }
+          ],
+          "growthScore": 41,
+          "addedPerMonth": -4100
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "linea": {
+        "keyword": "linea",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 14800,
+        "averageCpc": 2.14,
+        "cpcLow": 0.62,
+        "cpcHigh": 7.17,
+        "competition": "LOW",
+        "competitionIndex": 7,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 15117,
+          "latestVolume": 14800,
+          "peakVolume": 22200,
+          "peakMonth": "2025-10",
+          "momPct": 0,
+          "change3mPct": 0,
+          "yoyPct": -33,
+          "seasonalityIndex": 1.47,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 12100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-01",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-04",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-05",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-06",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-07",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-09",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-11",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-12",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-01",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-02",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-03",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-06",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-07",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-09",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-10",
+              "vol": 14800
+            }
+          ],
+          "growthScore": 47,
+          "addedPerMonth": -7400
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "cold plunge": {
+        "keyword": "cold plunge",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 13.78,
+        "cpcLow": 5.4,
+        "cpcHigh": 14.4,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 72875,
+          "latestVolume": 60500,
+          "peakVolume": 110000,
+          "peakMonth": "2025-01",
+          "momPct": 0,
+          "change3mPct": -7,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.51,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 90500
+            },
+            {
+              "ym": "2024-12",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-01",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-04",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-05",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 60500
+            }
+          ],
+          "growthScore": 49,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "ai video": {
+        "keyword": "ai video",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 49500,
+        "averageCpc": 7.06,
+        "cpcLow": 1.63,
+        "cpcHigh": 6.86,
+        "competition": "MEDIUM",
+        "competitionIndex": 43,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 43067,
+          "latestVolume": 49500,
+          "peakVolume": 60500,
+          "peakMonth": "2025-06",
+          "momPct": 22,
+          "change3mPct": 0,
+          "yoyPct": -18,
+          "seasonalityIndex": 1.4,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 27100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-01",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-04",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-05",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-10",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 49500
+            }
+          ],
+          "growthScore": 48,
+          "addedPerMonth": -11000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "prediction market": {
+        "keyword": "prediction market",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 49500,
+        "averageCpc": 22.74,
+        "cpcLow": 5.56,
+        "cpcHigh": 37.34,
+        "competition": "LOW",
+        "competitionIndex": 31,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 30979,
+          "latestVolume": 49500,
+          "peakVolume": 74000,
+          "peakMonth": "2026-03",
+          "momPct": 22,
+          "change3mPct": 0,
+          "yoyPct": 83,
+          "seasonalityIndex": 2.39,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 18100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-01",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-02",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-03",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-04",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-05",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-06",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-07",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-08",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-09",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-10",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 49500
+            }
+          ],
+          "growthScore": 58,
+          "addedPerMonth": 22400
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "air fryer": {
+        "keyword": "air fryer",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 673000,
+        "averageCpc": 1.14,
+        "cpcLow": 0.32,
+        "cpcHigh": 1.58,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 548750,
+          "latestVolume": 673000,
+          "peakVolume": 823000,
+          "peakMonth": "2026-08",
+          "momPct": 0,
+          "change3mPct": 22,
+          "yoyPct": 50,
+          "seasonalityIndex": 1.5,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 673000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 673000
+            }
+          ],
+          "growthScore": 58,
+          "addedPerMonth": 223000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "claude code": {
+        "keyword": "claude code",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 550000,
+        "averageCpc": 5.23,
+        "cpcLow": 2.88,
+        "cpcHigh": 8.13,
+        "competition": "LOW",
+        "competitionIndex": 33,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 330251,
+          "latestVolume": 368000,
+          "peakVolume": 1000000,
+          "peakMonth": "2026-03",
+          "momPct": 22,
+          "change3mPct": -39,
+          "yoyPct": 83,
+          "seasonalityIndex": 3.03,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 720
+            },
+            {
+              "ym": "2024-12",
+              "vol": 590
+            },
+            {
+              "ym": "2025-01",
+              "vol": 720
+            },
+            {
+              "ym": "2025-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-04",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-05",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 1000000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 368000
+            }
+          ],
+          "growthScore": 53,
+          "addedPerMonth": 167000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:08Z"
+      }
+    },
+    "GLOBAL": {
+      "nft": {
+        "keyword": "nft",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 368000,
+        "averageCpc": 3.68,
+        "cpcLow": 0.31,
+        "cpcHigh": 5.01,
+        "competition": "LOW",
+        "competitionIndex": 1,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 450792,
+          "latestVolume": 301000,
+          "peakVolume": 1000000,
+          "peakMonth": "2025-03",
+          "momPct": 0,
+          "change3mPct": 6,
+          "yoyPct": -33,
+          "seasonalityIndex": 2.22,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 550000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 301000
+            }
+          ],
+          "growthScore": 48,
+          "addedPerMonth": -149000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "ai agent": {
+        "keyword": "ai agent",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 301000,
+        "averageCpc": 8.84,
+        "cpcLow": 0.82,
+        "cpcHigh": 11.71,
+        "competition": "MEDIUM",
+        "competitionIndex": 37,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 321708,
+          "latestVolume": 450000,
+          "peakVolume": 450000,
+          "peakMonth": "2025-01",
+          "momPct": 22,
+          "change3mPct": 15,
+          "yoyPct": 83,
+          "seasonalityIndex": 1.4,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 135000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 450000
+            }
+          ],
+          "growthScore": 60,
+          "addedPerMonth": 204000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "web3": {
+        "keyword": "web3",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 90500,
+        "averageCpc": 5.3,
+        "cpcLow": 0.27,
+        "cpcHigh": 7.04,
+        "competition": "LOW",
+        "competitionIndex": 6,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 124417,
+          "latestVolume": 60500,
+          "peakVolume": 246000,
+          "peakMonth": "2025-01",
+          "momPct": 0,
+          "change3mPct": -7,
+          "yoyPct": -55,
+          "seasonalityIndex": 1.98,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 60500
+            }
+          ],
+          "growthScore": 44,
+          "addedPerMonth": -74500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "defi": {
+        "keyword": "defi",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 110000,
+        "averageCpc": 6.39,
+        "cpcLow": 0.55,
+        "cpcHigh": 10.09,
+        "competition": "LOW",
+        "competitionIndex": 2,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 145375,
+          "latestVolume": 110000,
+          "peakVolume": 201000,
+          "peakMonth": "2025-01",
+          "momPct": 0,
+          "change3mPct": 0,
+          "yoyPct": -45,
+          "seasonalityIndex": 1.38,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 165000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 110000
+            }
+          ],
+          "growthScore": 46,
+          "addedPerMonth": -91000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "layer 2": {
+        "keyword": "layer 2",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 4400,
+        "averageCpc": 2.01,
+        "cpcLow": 1.68,
+        "cpcHigh": 32.68,
+        "competition": "LOW",
+        "competitionIndex": 1,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 5596,
+          "latestVolume": 4400,
+          "peakVolume": 9900,
+          "peakMonth": "2024-11",
+          "momPct": 0,
+          "change3mPct": 7,
+          "yoyPct": -19,
+          "seasonalityIndex": 1.77,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 9900
+            },
+            {
+              "ym": "2024-12",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-01",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-03",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-04",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-05",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-06",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-07",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-08",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-09",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-10",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-11",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-12",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-01",
+              "vol": 5400
+            },
+            {
+              "ym": "2026-02",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-03",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-04",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-05",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-06",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-07",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-08",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-09",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-10",
+              "vol": 4400
+            }
+          ],
+          "growthScore": 49,
+          "addedPerMonth": -1000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "memecoin": {
+        "keyword": "memecoin",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 90500,
+        "averageCpc": 8.68,
+        "cpcLow": 1.1,
+        "cpcHigh": 8.61,
+        "competition": "LOW",
+        "competitionIndex": 21,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 231917,
+          "latestVolume": 110000,
+          "peakVolume": 1220000,
+          "peakMonth": "2025-01",
+          "momPct": -19,
+          "change3mPct": 95,
+          "yoyPct": -33,
+          "seasonalityIndex": 5.26,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 550000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 110000
+            }
+          ],
+          "growthScore": 59,
+          "addedPerMonth": -55000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "monad": {
+        "keyword": "monad",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 74000,
+        "averageCpc": 4.33,
+        "cpcLow": 0.38,
+        "cpcHigh": 7.34,
+        "competition": "LOW",
+        "competitionIndex": 1,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 73688,
+          "latestVolume": 60500,
+          "peakVolume": 165000,
+          "peakMonth": "2025-11",
+          "momPct": 22,
+          "change3mPct": 0,
+          "yoyPct": -45,
+          "seasonalityIndex": 2.24,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 40500
+            },
+            {
+              "ym": "2024-12",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-02",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 60500
+            }
+          ],
+          "growthScore": 46,
+          "addedPerMonth": -49500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "farcaster": {
+        "keyword": "farcaster",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 12100,
+        "averageCpc": null,
+        "cpcLow": 0.63,
+        "cpcHigh": 3.74,
+        "competition": "LOW",
+        "competitionIndex": 0,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 17133,
+          "latestVolume": 5400,
+          "peakVolume": 33100,
+          "peakMonth": "2025-10",
+          "momPct": -18,
+          "change3mPct": -19,
+          "yoyPct": -84,
+          "seasonalityIndex": 1.93,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 22200
+            },
+            {
+              "ym": "2024-12",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-01",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-02",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-04",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-05",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-06",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-07",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-08",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-09",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 22200
+            },
+            {
+              "ym": "2026-02",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-06",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-07",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-08",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-09",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-10",
+              "vol": 5400
+            }
+          ],
+          "growthScore": 39,
+          "addedPerMonth": -27700
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "linea": {
+        "keyword": "linea",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 246000,
+        "averageCpc": 0.98,
+        "cpcLow": 0.31,
+        "cpcHigh": 4.34,
+        "competition": "LOW",
+        "competitionIndex": 11,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 239333,
+          "latestVolume": 201000,
+          "peakVolume": 301000,
+          "peakMonth": "2025-09",
+          "momPct": 0,
+          "change3mPct": -7,
+          "yoyPct": -33,
+          "seasonalityIndex": 1.26,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 246000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 201000
+            }
+          ],
+          "growthScore": 46,
+          "addedPerMonth": -100000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "cold plunge": {
+        "keyword": "cold plunge",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 110000,
+        "averageCpc": 10.24,
+        "cpcLow": 2.68,
+        "cpcHigh": 12.45,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 136313,
+          "latestVolume": 135000,
+          "peakVolume": 201000,
+          "peakMonth": "2025-06",
+          "momPct": 23,
+          "change3mPct": 7,
+          "yoyPct": 23,
+          "seasonalityIndex": 1.47,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 135000
+            }
+          ],
+          "growthScore": 53,
+          "addedPerMonth": 25000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "ai video": {
+        "keyword": "ai video",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 450000,
+        "averageCpc": 1.74,
+        "cpcLow": 0.11,
+        "cpcHigh": 2.36,
+        "competition": "MEDIUM",
+        "competitionIndex": 40,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 339292,
+          "latestVolume": 450000,
+          "peakVolume": 450000,
+          "peakMonth": "2026-01",
+          "momPct": 0,
+          "change3mPct": 6,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.33,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 450000
+            }
+          ],
+          "growthScore": 53,
+          "addedPerMonth": 82000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "prediction market": {
+        "keyword": "prediction market",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 90500,
+        "averageCpc": 20.91,
+        "cpcLow": 4.45,
+        "cpcHigh": 32.82,
+        "competition": "LOW",
+        "competitionIndex": 18,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 58808,
+          "latestVolume": 110000,
+          "peakVolume": 135000,
+          "peakMonth": "2026-01",
+          "momPct": 49,
+          "change3mPct": -6,
+          "yoyPct": 122,
+          "seasonalityIndex": 2.3,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 27100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-01",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-02",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-03",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-04",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-05",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-06",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-07",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-09",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 110000
+            }
+          ],
+          "growthScore": 61,
+          "addedPerMonth": 60500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "air fryer": {
+        "keyword": "air fryer",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 4090000,
+        "averageCpc": 0.47,
+        "cpcLow": 0.09,
+        "cpcHigh": 0.83,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 4048750,
+          "latestVolume": 5000000,
+          "peakVolume": 6120000,
+          "peakMonth": "2024-11",
+          "momPct": 22,
+          "change3mPct": 14,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.51,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 6120000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 3350000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 3350000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 3350000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 3350000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 3350000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 5000000
+            }
+          ],
+          "growthScore": 54,
+          "addedPerMonth": 910000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "claude code": {
+        "keyword": "claude code",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 4090000,
+        "averageCpc": 3.54,
+        "cpcLow": 0.78,
+        "cpcHigh": 5.58,
+        "competition": "LOW",
+        "competitionIndex": 17,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 2119533,
+          "latestVolume": 3350000,
+          "peakVolume": 6120000,
+          "peakMonth": "2026-03",
+          "momPct": 22,
+          "change3mPct": -29,
+          "yoyPct": 235,
+          "seasonalityIndex": 2.89,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 3600
+            },
+            {
+              "ym": "2024-12",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-01",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-02",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 1830000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 1500000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 5000000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 2740000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 2740000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 3350000
+            }
+          ],
+          "growthScore": 70,
+          "addedPerMonth": 2350000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:10Z"
+      }
+    }
+  },
+  "ideas": {
+    "ai agent": [
+      {
+        "keyword": "ai agent",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 28.95,
+        "cpcLow": 6.44,
+        "cpcHigh": 28.77,
+        "competition": "MEDIUM",
+        "competitionIndex": 33,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 60133,
+          "latestVolume": 90500,
+          "peakVolume": 90500,
+          "peakMonth": "2026-03",
+          "momPct": 22,
+          "change3mPct": 34,
+          "yoyPct": 123,
+          "seasonalityIndex": 1.5,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 90500
+            }
+          ],
+          "growthScore": 67,
+          "addedPerMonth": 50000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "artificial intelligence agency",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 28.95,
+        "cpcLow": 6.44,
+        "cpcHigh": 28.77,
+        "competition": "MEDIUM",
+        "competitionIndex": 33,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 60133,
+          "latestVolume": 90500,
+          "peakVolume": 90500,
+          "peakMonth": "2026-03",
+          "momPct": 22,
+          "change3mPct": 34,
+          "yoyPct": 123,
+          "seasonalityIndex": 1.5,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 90500
+            }
+          ],
+          "growthScore": 67,
+          "addedPerMonth": 50000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "intelligent virtual agents",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 140,
+        "averageCpc": 64.86,
+        "cpcLow": 9.98,
+        "cpcHigh": 85.21,
+        "competition": "LOW",
+        "competitionIndex": 21,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 129,
+          "latestVolume": 70,
+          "peakVolume": 590,
+          "peakMonth": "2025-12",
+          "momPct": 40,
+          "change3mPct": -35,
+          "yoyPct": 0,
+          "seasonalityIndex": 4.57,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 70
+            },
+            {
+              "ym": "2025-12",
+              "vol": 590
+            },
+            {
+              "ym": "2026-01",
+              "vol": 70
+            },
+            {
+              "ym": "2026-02",
+              "vol": 90
+            },
+            {
+              "ym": "2026-03",
+              "vol": 260
+            },
+            {
+              "ym": "2026-04",
+              "vol": 90
+            },
+            {
+              "ym": "2026-05",
+              "vol": 110
+            },
+            {
+              "ym": "2026-06",
+              "vol": 50
+            },
+            {
+              "ym": "2026-07",
+              "vol": 70
+            },
+            {
+              "ym": "2026-08",
+              "vol": 30
+            },
+            {
+              "ym": "2026-09",
+              "vol": 50
+            },
+            {
+              "ym": "2026-10",
+              "vol": 70
+            }
+          ],
+          "growthScore": 45,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "ai leasing agent",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 70,
+        "averageCpc": 57.41,
+        "cpcLow": 17.54,
+        "cpcHigh": 43.73,
+        "competition": "MEDIUM",
+        "competitionIndex": 53,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 61,
+          "latestVolume": 70,
+          "peakVolume": 90,
+          "peakMonth": "2026-05",
+          "momPct": 40,
+          "change3mPct": -26,
+          "yoyPct": 40,
+          "seasonalityIndex": 1.48,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 50
+            },
+            {
+              "ym": "2025-12",
+              "vol": 40
+            },
+            {
+              "ym": "2026-01",
+              "vol": 50
+            },
+            {
+              "ym": "2026-02",
+              "vol": 50
+            },
+            {
+              "ym": "2026-03",
+              "vol": 70
+            },
+            {
+              "ym": "2026-04",
+              "vol": 70
+            },
+            {
+              "ym": "2026-05",
+              "vol": 90
+            },
+            {
+              "ym": "2026-06",
+              "vol": 70
+            },
+            {
+              "ym": "2026-07",
+              "vol": 70
+            },
+            {
+              "ym": "2026-08",
+              "vol": 50
+            },
+            {
+              "ym": "2026-09",
+              "vol": 50
+            },
+            {
+              "ym": "2026-10",
+              "vol": 70
+            }
+          ],
+          "growthScore": 51,
+          "addedPerMonth": 20
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "knowledge based agent",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 50,
+        "averageCpc": null,
+        "cpcLow": 11.36,
+        "cpcHigh": 43.09,
+        "competition": "MEDIUM",
+        "competitionIndex": 36,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 47,
+          "latestVolume": 40,
+          "peakVolume": 90,
+          "peakMonth": "2026-03",
+          "momPct": -20,
+          "change3mPct": 18,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.91,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 40
+            },
+            {
+              "ym": "2025-12",
+              "vol": 30
+            },
+            {
+              "ym": "2026-01",
+              "vol": 40
+            },
+            {
+              "ym": "2026-02",
+              "vol": 70
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90
+            },
+            {
+              "ym": "2026-04",
+              "vol": 50
+            },
+            {
+              "ym": "2026-05",
+              "vol": 50
+            },
+            {
+              "ym": "2026-06",
+              "vol": 30
+            },
+            {
+              "ym": "2026-07",
+              "vol": 30
+            },
+            {
+              "ym": "2026-08",
+              "vol": 40
+            },
+            {
+              "ym": "2026-09",
+              "vol": 50
+            },
+            {
+              "ym": "2026-10",
+              "vol": 40
+            }
+          ],
+          "growthScore": 52,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "ai virtual agent",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 480,
+        "averageCpc": 49.99,
+        "cpcLow": 14.45,
+        "cpcHigh": 49.27,
+        "competition": "LOW",
+        "competitionIndex": 24,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 472,
+          "latestVolume": 210,
+          "peakVolume": 1000,
+          "peakMonth": "2025-11",
+          "momPct": 0,
+          "change3mPct": -53,
+          "yoyPct": -79,
+          "seasonalityIndex": 2.12,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 1000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 880
+            },
+            {
+              "ym": "2026-01",
+              "vol": 320
+            },
+            {
+              "ym": "2026-02",
+              "vol": 390
+            },
+            {
+              "ym": "2026-03",
+              "vol": 880
+            },
+            {
+              "ym": "2026-04",
+              "vol": 210
+            },
+            {
+              "ym": "2026-05",
+              "vol": 390
+            },
+            {
+              "ym": "2026-06",
+              "vol": 480
+            },
+            {
+              "ym": "2026-07",
+              "vol": 480
+            },
+            {
+              "ym": "2026-08",
+              "vol": 210
+            },
+            {
+              "ym": "2026-09",
+              "vol": 210
+            },
+            {
+              "ym": "2026-10",
+              "vol": 210
+            }
+          ],
+          "growthScore": 35,
+          "addedPerMonth": -790
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "knowledge based agent in artificial intelligence",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 30,
+        "averageCpc": null,
+        "cpcLow": null,
+        "cpcHigh": null,
+        "competition": "LOW",
+        "competitionIndex": 9,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 26,
+          "latestVolume": 10,
+          "peakVolume": 70,
+          "peakMonth": "2026-03",
+          "momPct": 0,
+          "change3mPct": -50,
+          "yoyPct": -67,
+          "seasonalityIndex": 2.69,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 30
+            },
+            {
+              "ym": "2025-12",
+              "vol": 20
+            },
+            {
+              "ym": "2026-01",
+              "vol": 40
+            },
+            {
+              "ym": "2026-02",
+              "vol": 30
+            },
+            {
+              "ym": "2026-03",
+              "vol": 70
+            },
+            {
+              "ym": "2026-04",
+              "vol": 30
+            },
+            {
+              "ym": "2026-05",
+              "vol": 40
+            },
+            {
+              "ym": "2026-06",
+              "vol": 10
+            },
+            {
+              "ym": "2026-07",
+              "vol": 10
+            },
+            {
+              "ym": "2026-08",
+              "vol": 10
+            },
+            {
+              "ym": "2026-09",
+              "vol": 10
+            },
+            {
+              "ym": "2026-10",
+              "vol": 10
+            }
+          ],
+          "growthScore": 37,
+          "addedPerMonth": -20
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "artificial intelligence foundations of computational agents",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 40,
+        "averageCpc": 6.82,
+        "cpcLow": 5,
+        "cpcHigh": 22.42,
+        "competition": "MEDIUM",
+        "competitionIndex": 47,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 40,
+          "latestVolume": 30,
+          "peakVolume": 70,
+          "peakMonth": "2026-01",
+          "momPct": -40,
+          "change3mPct": 63,
+          "yoyPct": -25,
+          "seasonalityIndex": 1.75,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 40
+            },
+            {
+              "ym": "2025-12",
+              "vol": 50
+            },
+            {
+              "ym": "2026-01",
+              "vol": 70
+            },
+            {
+              "ym": "2026-02",
+              "vol": 40
+            },
+            {
+              "ym": "2026-03",
+              "vol": 40
+            },
+            {
+              "ym": "2026-04",
+              "vol": 30
+            },
+            {
+              "ym": "2026-05",
+              "vol": 30
+            },
+            {
+              "ym": "2026-06",
+              "vol": 30
+            },
+            {
+              "ym": "2026-07",
+              "vol": 20
+            },
+            {
+              "ym": "2026-08",
+              "vol": 50
+            },
+            {
+              "ym": "2026-09",
+              "vol": 50
+            },
+            {
+              "ym": "2026-10",
+              "vol": 30
+            }
+          ],
+          "growthScore": 56,
+          "addedPerMonth": -10
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "rational agent in ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 20,
+        "averageCpc": null,
+        "cpcLow": null,
+        "cpcHigh": null,
+        "competition": "LOW",
+        "competitionIndex": 0,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 17,
+          "latestVolume": 10,
+          "peakVolume": 50,
+          "peakMonth": "2026-03",
+          "momPct": 0,
+          "change3mPct": -40,
+          "yoyPct": 0,
+          "seasonalityIndex": 2.94,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 10
+            },
+            {
+              "ym": "2025-12",
+              "vol": 10
+            },
+            {
+              "ym": "2026-01",
+              "vol": 20
+            },
+            {
+              "ym": "2026-02",
+              "vol": 20
+            },
+            {
+              "ym": "2026-03",
+              "vol": 50
+            },
+            {
+              "ym": "2026-04",
+              "vol": 10
+            },
+            {
+              "ym": "2026-05",
+              "vol": 30
+            },
+            {
+              "ym": "2026-06",
+              "vol": 10
+            },
+            {
+              "ym": "2026-07",
+              "vol": 10
+            },
+            {
+              "ym": "2026-08",
+              "vol": 10
+            },
+            {
+              "ym": "2026-09",
+              "vol": 10
+            },
+            {
+              "ym": "2026-10",
+              "vol": 10
+            }
+          ],
+          "growthScore": 45,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "rational ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 70,
+        "averageCpc": null,
+        "cpcLow": null,
+        "cpcHigh": null,
+        "competition": "LOW",
+        "competitionIndex": 1,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 70,
+          "latestVolume": 110,
+          "peakVolume": 110,
+          "peakMonth": "2026-04",
+          "momPct": 22,
+          "change3mPct": 71,
+          "yoyPct": 57,
+          "seasonalityIndex": 1.57,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 70
+            },
+            {
+              "ym": "2025-12",
+              "vol": 50
+            },
+            {
+              "ym": "2026-01",
+              "vol": 50
+            },
+            {
+              "ym": "2026-02",
+              "vol": 70
+            },
+            {
+              "ym": "2026-03",
+              "vol": 30
+            },
+            {
+              "ym": "2026-04",
+              "vol": 110
+            },
+            {
+              "ym": "2026-05",
+              "vol": 70
+            },
+            {
+              "ym": "2026-06",
+              "vol": 50
+            },
+            {
+              "ym": "2026-07",
+              "vol": 50
+            },
+            {
+              "ym": "2026-08",
+              "vol": 90
+            },
+            {
+              "ym": "2026-09",
+              "vol": 90
+            },
+            {
+              "ym": "2026-10",
+              "vol": 110
+            }
+          ],
+          "growthScore": 65,
+          "addedPerMonth": 40
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "intelligent agent in ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 28.95,
+        "cpcLow": 6.44,
+        "cpcHigh": 28.77,
+        "competition": "MEDIUM",
+        "competitionIndex": 33,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 60133,
+          "latestVolume": 90500,
+          "peakVolume": 90500,
+          "peakMonth": "2026-03",
+          "momPct": 22,
+          "change3mPct": 34,
+          "yoyPct": 123,
+          "seasonalityIndex": 1.5,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 90500
+            }
+          ],
+          "growthScore": 67,
+          "addedPerMonth": 50000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      },
+      {
+        "keyword": "ai powered virtual agent",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 20,
+        "averageCpc": null,
+        "cpcLow": null,
+        "cpcHigh": null,
+        "competition": "MEDIUM",
+        "competitionIndex": 43,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 19,
+          "latestVolume": 10,
+          "peakVolume": 50,
+          "peakMonth": "2026-03",
+          "momPct": 0,
+          "change3mPct": -50,
+          "yoyPct": -50,
+          "seasonalityIndex": 2.63,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 20
+            },
+            {
+              "ym": "2025-12",
+              "vol": 20
+            },
+            {
+              "ym": "2026-01",
+              "vol": 10
+            },
+            {
+              "ym": "2026-02",
+              "vol": 10
+            },
+            {
+              "ym": "2026-03",
+              "vol": 50
+            },
+            {
+              "ym": "2026-04",
+              "vol": 30
+            },
+            {
+              "ym": "2026-05",
+              "vol": 20
+            },
+            {
+              "ym": "2026-06",
+              "vol": 10
+            },
+            {
+              "ym": "2026-07",
+              "vol": 30
+            },
+            {
+              "ym": "2026-08",
+              "vol": 10
+            },
+            {
+              "ym": "2026-09",
+              "vol": 10
+            },
+            {
+              "ym": "2026-10",
+              "vol": 10
+            }
+          ],
+          "growthScore": 38,
+          "addedPerMonth": -10
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:13:43Z"
+      }
+    ],
+    "cold plunge": [
+      {
+        "keyword": "cold plunge",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 13.79,
+        "cpcLow": 5.4,
+        "cpcHigh": 14.41,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 58875,
+          "latestVolume": 60500,
+          "peakVolume": 74000,
+          "peakMonth": "2026-07",
+          "momPct": 0,
+          "change3mPct": -7,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.26,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 60500
+            }
+          ],
+          "growthScore": 49,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "ice plunge",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 2400,
+        "averageCpc": 9.2,
+        "cpcLow": 3.42,
+        "cpcHigh": 13.65,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 2167,
+          "latestVolume": 1900,
+          "peakVolume": 2900,
+          "peakMonth": "2026-01",
+          "momPct": 0,
+          "change3mPct": -8,
+          "yoyPct": -21,
+          "seasonalityIndex": 1.34,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 2400
+            },
+            {
+              "ym": "2025-12",
+              "vol": 2400
+            },
+            {
+              "ym": "2026-01",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-02",
+              "vol": 2400
+            },
+            {
+              "ym": "2026-03",
+              "vol": 2400
+            },
+            {
+              "ym": "2026-04",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-05",
+              "vol": 1900
+            },
+            {
+              "ym": "2026-06",
+              "vol": 1900
+            },
+            {
+              "ym": "2026-07",
+              "vol": 2400
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1900
+            },
+            {
+              "ym": "2026-09",
+              "vol": 1900
+            },
+            {
+              "ym": "2026-10",
+              "vol": 1900
+            }
+          ],
+          "growthScore": 47,
+          "addedPerMonth": -500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "cold plunge near me",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 18100,
+        "averageCpc": 3.35,
+        "cpcLow": 2.05,
+        "cpcHigh": 10.09,
+        "competition": "MEDIUM",
+        "competitionIndex": 57,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 19667,
+          "latestVolume": 18100,
+          "peakVolume": 27100,
+          "peakMonth": "2026-07",
+          "momPct": -18,
+          "change3mPct": 6,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.38,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-03",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-06",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 22200
+            },
+            {
+              "ym": "2026-10",
+              "vol": 18100
+            }
+          ],
+          "growthScore": 51,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "best cold plunge",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 1300,
+        "averageCpc": 23.16,
+        "cpcLow": 6.33,
+        "cpcHigh": 23.88,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 1425,
+          "latestVolume": 1300,
+          "peakVolume": 1900,
+          "peakMonth": "2025-11",
+          "momPct": 0,
+          "change3mPct": -7,
+          "yoyPct": -32,
+          "seasonalityIndex": 1.33,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 1900
+            },
+            {
+              "ym": "2025-12",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-01",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-02",
+              "vol": 1000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-04",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-05",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-06",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-07",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-09",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-10",
+              "vol": 1300
+            }
+          ],
+          "growthScore": 46,
+          "addedPerMonth": -600
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "the cold plunge",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 260,
+        "averageCpc": 10.51,
+        "cpcLow": 4.63,
+        "cpcHigh": 19.86,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 248,
+          "latestVolume": 170,
+          "peakVolume": 320,
+          "peakMonth": "2025-11",
+          "momPct": -19,
+          "change3mPct": -6,
+          "yoyPct": -47,
+          "seasonalityIndex": 1.29,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 320
+            },
+            {
+              "ym": "2025-12",
+              "vol": 320
+            },
+            {
+              "ym": "2026-01",
+              "vol": 320
+            },
+            {
+              "ym": "2026-02",
+              "vol": 260
+            },
+            {
+              "ym": "2026-03",
+              "vol": 320
+            },
+            {
+              "ym": "2026-04",
+              "vol": 210
+            },
+            {
+              "ym": "2026-05",
+              "vol": 210
+            },
+            {
+              "ym": "2026-06",
+              "vol": 210
+            },
+            {
+              "ym": "2026-07",
+              "vol": 210
+            },
+            {
+              "ym": "2026-08",
+              "vol": 210
+            },
+            {
+              "ym": "2026-09",
+              "vol": 210
+            },
+            {
+              "ym": "2026-10",
+              "vol": 170
+            }
+          ],
+          "growthScore": 45,
+          "addedPerMonth": -150
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "blue cube ice bath",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 170,
+        "averageCpc": 5.86,
+        "cpcLow": 3,
+        "cpcHigh": 10.35,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 158,
+          "latestVolume": 70,
+          "peakVolume": 320,
+          "peakMonth": "2025-11",
+          "momPct": -22,
+          "change3mPct": -36,
+          "yoyPct": -78,
+          "seasonalityIndex": 2.03,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 320
+            },
+            {
+              "ym": "2025-12",
+              "vol": 210
+            },
+            {
+              "ym": "2026-01",
+              "vol": 170
+            },
+            {
+              "ym": "2026-02",
+              "vol": 170
+            },
+            {
+              "ym": "2026-03",
+              "vol": 170
+            },
+            {
+              "ym": "2026-04",
+              "vol": 170
+            },
+            {
+              "ym": "2026-05",
+              "vol": 110
+            },
+            {
+              "ym": "2026-06",
+              "vol": 140
+            },
+            {
+              "ym": "2026-07",
+              "vol": 170
+            },
+            {
+              "ym": "2026-08",
+              "vol": 110
+            },
+            {
+              "ym": "2026-09",
+              "vol": 90
+            },
+            {
+              "ym": "2026-10",
+              "vol": 70
+            }
+          ],
+          "growthScore": 37,
+          "addedPerMonth": -250
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "plunge ice bath",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 320,
+        "averageCpc": 8.99,
+        "cpcLow": 4.4,
+        "cpcHigh": 12.92,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 320,
+          "latestVolume": 210,
+          "peakVolume": 390,
+          "peakMonth": "2025-11",
+          "momPct": 0,
+          "change3mPct": -18,
+          "yoyPct": -46,
+          "seasonalityIndex": 1.22,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 390
+            },
+            {
+              "ym": "2025-12",
+              "vol": 390
+            },
+            {
+              "ym": "2026-01",
+              "vol": 320
+            },
+            {
+              "ym": "2026-02",
+              "vol": 390
+            },
+            {
+              "ym": "2026-03",
+              "vol": 390
+            },
+            {
+              "ym": "2026-04",
+              "vol": 320
+            },
+            {
+              "ym": "2026-05",
+              "vol": 320
+            },
+            {
+              "ym": "2026-06",
+              "vol": 260
+            },
+            {
+              "ym": "2026-07",
+              "vol": 320
+            },
+            {
+              "ym": "2026-08",
+              "vol": 320
+            },
+            {
+              "ym": "2026-09",
+              "vol": 210
+            },
+            {
+              "ym": "2026-10",
+              "vol": 210
+            }
+          ],
+          "growthScore": 43,
+          "addedPerMonth": -180
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "morozko cold plunge",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 260,
+        "averageCpc": 15.29,
+        "cpcLow": 2.84,
+        "cpcHigh": 16.37,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 287,
+          "latestVolume": 210,
+          "peakVolume": 390,
+          "peakMonth": "2025-11",
+          "momPct": -19,
+          "change3mPct": -13,
+          "yoyPct": -46,
+          "seasonalityIndex": 1.36,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 390
+            },
+            {
+              "ym": "2025-12",
+              "vol": 320
+            },
+            {
+              "ym": "2026-01",
+              "vol": 320
+            },
+            {
+              "ym": "2026-02",
+              "vol": 260
+            },
+            {
+              "ym": "2026-03",
+              "vol": 320
+            },
+            {
+              "ym": "2026-04",
+              "vol": 260
+            },
+            {
+              "ym": "2026-05",
+              "vol": 320
+            },
+            {
+              "ym": "2026-06",
+              "vol": 260
+            },
+            {
+              "ym": "2026-07",
+              "vol": 260
+            },
+            {
+              "ym": "2026-08",
+              "vol": 260
+            },
+            {
+              "ym": "2026-09",
+              "vol": 260
+            },
+            {
+              "ym": "2026-10",
+              "vol": 210
+            }
+          ],
+          "growthScore": 44,
+          "addedPerMonth": -180
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "cold plunge for sale",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 720,
+        "averageCpc": 13.94,
+        "cpcLow": 3.21,
+        "cpcHigh": 19.42,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 792,
+          "latestVolume": 590,
+          "peakVolume": 880,
+          "peakMonth": "2025-11",
+          "momPct": -18,
+          "change3mPct": -17,
+          "yoyPct": -33,
+          "seasonalityIndex": 1.11,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 880
+            },
+            {
+              "ym": "2025-12",
+              "vol": 720
+            },
+            {
+              "ym": "2026-01",
+              "vol": 720
+            },
+            {
+              "ym": "2026-02",
+              "vol": 590
+            },
+            {
+              "ym": "2026-03",
+              "vol": 880
+            },
+            {
+              "ym": "2026-04",
+              "vol": 880
+            },
+            {
+              "ym": "2026-05",
+              "vol": 880
+            },
+            {
+              "ym": "2026-06",
+              "vol": 880
+            },
+            {
+              "ym": "2026-07",
+              "vol": 880
+            },
+            {
+              "ym": "2026-08",
+              "vol": 880
+            },
+            {
+              "ym": "2026-09",
+              "vol": 720
+            },
+            {
+              "ym": "2026-10",
+              "vol": 590
+            }
+          ],
+          "growthScore": 44,
+          "addedPerMonth": -290
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "cold plunge bath",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 720,
+        "averageCpc": 8.77,
+        "cpcLow": 3.08,
+        "cpcHigh": 11.57,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 670,
+          "latestVolume": 320,
+          "peakVolume": 2400,
+          "peakMonth": "2026-01",
+          "momPct": 23,
+          "change3mPct": -28,
+          "yoyPct": -56,
+          "seasonalityIndex": 3.58,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 720
+            },
+            {
+              "ym": "2025-12",
+              "vol": 720
+            },
+            {
+              "ym": "2026-01",
+              "vol": 2400
+            },
+            {
+              "ym": "2026-02",
+              "vol": 720
+            },
+            {
+              "ym": "2026-03",
+              "vol": 880
+            },
+            {
+              "ym": "2026-04",
+              "vol": 590
+            },
+            {
+              "ym": "2026-05",
+              "vol": 590
+            },
+            {
+              "ym": "2026-06",
+              "vol": 320
+            },
+            {
+              "ym": "2026-07",
+              "vol": 260
+            },
+            {
+              "ym": "2026-08",
+              "vol": 260
+            },
+            {
+              "ym": "2026-09",
+              "vol": 260
+            },
+            {
+              "ym": "2026-10",
+              "vol": 320
+            }
+          ],
+          "growthScore": 41,
+          "addedPerMonth": -400
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "portable cold plunge",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 1000,
+        "averageCpc": 6.38,
+        "cpcLow": 2.04,
+        "cpcHigh": 9.87,
+        "competition": "HIGH",
+        "competitionIndex": 100,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 1109,
+          "latestVolume": 720,
+          "peakVolume": 2900,
+          "peakMonth": "2026-07",
+          "momPct": 22,
+          "change3mPct": -44,
+          "yoyPct": 0,
+          "seasonalityIndex": 2.61,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 720
+            },
+            {
+              "ym": "2025-12",
+              "vol": 880
+            },
+            {
+              "ym": "2026-01",
+              "vol": 880
+            },
+            {
+              "ym": "2026-02",
+              "vol": 720
+            },
+            {
+              "ym": "2026-03",
+              "vol": 1000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 1000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 1000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 1300
+            },
+            {
+              "ym": "2026-07",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1600
+            },
+            {
+              "ym": "2026-09",
+              "vol": 590
+            },
+            {
+              "ym": "2026-10",
+              "vol": 720
+            }
+          ],
+          "growthScore": 44,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      },
+      {
+        "keyword": "plunge bath",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 210,
+        "averageCpc": 9.01,
+        "cpcLow": 2.13,
+        "cpcHigh": 9.47,
+        "competition": "HIGH",
+        "competitionIndex": 93,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 194,
+          "latestVolume": 210,
+          "peakVolume": 260,
+          "peakMonth": "2026-01",
+          "momPct": 24,
+          "change3mPct": 7,
+          "yoyPct": 24,
+          "seasonalityIndex": 1.34,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 170
+            },
+            {
+              "ym": "2025-12",
+              "vol": 210
+            },
+            {
+              "ym": "2026-01",
+              "vol": 260
+            },
+            {
+              "ym": "2026-02",
+              "vol": 170
+            },
+            {
+              "ym": "2026-03",
+              "vol": 210
+            },
+            {
+              "ym": "2026-04",
+              "vol": 170
+            },
+            {
+              "ym": "2026-05",
+              "vol": 170
+            },
+            {
+              "ym": "2026-06",
+              "vol": 170
+            },
+            {
+              "ym": "2026-07",
+              "vol": 210
+            },
+            {
+              "ym": "2026-08",
+              "vol": 210
+            },
+            {
+              "ym": "2026-09",
+              "vol": 170
+            },
+            {
+              "ym": "2026-10",
+              "vol": 210
+            }
+          ],
+          "growthScore": 53,
+          "addedPerMonth": 40
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:17Z"
+      }
+    ],
+    "ai video": [
+      {
+        "keyword": "ai video",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 49500,
+        "averageCpc": 7.06,
+        "cpcLow": 1.63,
+        "cpcHigh": 6.86,
+        "competition": "MEDIUM",
+        "competitionIndex": 43,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 45750,
+          "latestVolume": 49500,
+          "peakVolume": 49500,
+          "peakMonth": "2025-11",
+          "momPct": 22,
+          "change3mPct": 0,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.08,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 49500
+            }
+          ],
+          "growthScore": 50,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "ai video generator",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 246000,
+        "averageCpc": 8.59,
+        "cpcLow": 1.93,
+        "cpcHigh": 8.69,
+        "competition": "MEDIUM",
+        "competitionIndex": 53,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 239333,
+          "latestVolume": 246000,
+          "peakVolume": 301000,
+          "peakMonth": "2026-07",
+          "momPct": 22,
+          "change3mPct": -18,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.26,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 246000
+            }
+          ],
+          "growthScore": 48,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "synthesia ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 4400,
+        "averageCpc": 6.3,
+        "cpcLow": 1.21,
+        "cpcHigh": 14.25,
+        "competition": "MEDIUM",
+        "competitionIndex": 47,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 4658,
+          "latestVolume": 2900,
+          "peakVolume": 6600,
+          "peakMonth": "2025-11",
+          "momPct": 0,
+          "change3mPct": -30,
+          "yoyPct": -56,
+          "seasonalityIndex": 1.42,
+          "signalTag": "COOLING",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-12",
+              "vol": 5400
+            },
+            {
+              "ym": "2026-01",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-02",
+              "vol": 5400
+            },
+            {
+              "ym": "2026-03",
+              "vol": 5400
+            },
+            {
+              "ym": "2026-04",
+              "vol": 5400
+            },
+            {
+              "ym": "2026-05",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-06",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-07",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-08",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-09",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-10",
+              "vol": 2900
+            }
+          ],
+          "growthScore": 40,
+          "addedPerMonth": -3700
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "ai video maker",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 40500,
+        "averageCpc": 7.97,
+        "cpcLow": 1.77,
+        "cpcHigh": 7.74,
+        "competition": "MEDIUM",
+        "competitionIndex": 53,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 37533,
+          "latestVolume": 40500,
+          "peakVolume": 40500,
+          "peakMonth": "2025-11",
+          "momPct": 22,
+          "change3mPct": -6,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.08,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 40500
+            }
+          ],
+          "growthScore": 49,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "video ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 18100,
+        "averageCpc": 7.59,
+        "cpcLow": 1.57,
+        "cpcHigh": 8.08,
+        "competition": "MEDIUM",
+        "competitionIndex": 48,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 17000,
+          "latestVolume": 18100,
+          "peakVolume": 18100,
+          "peakMonth": "2026-01",
+          "momPct": 22,
+          "change3mPct": -12,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.06,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-12",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-01",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-06",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-09",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-10",
+              "vol": 18100
+            }
+          ],
+          "growthScore": 51,
+          "addedPerMonth": 3300
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "free ai video generator",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 110000,
+        "averageCpc": 6.34,
+        "cpcLow": 1.49,
+        "cpcHigh": 6.83,
+        "competition": "MEDIUM",
+        "competitionIndex": 46,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 100917,
+          "latestVolume": 165000,
+          "peakVolume": 165000,
+          "peakMonth": "2026-10",
+          "momPct": 22,
+          "change3mPct": 41,
+          "yoyPct": 123,
+          "seasonalityIndex": 1.64,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 165000
+            }
+          ],
+          "growthScore": 68,
+          "addedPerMonth": 91000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "ai generated video",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 14800,
+        "averageCpc": 9.17,
+        "cpcLow": 1.82,
+        "cpcHigh": 9.22,
+        "competition": "MEDIUM",
+        "competitionIndex": 43,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 13950,
+          "latestVolume": 14800,
+          "peakVolume": 18100,
+          "peakMonth": "2025-12",
+          "momPct": 22,
+          "change3mPct": 0,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.3,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-12",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-02",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-04",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-05",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-06",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 14800
+            }
+          ],
+          "growthScore": 50,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "ai video creator",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 9900,
+        "averageCpc": 11.82,
+        "cpcLow": 2.53,
+        "cpcHigh": 12.03,
+        "competition": "MEDIUM",
+        "competitionIndex": 56,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 10083,
+          "latestVolume": 12100,
+          "peakVolume": 12100,
+          "peakMonth": "2026-10",
+          "momPct": 22,
+          "change3mPct": 7,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.2,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-12",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-01",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-02",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-03",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-04",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-05",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-06",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-07",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-08",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-09",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-10",
+              "vol": 12100
+            }
+          ],
+          "growthScore": 53,
+          "addedPerMonth": 2200
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "ai video generator free",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 74000,
+        "averageCpc": 5.93,
+        "cpcLow": 1.35,
+        "cpcHigh": 6.25,
+        "competition": "MEDIUM",
+        "competitionIndex": 46,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 69750,
+          "latestVolume": 90500,
+          "peakVolume": 90500,
+          "peakMonth": "2026-10",
+          "momPct": 22,
+          "change3mPct": 7,
+          "yoyPct": 50,
+          "seasonalityIndex": 1.3,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 90500
+            }
+          ],
+          "growthScore": 56,
+          "addedPerMonth": 30000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "video ai generator",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 8100,
+        "averageCpc": 8.84,
+        "cpcLow": 2.04,
+        "cpcHigh": 9.43,
+        "competition": "MEDIUM",
+        "competitionIndex": 56,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 7725,
+          "latestVolume": 8100,
+          "peakVolume": 8100,
+          "peakMonth": "2026-01",
+          "momPct": 0,
+          "change3mPct": 0,
+          "yoyPct": 23,
+          "seasonalityIndex": 1.05,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-12",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-01",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-03",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-06",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 8100
+            }
+          ],
+          "growthScore": 52,
+          "addedPerMonth": 1500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "invideo ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 49500,
+        "averageCpc": 8.19,
+        "cpcLow": 1.69,
+        "cpcHigh": 12.17,
+        "competition": "MEDIUM",
+        "competitionIndex": 62,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 54458,
+          "latestVolume": 40500,
+          "peakVolume": 74000,
+          "peakMonth": "2025-11",
+          "momPct": -18,
+          "change3mPct": -6,
+          "yoyPct": -45,
+          "seasonalityIndex": 1.36,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 40500
+            }
+          ],
+          "growthScore": 45,
+          "addedPerMonth": -33500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      },
+      {
+        "keyword": "video generator ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 9900,
+        "averageCpc": 8.16,
+        "cpcLow": 1.81,
+        "cpcHigh": 8.93,
+        "competition": "MEDIUM",
+        "competitionIndex": 58,
+        "trendStats": {
+          "monthsCount": 12,
+          "avgVolume": 9367,
+          "latestVolume": 12100,
+          "peakVolume": 12100,
+          "peakMonth": "2026-09",
+          "momPct": 0,
+          "change3mPct": 22,
+          "yoyPct": 49,
+          "seasonalityIndex": 1.29,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2025-11",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-05",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-06",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-08",
+              "vol": 9900
+            },
+            {
+              "ym": "2026-09",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 12100
+            }
+          ],
+          "growthScore": 58,
+          "addedPerMonth": 4000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:14:21Z"
+      }
+    ]
+  }
+}
