@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
     <script>
         (function () {
             const saved = localStorage.getItem('gm_trend_theme') || localStorage.getItem('theme');
-            const dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const dark = saved ? saved === 'dark' : true;
             document.documentElement.classList.toggle('dark', dark);
         })();
     </script>
