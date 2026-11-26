@@ -1768,6 +1768,1896 @@
         },
         "source": "google_ads_native",
         "fetchedAt": "2026-11-26T05:13:08Z"
+      },
+      "cursor ai": {
+        "keyword": "cursor ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 90500,
+        "averageCpc": 15.32,
+        "cpcLow": 4.93,
+        "cpcHigh": 16.24,
+        "competition": "LOW",
+        "competitionIndex": 27,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 108917,
+          "latestVolume": 49500,
+          "peakVolume": 201000,
+          "peakMonth": "2025-03",
+          "momPct": 0,
+          "change3mPct": -47,
+          "yoyPct": -55,
+          "seasonalityIndex": 1.85,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 74000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-10",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 49500
+            }
+          ],
+          "growthScore": 38,
+          "addedPerMonth": -60500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "mcp server": {
+        "keyword": "mcp server",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 21.1,
+        "cpcLow": 4.92,
+        "cpcHigh": 17.18,
+        "competition": "LOW",
+        "competitionIndex": 19,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 50853,
+          "latestVolume": 74000,
+          "peakVolume": 74000,
+          "peakMonth": "2025-05",
+          "momPct": 49,
+          "change3mPct": 1,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.46,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 260
+            },
+            {
+              "ym": "2024-12",
+              "vol": 2400
+            },
+            {
+              "ym": "2025-01",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-02",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-05",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-10",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 74000
+            }
+          ],
+          "growthScore": 52,
+          "addedPerMonth": 13500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "ai voice generator": {
+        "keyword": "ai voice generator",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 74000,
+        "averageCpc": 5.76,
+        "cpcLow": 0.94,
+        "cpcHigh": 6.03,
+        "competition": "MEDIUM",
+        "competitionIndex": 40,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 82438,
+          "latestVolume": 49500,
+          "peakVolume": 110000,
+          "peakMonth": "2024-11",
+          "momPct": 22,
+          "change3mPct": -34,
+          "yoyPct": -45,
+          "seasonalityIndex": 1.33,
+          "signalTag": "COOLING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 110000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-04",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 49500
+            }
+          ],
+          "growthScore": 41,
+          "addedPerMonth": -41000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "notebooklm": {
+        "keyword": "notebooklm",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 1500000,
+        "averageCpc": 4.72,
+        "cpcLow": 6.11,
+        "cpcHigh": 127.54,
+        "competition": "LOW",
+        "competitionIndex": 14,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 1284917,
+          "latestVolume": 1830000,
+          "peakVolume": 2240000,
+          "peakMonth": "2026-03",
+          "momPct": 0,
+          "change3mPct": 39,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.74,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 823000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 1500000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 2240000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 1000000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 1830000
+            }
+          ],
+          "growthScore": 57,
+          "addedPerMonth": 330000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "perplexity ai": {
+        "keyword": "perplexity ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 301000,
+        "averageCpc": 5.94,
+        "cpcLow": 1.76,
+        "cpcHigh": 7.24,
+        "competition": "LOW",
+        "competitionIndex": 12,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 353250,
+          "latestVolume": 301000,
+          "peakVolume": 450000,
+          "peakMonth": "2025-03",
+          "momPct": 22,
+          "change3mPct": 0,
+          "yoyPct": -33,
+          "seasonalityIndex": 1.27,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 301000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 301000
+            }
+          ],
+          "growthScore": 47,
+          "addedPerMonth": -149000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "ai coding assistant": {
+        "keyword": "ai coding assistant",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 14800,
+        "averageCpc": 31.14,
+        "cpcLow": 7.11,
+        "cpcHigh": 29.35,
+        "competition": "LOW",
+        "competitionIndex": 11,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 13817,
+          "latestVolume": 2900,
+          "peakVolume": 49500,
+          "peakMonth": "2025-07",
+          "momPct": 0,
+          "change3mPct": -63,
+          "yoyPct": -87,
+          "seasonalityIndex": 3.58,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 2400
+            },
+            {
+              "ym": "2024-12",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-01",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-02",
+              "vol": 3600
+            },
+            {
+              "ym": "2025-03",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-04",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-05",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-06",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-09",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-11",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-12",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-01",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-06",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-07",
+              "vol": 12100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-09",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-10",
+              "vol": 2900
+            }
+          ],
+          "growthScore": 33,
+          "addedPerMonth": -19300
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "sora ai": {
+        "keyword": "sora ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 301000,
+        "averageCpc": 4.63,
+        "cpcLow": 0.83,
+        "cpcHigh": 4.45,
+        "competition": "LOW",
+        "competitionIndex": 28,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 245858,
+          "latestVolume": 90500,
+          "peakVolume": 1830000,
+          "peakMonth": "2025-10",
+          "momPct": 0,
+          "change3mPct": -26,
+          "yoyPct": -95,
+          "seasonalityIndex": 7.44,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 33100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-04",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-05",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 1830000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 165000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 90500
+            }
+          ],
+          "growthScore": 37,
+          "addedPerMonth": -1739500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "grok": {
+        "keyword": "grok",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 2740000,
+        "averageCpc": 10.31,
+        "cpcLow": 3.97,
+        "cpcHigh": 13.93,
+        "competition": "LOW",
+        "competitionIndex": 3,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 2074667,
+          "latestVolume": 2240000,
+          "peakVolume": 4090000,
+          "peakMonth": "2026-01",
+          "momPct": 0,
+          "change3mPct": -7,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.97,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 1830000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 1500000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 1500000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 1830000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 1830000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 1830000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 2740000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 2740000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 2740000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 2240000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 2240000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 2240000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 2240000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 2240000
+            }
+          ],
+          "growthScore": 49,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "n8n": {
+        "keyword": "n8n",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 135000,
+        "averageCpc": 4.24,
+        "cpcLow": 1.62,
+        "cpcHigh": 16.42,
+        "competition": "MEDIUM",
+        "competitionIndex": 38,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 155304,
+          "latestVolume": 90500,
+          "peakVolume": 301000,
+          "peakMonth": "2025-07",
+          "momPct": 0,
+          "change3mPct": -24,
+          "yoyPct": -63,
+          "seasonalityIndex": 1.94,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 18100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-02",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 165000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 90500
+            }
+          ],
+          "growthScore": 41,
+          "addedPerMonth": -155500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "ai workflow": {
+        "keyword": "ai workflow",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 2900,
+        "averageCpc": 47.57,
+        "cpcLow": 13.06,
+        "cpcHigh": 39.73,
+        "competition": "MEDIUM",
+        "competitionIndex": 37,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 2713,
+          "latestVolume": 3600,
+          "peakVolume": 3600,
+          "peakMonth": "2026-03",
+          "momPct": 0,
+          "change3mPct": 0,
+          "yoyPct": 50,
+          "seasonalityIndex": 1.33,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 1000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 1300
+            },
+            {
+              "ym": "2025-01",
+              "vol": 1900
+            },
+            {
+              "ym": "2025-02",
+              "vol": 1900
+            },
+            {
+              "ym": "2025-03",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-04",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-05",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-06",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-07",
+              "vol": 2900
+            },
+            {
+              "ym": "2025-08",
+              "vol": 2400
+            },
+            {
+              "ym": "2025-09",
+              "vol": 2400
+            },
+            {
+              "ym": "2025-10",
+              "vol": 2400
+            },
+            {
+              "ym": "2025-11",
+              "vol": 2400
+            },
+            {
+              "ym": "2025-12",
+              "vol": 2400
+            },
+            {
+              "ym": "2026-01",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-02",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-03",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-04",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-05",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-06",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-07",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-08",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-09",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-10",
+              "vol": 3600
+            }
+          ],
+          "growthScore": 55,
+          "addedPerMonth": 1200
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "elevenlabs": {
+        "keyword": "elevenlabs",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 368000,
+        "averageCpc": 2.33,
+        "cpcLow": 0.08,
+        "cpcHigh": 6.9,
+        "competition": "MEDIUM",
+        "competitionIndex": 43,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 307958,
+          "latestVolume": 368000,
+          "peakVolume": 368000,
+          "peakMonth": "2025-06",
+          "momPct": 0,
+          "change3mPct": 0,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.19,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 368000
+            }
+          ],
+          "growthScore": 52,
+          "addedPerMonth": 67000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "vibe coding": {
+        "keyword": "vibe coding",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 110000,
+        "averageCpc": 15.58,
+        "cpcLow": 3.5,
+        "cpcHigh": 13.77,
+        "competition": "LOW",
+        "competitionIndex": 24,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 95394,
+          "latestVolume": 165000,
+          "peakVolume": 165000,
+          "peakMonth": "2026-03",
+          "momPct": 82,
+          "change3mPct": 20,
+          "yoyPct": 50,
+          "seasonalityIndex": 1.73,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 30
+            },
+            {
+              "ym": "2024-12",
+              "vol": 10
+            },
+            {
+              "ym": "2025-01",
+              "vol": 10
+            },
+            {
+              "ym": "2025-02",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-03",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 165000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 165000
+            }
+          ],
+          "growthScore": 58,
+          "addedPerMonth": 55000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "windsurf ai": {
+        "keyword": "windsurf ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 5400,
+        "averageCpc": 8.18,
+        "cpcLow": 4.47,
+        "cpcHigh": 12.14,
+        "competition": "LOW",
+        "competitionIndex": 25,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 13217,
+          "latestVolume": 3600,
+          "peakVolume": 40500,
+          "peakMonth": "2025-05",
+          "momPct": 24,
+          "change3mPct": -38,
+          "yoyPct": -56,
+          "seasonalityIndex": 3.06,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 8100
+            },
+            {
+              "ym": "2024-12",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-01",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-04",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-05",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 22200
+            },
+            {
+              "ym": "2025-07",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-09",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-10",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-01",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-02",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-03",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-05",
+              "vol": 5400
+            },
+            {
+              "ym": "2026-06",
+              "vol": 6600
+            },
+            {
+              "ym": "2026-07",
+              "vol": 4400
+            },
+            {
+              "ym": "2026-08",
+              "vol": 3600
+            },
+            {
+              "ym": "2026-09",
+              "vol": 2900
+            },
+            {
+              "ym": "2026-10",
+              "vol": 3600
+            }
+          ],
+          "growthScore": 39,
+          "addedPerMonth": -4500
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "lovable ai": {
+        "keyword": "lovable ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 49500,
+        "averageCpc": 3.76,
+        "cpcLow": 1.41,
+        "cpcHigh": 13.14,
+        "competition": "MEDIUM",
+        "competitionIndex": 57,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 43058,
+          "latestVolume": 33100,
+          "peakVolume": 90500,
+          "peakMonth": "2025-07",
+          "momPct": 0,
+          "change3mPct": -37,
+          "yoyPct": -33,
+          "seasonalityIndex": 2.1,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 590
+            },
+            {
+              "ym": "2024-12",
+              "vol": 5400
+            },
+            {
+              "ym": "2025-01",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-03",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-04",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-05",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-07",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-10",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 33100
+            }
+          ],
+          "growthScore": 42,
+          "addedPerMonth": -16400
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
+      },
+      "manus ai": {
+        "keyword": "manus ai",
+        "geo": "US",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 90500,
+        "averageCpc": 3.16,
+        "cpcLow": 0.44,
+        "cpcHigh": 12.67,
+        "competition": "MEDIUM",
+        "competitionIndex": 42,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 74109,
+          "latestVolume": 49500,
+          "peakVolume": 301000,
+          "peakMonth": "2025-03",
+          "momPct": 0,
+          "change3mPct": -34,
+          "yoyPct": 22,
+          "seasonalityIndex": 4.06,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 90
+            },
+            {
+              "ym": "2024-12",
+              "vol": 50
+            },
+            {
+              "ym": "2025-01",
+              "vol": 210
+            },
+            {
+              "ym": "2025-02",
+              "vol": 170
+            },
+            {
+              "ym": "2025-03",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-06",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-09",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-10",
+              "vol": 40500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 135000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 110000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 74000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-10",
+              "vol": 49500
+            }
+          ],
+          "growthScore": 48,
+          "addedPerMonth": 9000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:28Z"
       }
     },
     "GLOBAL": {
@@ -3534,6 +5424,1896 @@
         },
         "source": "google_ads_native",
         "fetchedAt": "2026-11-26T05:13:10Z"
+      },
+      "cursor ai": {
+        "keyword": "cursor ai",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 673000,
+        "averageCpc": 5.01,
+        "cpcLow": 0.59,
+        "cpcHigh": 6.26,
+        "competition": "LOW",
+        "competitionIndex": 24,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 726208,
+          "latestVolume": 368000,
+          "peakVolume": 1220000,
+          "peakMonth": "2025-03",
+          "momPct": -18,
+          "change3mPct": -33,
+          "yoyPct": -45,
+          "seasonalityIndex": 1.68,
+          "signalTag": "COOLING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 368000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 368000
+            }
+          ],
+          "growthScore": 41,
+          "addedPerMonth": -305000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "mcp server": {
+        "keyword": "mcp server",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 201000,
+        "averageCpc": 11.09,
+        "cpcLow": 1.97,
+        "cpcHigh": 11.64,
+        "competition": "LOW",
+        "competitionIndex": 15,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 202683,
+          "latestVolume": 246000,
+          "peakVolume": 301000,
+          "peakMonth": "2025-04",
+          "momPct": 22,
+          "change3mPct": -12,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.49,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 1300
+            },
+            {
+              "ym": "2024-12",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-01",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-02",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 246000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 165000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 165000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 201000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 246000
+            }
+          ],
+          "growthScore": 48,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "ai voice generator": {
+        "keyword": "ai voice generator",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 368000,
+        "averageCpc": 1.5,
+        "cpcLow": 0.06,
+        "cpcHigh": 1.56,
+        "competition": "MEDIUM",
+        "competitionIndex": 43,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 389833,
+          "latestVolume": 246000,
+          "peakVolume": 450000,
+          "peakMonth": "2024-11",
+          "momPct": 0,
+          "change3mPct": -29,
+          "yoyPct": -33,
+          "seasonalityIndex": 1.15,
+          "signalTag": "COOLING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 450000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 246000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 246000
+            }
+          ],
+          "growthScore": 43,
+          "addedPerMonth": -122000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "notebooklm": {
+        "keyword": "notebooklm",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 24900000,
+        "averageCpc": 1.1,
+        "cpcLow": 0.15,
+        "cpcHigh": 5.27,
+        "competition": "LOW",
+        "competitionIndex": 25,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 17149167,
+          "latestVolume": 30400000,
+          "peakVolume": 30400000,
+          "peakMonth": "2026-03",
+          "momPct": 0,
+          "change3mPct": 0,
+          "yoyPct": 124,
+          "seasonalityIndex": 1.77,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 6120000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 6120000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 7480000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 7480000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 7480000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 7480000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 11100000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 9140000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 9140000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 9140000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 11100000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 13600000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 16600000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 16600000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 24900000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 24900000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 30400000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 30400000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 30400000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 30400000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 20400000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 20400000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 30400000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 30400000
+            }
+          ],
+          "growthScore": 62,
+          "addedPerMonth": 16800000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "perplexity ai": {
+        "keyword": "perplexity ai",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 4090000,
+        "averageCpc": 2.47,
+        "cpcLow": 0.23,
+        "cpcHigh": 3.64,
+        "competition": "LOW",
+        "competitionIndex": 3,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 4141250,
+          "latestVolume": 3350000,
+          "peakVolume": 6120000,
+          "peakMonth": "2024-11",
+          "momPct": -18,
+          "change3mPct": 0,
+          "yoyPct": -33,
+          "seasonalityIndex": 1.48,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 6120000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 3350000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 5000000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 5000000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 3350000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 4090000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 3350000
+            }
+          ],
+          "growthScore": 47,
+          "addedPerMonth": -1650000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "ai coding assistant": {
+        "keyword": "ai coding assistant",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 60500,
+        "averageCpc": 8.46,
+        "cpcLow": 0.61,
+        "cpcHigh": 12.67,
+        "competition": "LOW",
+        "competitionIndex": 22,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 38317,
+          "latestVolume": 5400,
+          "peakVolume": 301000,
+          "peakMonth": "2026-03",
+          "momPct": -33,
+          "change3mPct": -67,
+          "yoyPct": -80,
+          "seasonalityIndex": 7.86,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 6600
+            },
+            {
+              "ym": "2024-12",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-01",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-02",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-04",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-05",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-06",
+              "vol": 33100
+            },
+            {
+              "ym": "2025-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-08",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-09",
+              "vol": 18100
+            },
+            {
+              "ym": "2025-10",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-11",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-12",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-01",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 301000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 90500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-09",
+              "vol": 8100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 5400
+            }
+          ],
+          "growthScore": 33,
+          "addedPerMonth": -21700
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "sora ai": {
+        "keyword": "sora ai",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 1000000,
+        "averageCpc": 2.41,
+        "cpcLow": 0.21,
+        "cpcHigh": 2.64,
+        "competition": "LOW",
+        "competitionIndex": 25,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 1013042,
+          "latestVolume": 368000,
+          "peakVolume": 6120000,
+          "peakMonth": "2025-10",
+          "momPct": 0,
+          "change3mPct": -29,
+          "yoyPct": -94,
+          "seasonalityIndex": 6.04,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 246000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 6120000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 2740000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 368000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 368000
+            }
+          ],
+          "growthScore": 37,
+          "addedPerMonth": -5752000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "grok": {
+        "keyword": "grok",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 20400000,
+        "averageCpc": 7.31,
+        "cpcLow": 1.42,
+        "cpcHigh": 12.25,
+        "competition": "LOW",
+        "competitionIndex": 1,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 14559583,
+          "latestVolume": 13600000,
+          "peakVolume": 30400000,
+          "peakMonth": "2026-01",
+          "momPct": 0,
+          "change3mPct": -19,
+          "yoyPct": 0,
+          "seasonalityIndex": 2.09,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 550000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 1500000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 20400000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 13600000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 11100000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 9140000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 11100000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 11100000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 11100000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 13600000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 16600000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 20400000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 30400000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 24900000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 30400000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 24900000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 20400000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 16600000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 13600000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 13600000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 13600000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 13600000
+            }
+          ],
+          "growthScore": 47,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "n8n": {
+        "keyword": "n8n",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 1830000,
+        "averageCpc": 0.86,
+        "cpcLow": 0.03,
+        "cpcHigh": 4.32,
+        "competition": "LOW",
+        "competitionIndex": 31,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 1587042,
+          "latestVolume": 1220000,
+          "peakVolume": 2740000,
+          "peakMonth": "2025-10",
+          "momPct": 0,
+          "change3mPct": -24,
+          "yoyPct": -55,
+          "seasonalityIndex": 1.73,
+          "signalTag": "COOLING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 165000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 1830000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 2740000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 2240000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 2240000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 1830000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 1220000
+            }
+          ],
+          "growthScore": 41,
+          "addedPerMonth": -1520000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "ai workflow": {
+        "keyword": "ai workflow",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 22200,
+        "averageCpc": 5.89,
+        "cpcLow": 0.58,
+        "cpcHigh": 10.47,
+        "competition": "MEDIUM",
+        "competitionIndex": 44,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 17929,
+          "latestVolume": 33100,
+          "peakVolume": 33100,
+          "peakMonth": "2026-09",
+          "momPct": 0,
+          "change3mPct": 15,
+          "yoyPct": 124,
+          "seasonalityIndex": 1.85,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 4400
+            },
+            {
+              "ym": "2024-12",
+              "vol": 4400
+            },
+            {
+              "ym": "2025-01",
+              "vol": 6600
+            },
+            {
+              "ym": "2025-02",
+              "vol": 8100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 9900
+            },
+            {
+              "ym": "2025-04",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-05",
+              "vol": 12100
+            },
+            {
+              "ym": "2025-06",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-07",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-08",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-09",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-10",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-11",
+              "vol": 14800
+            },
+            {
+              "ym": "2025-12",
+              "vol": 14800
+            },
+            {
+              "ym": "2026-01",
+              "vol": 18100
+            },
+            {
+              "ym": "2026-02",
+              "vol": 22200
+            },
+            {
+              "ym": "2026-03",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-04",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-05",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-06",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-07",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-08",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 33100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 33100
+            }
+          ],
+          "growthScore": 64,
+          "addedPerMonth": 18300
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "elevenlabs": {
+        "keyword": "elevenlabs",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 5000000,
+        "averageCpc": 0.39,
+        "cpcLow": 0.04,
+        "cpcHigh": 1.06,
+        "competition": "LOW",
+        "competitionIndex": 32,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 5092917,
+          "latestVolume": 6120000,
+          "peakVolume": 6120000,
+          "peakMonth": "2025-05",
+          "momPct": 22,
+          "change3mPct": 0,
+          "yoyPct": 50,
+          "seasonalityIndex": 1.2,
+          "signalTag": "RISING",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 3350000
+            },
+            {
+              "ym": "2024-12",
+              "vol": 3350000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 6120000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 6120000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 5000000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 4090000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 5000000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 5000000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 5000000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 6120000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 5000000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 6120000
+            }
+          ],
+          "growthScore": 55,
+          "addedPerMonth": 2030000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "vibe coding": {
+        "keyword": "vibe coding",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 550000,
+        "averageCpc": 5.16,
+        "cpcLow": 0.67,
+        "cpcHigh": 6.74,
+        "competition": "LOW",
+        "competitionIndex": 29,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 475640,
+          "latestVolume": 673000,
+          "peakVolume": 823000,
+          "peakMonth": "2026-03",
+          "momPct": 50,
+          "change3mPct": -6,
+          "yoyPct": 22,
+          "seasonalityIndex": 1.73,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 90
+            },
+            {
+              "ym": "2024-12",
+              "vol": 70
+            },
+            {
+              "ym": "2025-01",
+              "vol": 110
+            },
+            {
+              "ym": "2025-02",
+              "vol": 27100
+            },
+            {
+              "ym": "2025-03",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 450000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 673000
+            }
+          ],
+          "growthScore": 51,
+          "addedPerMonth": 123000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "windsurf ai": {
+        "keyword": "windsurf ai",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 40500,
+        "averageCpc": 4.47,
+        "cpcLow": 0.71,
+        "cpcHigh": 4.54,
+        "competition": "LOW",
+        "competitionIndex": 29,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 79721,
+          "latestVolume": 27100,
+          "peakVolume": 201000,
+          "peakMonth": "2025-05",
+          "momPct": 0,
+          "change3mPct": -46,
+          "yoyPct": -55,
+          "seasonalityIndex": 2.52,
+          "signalTag": "SEASONAL",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 60500
+            },
+            {
+              "ym": "2024-12",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-01",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-02",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 201000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 110000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 165000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 74000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-10",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-11",
+              "vol": 60500
+            },
+            {
+              "ym": "2025-12",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-01",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-02",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-03",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-04",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-05",
+              "vol": 49500
+            },
+            {
+              "ym": "2026-06",
+              "vol": 60500
+            },
+            {
+              "ym": "2026-07",
+              "vol": 40500
+            },
+            {
+              "ym": "2026-08",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-09",
+              "vol": 27100
+            },
+            {
+              "ym": "2026-10",
+              "vol": 27100
+            }
+          ],
+          "growthScore": 38,
+          "addedPerMonth": -33400
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "lovable ai": {
+        "keyword": "lovable ai",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 673000,
+        "averageCpc": 1.63,
+        "cpcLow": 0.31,
+        "cpcHigh": 4.76,
+        "competition": "LOW",
+        "competitionIndex": 32,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 502350,
+          "latestVolume": 550000,
+          "peakVolume": 823000,
+          "peakMonth": "2026-04",
+          "momPct": 0,
+          "change3mPct": -18,
+          "yoyPct": 0,
+          "seasonalityIndex": 1.64,
+          "signalTag": "STEADY",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 5400
+            },
+            {
+              "ym": "2024-12",
+              "vol": 49500
+            },
+            {
+              "ym": "2025-01",
+              "vol": 90500
+            },
+            {
+              "ym": "2025-02",
+              "vol": 135000
+            },
+            {
+              "ym": "2025-03",
+              "vol": 301000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 368000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 450000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 550000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 550000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 550000
+            }
+          ],
+          "growthScore": 48,
+          "addedPerMonth": 0
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
+      },
+      "manus ai": {
+        "keyword": "manus ai",
+        "geo": "GLOBAL",
+        "network": "GOOGLE_SEARCH",
+        "currency": "CAD",
+        "vol": 1220000,
+        "averageCpc": 0.67,
+        "cpcLow": 0.05,
+        "cpcHigh": 2.39,
+        "competition": "LOW",
+        "competitionIndex": 21,
+        "trendStats": {
+          "monthsCount": 24,
+          "avgVolume": 945021,
+          "latestVolume": 1220000,
+          "peakVolume": 2240000,
+          "peakMonth": "2025-03",
+          "momPct": 0,
+          "change3mPct": -13,
+          "yoyPct": 81,
+          "seasonalityIndex": 2.37,
+          "signalTag": "BREAKOUT",
+          "sparkline": [
+            {
+              "ym": "2024-11",
+              "vol": 590
+            },
+            {
+              "ym": "2024-12",
+              "vol": 480
+            },
+            {
+              "ym": "2025-01",
+              "vol": 720
+            },
+            {
+              "ym": "2025-02",
+              "vol": 720
+            },
+            {
+              "ym": "2025-03",
+              "vol": 2240000
+            },
+            {
+              "ym": "2025-04",
+              "vol": 1220000
+            },
+            {
+              "ym": "2025-05",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-06",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-07",
+              "vol": 1000000
+            },
+            {
+              "ym": "2025-08",
+              "vol": 823000
+            },
+            {
+              "ym": "2025-09",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-10",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-11",
+              "vol": 673000
+            },
+            {
+              "ym": "2025-12",
+              "vol": 673000
+            },
+            {
+              "ym": "2026-01",
+              "vol": 823000
+            },
+            {
+              "ym": "2026-02",
+              "vol": 1000000
+            },
+            {
+              "ym": "2026-03",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-04",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-05",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-06",
+              "vol": 1500000
+            },
+            {
+              "ym": "2026-07",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-08",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-09",
+              "vol": 1220000
+            },
+            {
+              "ym": "2026-10",
+              "vol": 1220000
+            }
+          ],
+          "growthScore": 56,
+          "addedPerMonth": 547000
+        },
+        "source": "google_ads_native",
+        "fetchedAt": "2026-11-26T05:33:31Z"
       }
     }
   },
